@@ -8,7 +8,8 @@
 	"scripts": {
 		"clean-install": "lerna bootstrap",
 		"build": "lerna run build",
-		"start": "npm run build && node src/server/index.ts",
+		"start": "npm run build && npm run start-server",
+		"start-server": "lerna run start-server",
 		"client": "lerna run client",
 		"server": "lerna run server --stream",
 		"dev": "concurrently \"npm run server\" \"npm run client\""

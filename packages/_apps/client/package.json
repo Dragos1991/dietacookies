@@ -4,7 +4,6 @@
     "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
     "scripts": {
       "build": "webpack --mode production",
-      "start": "npm run build && node src/server/index.ts",
       "client": "webpack-dev-server --mode development --devtool inline-source-map --hot"
     },
     "author": "Sandeep Raveesh",
