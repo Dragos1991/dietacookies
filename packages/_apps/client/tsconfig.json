@@ -1,7 +1,5 @@
 {
     "extends": "../../../tsconfig-base.json",
-    "include": [
-      "@types/global.d.ts", "src" // *** The files TypeScript should type check ***
-  ],
-    "exclude": ["node_modules", "dist"] // *** The files to not type check ***
+    "include": ["@types/global.d.ts", "src"],
+    "exclude": ["node_modules", "dist"],
 }

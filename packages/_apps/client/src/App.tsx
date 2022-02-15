@@ -1,24 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactImage from './react.png';
+import { test } from '@dieta-libs/common';
 
-export default class App extends Component {
-  state = { username: null };
+interface IAppProps{
+	test?: string;
+}
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ user }));
-  }
+export const App: React.FunctionComponent<IAppProps> = () => {
+	const [name, setName] = React.useState<any>(null);
 
-  render() {
-    const { username } = this.state;
-    console.log(this.state);
-    return (
-      <div>
-        test
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
-    );
-  }
+	React.useEffect(()=> {
+		const fetchData = async () => {
+			try {
+				const res = await fetch('/api/getUsername');
+				const data = await res.json();
+				if (data) {
+					setName(data.name);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchData();
+	}, []);
+
+	return (
+		<div>
+			<strong>
+				Variabila `{test}` - importat din _libs/common
+			</strong>
+			<div>
+				<strong>
+					Varibila `{name && name}` - setata din server
+				</strong>
+			</div>
+			<img src={ReactImage} alt="react" />
+		</div>
+	)
 }

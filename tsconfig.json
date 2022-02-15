@@ -1,4 +1,5 @@
 {
   "extends": "./tsconfig-base.json",
-  "exclude": ["node_modules", "dist"] // *** The files to not type check ***
+  "exclude": ["node_modules", "dist"], // *** The files to not type check ***
+  "references": [{ "path": "packages/_libs/common" }]
 }
