@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "clean-install": "lerna bootstrap",
+        "clean-install": "npx lerna bootstrap",
         "dev": "npm run build:all:dev:tsc",
         "build": "npm run clean && npm run build:all",
         "build:all": "lerna run build:all",
