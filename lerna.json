@@ -1,15 +1,10 @@
 {
     "packages": [
-        "packages/_apps/*",
+        "packages/_apps/website/*",
+        "packages/_apps/admin/*",
         "packages/_libs/*"
     ],
-    "useWorkspaces": false,
-    "npmClient": "npm",
     "version": "fixed",
-    "command": {
-        "publish": {
-            "registry": "http://localhost:8080/"
-        }
-    },
+    "npmClient": "npm",
     "hoist": true
 }

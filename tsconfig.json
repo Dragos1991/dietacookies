@@ -1,5 +1,11 @@
 {
-  "extends": "./tsconfig-base.json",
-  "exclude": ["node_modules", "dist"], // *** The files to not type check ***
-  "references": [{ "path": "packages/_libs/common" }]
+    "extends": "./tsconfig-base.json",
+    "files": [],
+    "references": [
+        { "path": "./packages/_apps/website/client" },
+        { "path": "./packages/_apps/website/server" },
+        { "path": "./packages/_apps/admin/client" },
+        { "path": "./packages/_apps/admin/server" },
+        { "path": "./packages/_libs/common" }
+    ]
 }

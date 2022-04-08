@@ -1,9 +1,10 @@
 {
-    "extends": "../../../tsconfig-base.json",
+    "extends": "../../../../tsconfig-base.json",
     "compilerOptions": {
         "outDir": "./dist/@types",
         "rootDir": "./sources",
         "module": "esnext",
-        "target": "esnext"
+        "target": "esnext",
+        "types": ["node"]
     }
 }

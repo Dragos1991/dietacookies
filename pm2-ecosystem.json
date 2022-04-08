@@ -1,0 +1,30 @@
+{
+    "apps": [
+        {
+            "name": "Website server",
+            "script": "./packages/_apps/website/server/dist/app/index.js",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "source_map_support": true,
+            "env_production": {
+                "NODE_ENV": "production"
+            },
+            "env_development": {
+                "watch": true,
+                "NODE_ENV": "development"
+            }
+        },
+        {
+            "name": "Admin server",
+            "script": "./packages/_apps/admin/server/dist/app/index.js",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "source_map_support": true,
+            "env_production": {
+                "NODE_ENV": "production"
+            },
+            "env_development": {
+                "watch": true,
+                "NODE_ENV": "development"
+            }
+        }
+    ]
+}
