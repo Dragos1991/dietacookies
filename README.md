@@ -3,7 +3,7 @@
 ## How to install
 
 Install [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm) to easier install node & npm version.
-Current nove version is `16.14.0` and npm version is `8.3.1`.
+Current node version is `16.14.0` and npm version is `8.3.1`.
 
 Install [pm2](https://pm2.keymetrics.io/). It should be installed globaly after you installed node and npm. To install it globaly use the command `npm install pm2 -g`.
 
