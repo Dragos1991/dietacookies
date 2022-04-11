@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { IAppModuleState, IAppState } from "../app/types";
+import { TEST_COMMON_EXPORTS } from "@dieta/common";
+
+const PORT = 3080;
+
+console.log(TEST_COMMON_EXPORTS);
 
 const Index = ({ color }: IAppState) => {
     const [state, setState] = useState<any>(null);

@@ -22,3 +22,8 @@ If you want to build the in watch mode, use the commad `npm run dev`. It will st
 To start the application, we are using pm2 that is called inside the bash script `start.sh`.
 
 To use it in develop mode, with watch from pm2 use `bash start.sh [--dev | --prod]`. If you want to give permissions to the file, use `chmode +x ./start.sh`, and you can run it withot the bash commoand, like `./start.sh [--dev | --prod]`.
+
+## Where to see the application
+
+The website client is on `localhost:3000`.
+The admin client is on `localhost:3001`.
