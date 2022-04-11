@@ -19,9 +19,11 @@ If you want to build the in watch mode, use the commad `npm run dev`. It will st
 
 ## How to start the application
 
-To start the application, we are using pm2 that is called inside the bash script `start.sh`.
+To start the server application, we are using pm2 that is called inside the bash script `start.sh`.
 
 To use it in develop mode, with watch from pm2 use `bash start.sh [--dev | --prod]`. If you want to give permissions to the file, use `chmode +x ./start.sh`, and you can run it withot the bash commoand, like `./start.sh [--dev | --prod]`.
+
+To start the client application use `npm run start`. It will start the nextjs servers for admin and website.
 
 ## Where to see the application
 
