@@ -1,9 +1,8 @@
 import { Provider } from "react-redux";
 import { AppProps } from "next/app";
-import { useStore } from "../init";
+import { wrapper, store } from "../store";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-    const store = useStore(pageProps.state);
+const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
         <>
             <Provider store={store}>
@@ -11,4 +10,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             </Provider>
         </>
     );
-}
+};
+
+export default wrapper.withRedux(MyApp);
