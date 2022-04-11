@@ -4,6 +4,15 @@
         "outDir": "./dist/@types",
         "rootDir": "./sources",
         "module": "esnext",
-        "target": "esnext"
-    }
+        "target": "esnext",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "noEmit": true,
+        "incremental": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve"
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"]
 }

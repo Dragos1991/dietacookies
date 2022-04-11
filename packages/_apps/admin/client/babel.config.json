@@ -10,10 +10,12 @@
                     "safari": "11.1"
                 },
                 "useBuiltIns": "usage",
-                "corejs": "3.6.5"
+                "corejs": "3.6.5",
+                "modules": "undefined"
             }
         ],
         "minify",
-        "@babel/preset-typescript"
+        "@babel/preset-typescript",
+        "@babel/preset-react"
     ]
 }

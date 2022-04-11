@@ -9,6 +9,8 @@ Install [pm2](https://pm2.keymetrics.io/). It should be installed globaly after 
 
 To install the project use command `npm run clean-install`. It will bootstrap all the packages and install the correct dependencies.
 
+To install new dependency use command from lerna `npx lerna add DEP@VERSION --scope=PACKAGENAME`. `PACKAGENAME` is the name of the package from package.json.
+
 ## How to build
 
 To build the packages use the command `npm run build:all`. It will build all the packages required to start the application.
