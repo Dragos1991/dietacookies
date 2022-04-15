@@ -14,8 +14,8 @@
         "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
         "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
         "start": "next start ./sources/src -p 3000",
-        "build:app": "next build ./sources/src -p 3000",
-        "build:app:dev": "next dev ./sources/src",
+        "build:app": "next build ./sources/src",
+        "build:app:dev": "next dev ./sources/src -p 3000",
         "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
         "build:typings:dev": "npm run build:typings -- --watch",
         "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
@@ -26,7 +26,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@babel/preset-react": "^7.16.7",
         "@dieta/common": "1.0.0",
         "@reduxjs/toolkit": "^1.6.2",
         "@types/react": "^18.0.0",

@@ -20,7 +20,7 @@
         "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
         "build:typings:dev": "npm run build:typings -- --watch",
         "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
-        "clean:sources": "rimraf dist/{app,@types}/**",
+        "clean:sources": "rimraf dist/{lib,@types}/**",
         "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo"
     },
     "keywords": [],

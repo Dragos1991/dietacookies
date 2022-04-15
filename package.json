@@ -13,7 +13,8 @@
         "start": "lerna run start --stream",
         "clean": "lerna run clean",
         "test": "lerna run test",
-        "check-typings": "tsc -b ."
+        "check-typings": "tsc -b .",
+        "reset": "npm run clean-install && npm run build"
     },
     "keywords": [],
     "author": "",
