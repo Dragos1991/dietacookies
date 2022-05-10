@@ -29,3 +29,11 @@ To start the client application use `npm run start`. It will start the nextjs se
 
 The website client is on `localhost:3000`.
 The admin client is on `localhost:3001`.
+
+## Migration
+
+The database we use is `postgresql` and to conenct to it we use `knex`. For migrations there is a npm script that runs the migrations at the start of the building process. If you want to creat a new migration, the npm script is the follow `NAME=your_migration_name npm run migrate:make`. This line will create a new migration in the `packages\_libs\database-connector\sources\src\database\migrations` that will be used for generating and updating the database structure. To run the migration separatly, for the latest use `npm run migrate:latest`, to downgrade, use `npm run migrate:downgrade`.
+
+## Seed
+
+The same principle applies to seeds. To create a new seed, we follow the same principle `NAME=your_seed name npm run seed:make`. The seed won't run at building process. To run seeds use the command `npm run seed:run`. This will create a ts file in `seeds` folder `packages\_libs\database-connector\sources\src\database\seeds`.

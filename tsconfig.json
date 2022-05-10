@@ -8,6 +8,7 @@
         { "path": "./packages/_apps/admin/server" },
         { "path": "./packages/_libs/express-app" },
         { "path": "./packages/_libs/graphql-server" },
-        { "path": "./packages/_libs/database-connector" }
+        { "path": "./packages/_libs/database-connector" },
+        { "path": "./packages/_libs/data-access-layer" }
     ]
 }
