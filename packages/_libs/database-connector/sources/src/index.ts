@@ -1,4 +1,5 @@
 import "./dotenvConfig";
 
 export * from "./types";
-export { database } from "./database";
+
+export { database } from "./database/database";

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import { IDbConfig } from "./types/types";
+import { IDbConfig } from "../types/types";
 
 dotenv.config({
-    path: __dirname + "/./../../../../../.env",
+    path: __dirname + "/./../../../../../../.env",
 });
 
 const config: IDbConfig = {
@@ -18,6 +18,10 @@ const config: IDbConfig = {
         },
         migrations: {
             tableName: "knex_migrations",
+            directory: "../migrations",
+        },
+        seeds: {
+            directory: "../seeds",
         },
     },
 };

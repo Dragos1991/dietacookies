@@ -22,11 +22,11 @@
         "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
         "clean:sources": "rimraf dist/{lib,@types}/**",
         "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo",
-        "knex:migrate:make": "knex --knexfile sources/src/knexfile.ts migrate:make $NAME -x ts",
-        "knex:migrate:latest": "knex --knexfile sources/src/knexfile.ts migrate:latest",
-        "knex:migrate:rollback": "knex --knexfile sources/src/knexfile.ts migrate:rollback",
-        "knex:seed:make": "knex --knexfile sources/src/knexfile.ts seed:make $NAME -x ts",
-        "knex:seed:run": "knex --knexfile sources/src/knexfile.ts seed:run"
+        "knex:migrate:make": "knex --knexfile sources/src/database/knexfile.ts migrate:make $NAME -x ts",
+        "knex:migrate:latest": "knex --knexfile sources/src/database/knexfile.ts migrate:latest",
+        "knex:migrate:rollback": "knex --knexfile sources/src/database/knexfile.ts migrate:rollback",
+        "knex:seed:make": "knex --knexfile sources/src/database/knexfile.ts seed:make $NAME -x ts",
+        "knex:seed:run": "knex --knexfile sources/src/database/knexfile.ts seed:run"
     },
     "keywords": [],
     "author": "",
