@@ -6,6 +6,8 @@
         { "path": "./packages/_apps/website/server" },
         { "path": "./packages/_apps/admin/client" },
         { "path": "./packages/_apps/admin/server" },
-        { "path": "./packages/_libs/common" }
+        { "path": "./packages/_libs/express-app" },
+        { "path": "./packages/_libs/graphql-server" },
+        { "path": "./packages/_libs/database-connector" }
     ]
 }

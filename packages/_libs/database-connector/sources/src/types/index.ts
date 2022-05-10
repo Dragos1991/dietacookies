@@ -1,0 +1,1 @@
+export { IDbConfig } from "./types";

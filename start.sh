@@ -20,12 +20,11 @@ while [[ $# -gt 0 ]]; do
     --dev)
         startDev
         echo "Dev project started"
-        pm2 monit
+        pm2 logs
         ;;
     --prod)
         startProd
         echo "Project started"
-        pm2 monit
         ;;
     *)
         echo "Unknown option '$PARAM'"

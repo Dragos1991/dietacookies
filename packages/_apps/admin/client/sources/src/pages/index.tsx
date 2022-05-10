@@ -3,14 +3,10 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { IAppModuleState, IAppState } from "../app/types";
 
-import { TEST_COMMON_EXPORTS } from "@dieta/common";
-
-console.log(TEST_COMMON_EXPORTS);
-
 const Index = ({ color }: IAppState) => {
     const [state, setState] = useState<any>(null);
     const doFetch = async () => {
-        const response = await axios.get("http://localhost:3080");
+        const response = await axios.get("http://localhost:3082");
         setState(response.data);
     };
     useEffect(() => {

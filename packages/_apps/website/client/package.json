@@ -11,13 +11,11 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" ",
-        "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
-        "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
+        "build:all": "concurrently \"npm:build:app\"",
+        "build:all:dev": "concurrently \"npm:build:app:dev\"",
         "start": "next start ./sources/src -p 3000",
         "build:app": "next build ./sources/src",
         "build:app:dev": "next dev ./sources/src -p 3000",
-        "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
-        "build:typings:dev": "npm run build:typings -- --watch",
         "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
         "clean:sources": "rimraf dist/{app,@types}/**",
         "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo"
@@ -26,7 +24,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@dieta/common": "1.0.0",
         "@reduxjs/toolkit": "^1.6.2",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",

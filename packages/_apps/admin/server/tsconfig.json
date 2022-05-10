@@ -3,7 +3,19 @@
     "compilerOptions": {
         "outDir": "./dist/@types",
         "rootDir": "./sources",
-        "module": "esnext",
-        "target": "esnext"
-    }
+        "module": "commonjs",
+        "target": "esnext",
+        "types": ["node"]
+    },
+    "references": [
+        {
+            "path": "../../../_libs/express-app"
+        },
+        {
+            "path": "../../../_libs/graphql-server"
+        },
+        {
+            "path": "../../../_libs/database-connector"
+        }
+    ]
 }

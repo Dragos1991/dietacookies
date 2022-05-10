@@ -5,6 +5,7 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
+        "tsBuildInfoFile": "./dist/tsconfig.buildinfo",
         "strict": false,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,

@@ -1,5 +1,5 @@
 {
-    "name": "@dieta/common",
+    "name": "@dietacookies/graphql-server",
     "version": "1.0.0",
     "description": "",
     "main": "dist/lib/index.js",
@@ -26,7 +26,13 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "@graphql-tools/merge": "^8.2.10",
+        "@graphql-tools/resolvers-composition": "^6.4.9",
+        "@graphql-tools/schema": "^8.3.10",
+        "apollo-server-express": "^3.6.7",
+        "graphql": "^15.0.0"
+    },
     "devDependencies": {
         "@babel/cli": "^7.17.6",
         "@babel/core": "^7.17.9",

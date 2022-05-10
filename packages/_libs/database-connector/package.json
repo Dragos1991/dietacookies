@@ -1,0 +1,48 @@
+{
+    "name": "@dietacookies/database-connector",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/lib/index.js",
+    "module": "dist/lib/index.js",
+    "typings": "dist/@types/src/index.d.ts",
+    "directories": {
+        "dist/@types": "dist/@types",
+        "dist/lib": "dist/lib"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
+        "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
+        "build:app": "babel ./sources/src/ --out-dir ./dist/lib --copy-files --source-maps --extensions \".ts,\"",
+        "build:app:dev": "npm run build:app -- --watch",
+        "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
+        "build:typings:dev": "npm run build:typings -- --watch",
+        "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
+        "clean:sources": "rimraf dist/{lib,@types}/**",
+        "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo",
+        "knex:migrate:make": "knex --knexfile sources/src/knexfile.ts migrate:make $NAME -x ts",
+        "knex:migrate:latest": "knex --knexfile sources/src/knexfile.ts migrate:latest",
+        "knex:migrate:rollback": "knex --knexfile sources/src/knexfile.ts migrate:rollback",
+        "knex:seed:make": "knex --knexfile sources/src/knexfile.ts seed:make $NAME -x ts",
+        "knex:seed:run": "knex --knexfile sources/src/knexfile.ts seed:run"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "knex": "^2.0.0",
+        "pg": "^8.7.3",
+        "ts-node": "^10.7.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.9",
+        "@babel/preset-env": "^7.16.11",
+        "@types/express": "^4.17.13",
+        "babel-preset-minify": "^0.5.1",
+        "typescript": "^4.6.3"
+    }
+}
