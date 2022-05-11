@@ -23,6 +23,7 @@
         "migrate:rollback": "lerna run knex:migrate:rollback",
         "seed:make": "lerna run knex:seed:make",
         "seed:run": "lerna run knex:seed:run",
+        "pre-commit": "lint-staged",
         "prepare": "husky install"
     },
     "keywords": [],
