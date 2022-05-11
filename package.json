@@ -29,10 +29,10 @@
     "author": "",
     "license": "ISC",
     "lint-staged": {
-        "packages/_apps/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx,}": [
+        "packages/_apps/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx}": [
             "prettier --write"
         ],
-        "packages/_libs/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx,}": [
+        "packages/_libs/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx}": [
             "prettier --write"
         ]
     },
