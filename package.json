@@ -28,12 +28,6 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
         "packages/_apps/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx}": [
             "prettier --write"
