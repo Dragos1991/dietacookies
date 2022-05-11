@@ -3,14 +3,18 @@ import { IUser } from "../../types/types";
 
 const currentUser = async (
     _source: unknown,
-    _args: unknown,
+    _args: { id: string },
     context: IAdminContext
 ): Promise<IUser | undefined> => {
     try {
-        const { req } = context;
-        const { currentUser } = req;
+        const { applicationContext } = context;
 
-        return currentUser;
+        const { userService } = applicationContext;
+        const { id } = _args;
+
+        const user = userService.load({ id });
+
+        return user;
     } catch (error) {
         console.log(error);
         throw new Error("Error");

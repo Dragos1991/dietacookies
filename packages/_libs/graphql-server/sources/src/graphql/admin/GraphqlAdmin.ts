@@ -27,7 +27,7 @@ const createContext = ({ req, res, applicationContext }: IAdminContext) => {
     const context = {
         req,
         res,
-        ...applicationContext,
+        applicationContext,
     };
 
     return context;

@@ -1,5 +1,10 @@
 import "./dotenvConfig";
+import config from "./database/knexfile";
 
-export * from "./types";
+const dbConfig = config;
 
-export { database } from "./database/database";
+export { dbConfig };
+export { Knex, IDbConfig, IDatabase } from "./types/types";
+
+export { PostgresqlDatabase } from "./database/PostgresqlDatabase";
+export { PostgresqlDatabaseConfig } from "./database/PostgresqlDatabaseConfig";

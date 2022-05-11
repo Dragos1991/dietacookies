@@ -6,13 +6,5 @@
         "module": "esnext",
         "target": "esnext",
         "types": ["node"]
-    },
-    "references": [
-        {
-            "path": "../database-connector"
-        },
-        {
-            "path": "../services-errors"
-        }
-    ]
+    }
 }

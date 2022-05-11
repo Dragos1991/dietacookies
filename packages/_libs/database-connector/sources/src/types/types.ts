@@ -1,3 +1,7 @@
 import type { Knex } from "knex";
 
-export type IDbConfig = { [key: string]: Knex.Config };
+type IDbConfig = { [key: string]: Knex.Config };
+
+type IDatabase = Knex<any, unknown[]>;
+
+export { IDbConfig, Knex, IDatabase };

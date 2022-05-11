@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IUser } from "../user/types/types";
-
+import { IDatabase } from "@dietacookies/database-connector";
+import { UserService } from "@dietacookies/data-access-layer";
 declare global {
     namespace Express {
         interface Request {
@@ -15,4 +16,6 @@ export interface IAdminContext {
     applicationContext: IAdminApplicationContext;
 }
 
-export interface IAdminApplicationContext {}
+export interface IAdminApplicationContext {
+    userService: UserService;
+}

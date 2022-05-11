@@ -16,6 +16,12 @@
         },
         {
             "path": "../../../_libs/database-connector"
+        },
+        {
+            "path": "../../../_libs/data-access-layer"
+        },
+        {
+            "path": "../../../_libs/traceable-error"
         }
     ]
 }

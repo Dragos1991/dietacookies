@@ -8,6 +8,11 @@ import {
     IAdminApplicationContext,
 } from "@dietacookies/graphql-server";
 
+import { TraceableError } from "@dietacookies/traceable-error";
+
+import { database } from "./database/database";
+import { Services } from "./services/Services";
+
 export class Application {
     public constructor(private readonly config: ApplicationConfig) {}
 
@@ -18,7 +23,13 @@ export class Application {
             cors: this.config.corsOptions,
         });
 
-        this.addGraphqlRoute(service, {});
+        const applicationServices = new Services(database).services;
+
+        const applicationContext = {
+            ...applicationServices,
+        };
+
+        this.addGraphqlRoute(service, applicationContext);
 
         await service.start();
 
@@ -39,6 +50,7 @@ export class Application {
                     res,
                     applicationContext,
                 });
+
                 return context;
             },
             plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
@@ -47,7 +59,7 @@ export class Application {
         try {
             await graphqlServer.start();
         } catch (error) {
-            console.log(error);
+            throw new TraceableError("Application.addGraphqlRoute", error);
         }
 
         graphqlServer.applyMiddleware({

@@ -5,5 +5,13 @@
         "rootDir": "./sources",
         "module": "esnext",
         "target": "esnext"
-    }
+    },
+    "references": [
+        {
+            "path": "../database-connector"
+        },
+        {
+            "path": "../data-access-layer"
+        }
+    ]
 }

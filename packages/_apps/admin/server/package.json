@@ -14,6 +14,7 @@
         "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
         "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
         "build:app": "babel ./sources/src --out-dir ./dist/app --copy-files --source-maps --extensions \".ts,\"",
+        "build:app:test": "babel ./sources/src --out-dir ../client/test/dist/app --copy-files --source-maps --extensions \".ts,\"",
         "build:app:dev": "npm run build:app -- --watch",
         "build:typings": "babel ./sources/@types --out-dir ./dist/@types $NAME --copy-files",
         "build:typings:dev": "npm run build:typings -- --watch",
@@ -31,7 +32,9 @@
         "pg": "^8.7.3",
         "@dietacookies/express-app": "1.0.0",
         "@dietacookies/graphql-server": "1.0.0",
-        "@dietacookies/database-connector": "1.0.0"
+        "@dietacookies/database-connector": "1.0.0",
+        "@dietacookies/data-access-layer": "1.0.0",
+        "@dietacookies/traceable-error": "1.0.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.12",

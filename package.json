@@ -22,7 +22,8 @@
         "migrate:latest": "lerna run knex:migrate:latest",
         "migrate:rollback": "lerna run knex:migrate:rollback",
         "seed:make": "lerna run knex:seed:make",
-        "seed:run": "lerna run knex:seed:run"
+        "seed:run": "lerna run knex:seed:run",
+        "testing": "lerna run build:app:test"
     },
     "keywords": [],
     "author": "",

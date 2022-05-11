@@ -9,10 +9,7 @@
     },
     "references": [
         {
-            "path": "../database-connector"
-        },
-        {
-            "path": "../services-errors"
+            "path": "../traceable-error"
         }
     ]
 }

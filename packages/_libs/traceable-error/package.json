@@ -1,5 +1,5 @@
 {
-    "name": "@dietacookies/data-access-layer",
+    "name": "@dietacookies/traceable-error",
     "version": "1.0.0",
     "description": "",
     "main": "dist/lib/index.js",
@@ -26,11 +26,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {
-        "@dietacookies/database-connector": "1.0.0",
-        "@dietacookies/services-errors": "1.0.0",
-        "camelcase-keys": "^7.0.2"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@babel/cli": "^7.17.6",
         "@babel/core": "^7.17.9",
