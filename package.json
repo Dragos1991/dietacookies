@@ -23,24 +23,36 @@
         "migrate:rollback": "lerna run knex:migrate:rollback",
         "seed:make": "lerna run knex:seed:make",
         "seed:run": "lerna run knex:seed:run",
-        "testing": "lerna run build:app:test"
+        "prepare": "husky install"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "lint-staged": {
+        "packages/_apps/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx,}": [
+            "prettier --write"
+        ],
+        "packages/_libs/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx,}": [
+            "prettier --write"
+        ]
+    },
     "devDependencies": {
         "@babel/preset-typescript": "^7.16.7",
         "lerna": "^4.0.0",
+        "prettier": "^2.6.2",
+        "prettier-eslint": "^14.0.2",
         "rimraf": "^3.0.2",
         "tsc-watch": "^5.0.3",
-        "typescript": "^4.6.3"
+        "typescript": "^4.6.3",
+        "husky": "^8.0.1",
+        "lint-staged": "^12.4.1"
     },
     "dependencies": {
-        "concurrently": "^7.1.0",
         "@babel/cli": "^7.17.6",
         "@babel/core": "^7.17.9",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
-        "babel-preset-minify": "^0.5.1"
+        "babel-preset-minify": "^0.5.1",
+        "concurrently": "^7.1.0"
     }
 }
