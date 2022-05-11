@@ -18,7 +18,7 @@ const configureStore = (initialState = {}) => {
         appModule,
     );
 
-    console.log('test');
+    console.log('test2');
 
     return store;
 };
