@@ -28,13 +28,19 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
     "lint-staged": {
         "packages/_apps/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx}": [
             "prettier --write"
         ],
         "packages/_libs/*/*/sources{src, test,tools, @types}/**/*.{ts,tsx}": [
             "prettier --write"
-        ]
+        ],
+        "*.{js,css,md}": "prettier --write"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.16.7",
