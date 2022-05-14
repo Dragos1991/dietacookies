@@ -20,7 +20,7 @@ while [[ $# -gt 0 ]]; do
     --dev)
         startDev
         echo "Dev project started"
-        pm2 logs
+        pm2 logs --lines 1000
         ;;
     --prod)
         startProd

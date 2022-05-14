@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "@dietacookies/schema/user",
+    "$ref": "#/definitions/.Self",
+
+    "definitions": {
+        ".Self": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": ["number", "null"]
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        ".Create": {
+            "type": "object",
+            "$ref": "#/definitions/.Self",
+            "required": ["email", "firstName", "lastName", "password"]
+        }
+    }
+}

@@ -1,5 +1,8 @@
 import { IAdminContext } from "../../../types/types";
-import { IUser, IUserCreate } from "@dietacookies/data-access-layer";
+import {
+    IUserOmitPassword,
+    IUserCreate,
+} from "@dietacookies/data-access-layer";
 import {
     InvalidRequestError,
     NotFoundError,
@@ -15,7 +18,7 @@ const createUser = async (
     _source: ISource,
     args: IArgs,
     context: IAdminContext
-): Promise<IUser> => {
+): Promise<IUserOmitPassword> => {
     try {
         const { applicationContext } = context;
         const { userService } = applicationContext;
@@ -25,13 +28,7 @@ const createUser = async (
 
         return user;
     } catch (error) {
-        throw new (
-            error instanceof InvalidRequestError
-                ? InvalidRequestError
-                : error instanceof NotFoundError
-                ? NotFoundError
-                : TraceableError
-        )("Create User Graphql", error, { args });
+        throw error;
     }
 };
 

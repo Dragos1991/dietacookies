@@ -3,9 +3,10 @@ import {
     NotFoundError,
     TraceableError,
 } from "@dietacookies/services-errors";
-import { IUser } from "../../database/user/IUser";
-import { IUserCreate } from "../../database/user/IUser.Data";
+import { Logger } from "@dietacookies/logger";
+import { IUserOmitPassword, IUserCreate, IUser } from "../../database";
 import { IUuid } from "../../interfaces/IUuid";
+import { Validator, ValidationSchema } from "../../validation/Validator";
 import { UserModel } from "./UserModel";
 
 interface IRequestParams {
@@ -19,12 +20,20 @@ export class UserService {
     public constructor(
         protected props: {
             userModel: UserModel;
+            validator: Validator;
+            log: Logger;
         }
     ) {}
 
-    public static factory(props: { userModel: UserModel }): UserService {
+    public static factory(props: {
+        userModel: UserModel;
+        validator: Validator;
+        log: Logger;
+    }): UserService {
         return new UserService({
             userModel: props.userModel,
+            validator: props.validator,
+            log: props.log,
         });
     }
 
@@ -47,21 +56,31 @@ export class UserService {
         }
     }
 
-    public async create(request: IUserServiceCreateRequest): Promise<IUser> {
+    public async create(
+        request: IUserServiceCreateRequest
+    ): Promise<IUserOmitPassword> {
         const data = request;
 
         try {
-            const user: IUser = await this.props.userModel.create(data);
+            const validation = this.props.validator.validate(
+                data,
+                ValidationSchema.UserCreate
+            );
+
+            if (!validation.isValid) {
+                throw new InvalidRequestError("Validation Error", {
+                    errors: validation.errors,
+                    data,
+                });
+            }
+
+            const user: IUserOmitPassword = await this.props.userModel.create(
+                data
+            );
 
             return user;
         } catch (error) {
-            throw new (
-                error instanceof InvalidRequestError
-                    ? InvalidRequestError
-                    : error instanceof NotFoundError
-                    ? NotFoundError
-                    : TraceableError
-            )("Service Create", error, { request });
+            throw error;
         }
     }
 }

@@ -1,10 +1,13 @@
 import { ExpressApp } from "@dietacookies/express-app";
+import { Logger } from "@dietacookies/logger";
 import { ApplicationConfig } from "./ApplicationConfig";
 import cookieParser from "cookie-parser";
 import {
     ApolloServer,
     ApolloServerPluginLandingPageGraphQLPlayground,
+    depthLimit,
     GraphqlAdmin,
+    GraphQLError,
     IAdminApplicationContext,
 } from "@dietacookies/graphql-server";
 
@@ -14,16 +17,20 @@ import { database } from "./database/database";
 import { Services } from "./services/Services";
 
 export class Application {
-    public constructor(private readonly config: ApplicationConfig) {}
+    public constructor(
+        private readonly config: ApplicationConfig,
+        private readonly log: Logger
+    ) {}
 
     public async start() {
+        const log = this.log;
         const service = new ExpressApp({
             port: this.config.port,
             cookieParser,
             cors: this.config.corsOptions,
         });
 
-        const applicationServices = new Services(database).services;
+        const applicationServices = new Services(database, log).services;
 
         const applicationContext = {
             ...applicationServices,
@@ -41,6 +48,7 @@ export class Application {
         applicationContext: IAdminApplicationContext
     ) {
         const schema = await GraphqlAdmin.createSchema();
+        const log = this.log;
 
         const graphqlServer = new ApolloServer({
             schema,
@@ -52,6 +60,15 @@ export class Application {
                 });
 
                 return context;
+            },
+            validationRules: [depthLimit(7)],
+            formatError: (error: GraphQLError) => {
+                log.error("Graphql Error", {
+                    error,
+                    orignalError: (error as any).orignalError,
+                });
+
+                return error;
             },
             plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
         });

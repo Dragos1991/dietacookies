@@ -1,26 +1,34 @@
 import { PostgresqlDatabase } from "@dietacookies/database-connector";
-import { UserService } from "@dietacookies/data-access-layer";
+import { UserService, Validator } from "@dietacookies/data-access-layer";
 import { Models } from "../models/Models";
+import { Logger } from "@dietacookies/logger";
 
 export class Services {
-    private $database: PostgresqlDatabase;
+    public constructor(
+        private readonly database: PostgresqlDatabase,
+        private readonly log: Logger
+    ) {}
 
-    public constructor(database: PostgresqlDatabase) {
-        this.$database = database;
-    }
-
-    public static factory(database: PostgresqlDatabase) {
-        return new Services(database);
+    public static factory(database: PostgresqlDatabase, log: Logger) {
+        return new Services(database, log);
     }
 
     private get models() {
-        const models = Models.factory(this.$database).getModels;
+        const models = Models.factory(this.database).getModels;
         return models;
     }
 
     public get services() {
         const { userModel } = this.models;
-        const userService = UserService.factory({ userModel });
+        const validator = new Validator({
+            enableAllErrors: true,
+            log: this.log,
+        });
+        const userService = UserService.factory({
+            userModel,
+            validator,
+            log: this.log,
+        });
 
         return {
             userService,

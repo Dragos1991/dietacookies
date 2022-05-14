@@ -6,7 +6,6 @@ const types = gql`
         firstName: String!
         lastName: String!
         age: Int
-        password: String!
         email: String!
         role: String!
         createdAt: String!

@@ -7,7 +7,7 @@ import {
 } from "@dietacookies/database-connector";
 import { DatabaseError } from "@dietacookies/services-errors";
 import { BaseModel } from "../BaseModel";
-import { IUserCreate, IUser, IUserDb } from "../../database";
+import { IUserCreate, IUser, IUserDb, IUserOmitPassword } from "../../database";
 import { IUuid } from "../../interfaces";
 
 export class UserModel extends BaseModel {
@@ -51,7 +51,7 @@ export class UserModel extends BaseModel {
     public async create(
         data: IUserCreate,
         database: IDatabase | null = null
-    ): Promise<IUser> {
+    ): Promise<IUserOmitPassword> {
         const db = database ? database : this.database;
 
         try {
@@ -64,18 +64,19 @@ export class UserModel extends BaseModel {
                     "email",
                     "first_name",
                     "last_name",
-                    "password",
                     "age",
                     "created_at",
                     "updated_at",
                     "role",
                 ]);
 
-            const user: IUser = camelcaseKeys(response[0]);
+            const user: IUserOmitPassword = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
-            throw new DatabaseError("Model create", error, { data });
+            throw new DatabaseError("Database Error: User Create", error, {
+                data,
+            });
         }
     }
 }

@@ -11,6 +11,7 @@
         { "path": "./packages/_libs/database-connector" },
         { "path": "./packages/_libs/data-access-layer" },
         { "path": "./packages/_libs/traceable-error" },
-        { "path": "./packages/_libs/services-errors" }
+        { "path": "./packages/_libs/services-errors" },
+        { "path": "./packages/_libs/logger" }
     ]
 }

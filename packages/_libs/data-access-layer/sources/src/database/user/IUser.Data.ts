@@ -22,3 +22,5 @@ export type IUserCreate = RequiredExecptFor<
 export type IUserUpdate = Partial<
     Pick<IUser, "firstName" | "lastName" | "age" | "password">
 >;
+
+export type IUserOmitPassword = Omit<IUser, "password">;

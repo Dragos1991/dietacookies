@@ -22,6 +22,9 @@
         },
         {
             "path": "../../../_libs/traceable-error"
+        },
+        {
+            "path": "../../../_libs/logger"
         }
     ]
 }

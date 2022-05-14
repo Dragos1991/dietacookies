@@ -34,7 +34,8 @@
         "@dietacookies/graphql-server": "1.0.0",
         "@dietacookies/database-connector": "1.0.0",
         "@dietacookies/data-access-layer": "1.0.0",
-        "@dietacookies/traceable-error": "1.0.0"
+        "@dietacookies/traceable-error": "1.0.0",
+        "@dietacookies/logger": "1.0.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.12",
