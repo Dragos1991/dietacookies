@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 const inputs = gql`
-    input UserData {
+    input UserCreateInput {
         firstName: String!
         lastName: String!
         age: Int
@@ -11,11 +11,6 @@ const inputs = gql`
 
     input WhereUserId {
         id: ID!
-    }
-
-    input LogInData {
-        email: String!
-        password: String!
     }
 `;
 

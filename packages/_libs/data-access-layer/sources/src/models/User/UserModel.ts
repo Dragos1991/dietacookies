@@ -1,4 +1,5 @@
 import camelcaseKeys from "camelcase-keys";
+import snakecaseKeys from "snakecase-keys";
 
 import {
     PostgresqlDatabase,
@@ -6,6 +7,8 @@ import {
 } from "@dietacookies/database-connector";
 import { DatabaseError } from "@dietacookies/services-errors";
 import { BaseModel } from "../BaseModel";
+import { IUserCreate, IUser, IUserDb } from "../../database";
+import { IUuid } from "../../interfaces";
 
 export class UserModel extends BaseModel {
     protected db: PostgresqlDatabase;
@@ -25,27 +28,54 @@ export class UserModel extends BaseModel {
     }
 
     public async load(
-        id: string,
+        id: IUuid,
         database: IDatabase | null = null
-    ): Promise<{
-        id: string;
-        firstName: string;
-        lastName: string;
-        age: number;
-        password: string;
-        email: string;
-    }> {
+    ): Promise<IUser> {
         const db = database ? database : this.database;
         try {
-            const response = await db.select("*").from("user").where({
-                id,
-            });
+            const response: IUserDb[] = await db
+                .select("*")
+                .from("user")
+                .where({
+                    id,
+                });
 
-            const user = camelcaseKeys(response[0]);
+            const user: IUser = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
             throw new DatabaseError("Model exist", error, { id });
+        }
+    }
+
+    public async create(
+        data: IUserCreate,
+        database: IDatabase | null = null
+    ): Promise<IUser> {
+        const db = database ? database : this.database;
+
+        try {
+            const formatedData = snakecaseKeys(data);
+            const response: IUserDb[] = await db
+                .table("user")
+                .insert(formatedData)
+                .returning([
+                    "id",
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "password",
+                    "age",
+                    "created_at",
+                    "updated_at",
+                    "role",
+                ]);
+
+            const user: IUser = camelcaseKeys(response[0]);
+
+            return user;
+        } catch (error) {
+            throw new DatabaseError("Model create", error, { data });
         }
     }
 }

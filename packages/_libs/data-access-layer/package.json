@@ -29,7 +29,8 @@
     "dependencies": {
         "@dietacookies/database-connector": "1.0.0",
         "@dietacookies/services-errors": "1.0.0",
-        "camelcase-keys": "^7.0.2"
+        "camelcase-keys": "^7.0.2",
+        "snakecase-keys": "^5.4.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.17.6",

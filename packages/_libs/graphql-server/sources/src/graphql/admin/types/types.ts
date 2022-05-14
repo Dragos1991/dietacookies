@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { IUser } from "../user/types/types";
-import { IDatabase } from "@dietacookies/database-connector";
+import { IUser } from "@dietacookies/data-access-layer";
 import { UserService } from "@dietacookies/data-access-layer";
 declare global {
     namespace Express {

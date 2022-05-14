@@ -9,6 +9,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("age");
         table.string("password").notNullable();
         table.timestamps(true, true);
+        table.string("role").defaultTo("guest");
     });
 }
 

@@ -1,27 +1,19 @@
 import {
-    IDatabase,
-    PostgresqlDatabase,
-} from "@dietacookies/database-connector";
-import {
     InvalidRequestError,
     NotFoundError,
     TraceableError,
 } from "@dietacookies/services-errors";
+import { IUser } from "../../database/user/IUser";
+import { IUserCreate } from "../../database/user/IUser.Data";
+import { IUuid } from "../../interfaces/IUuid";
 import { UserModel } from "./UserModel";
 
 interface IRequestParams {
-    id: string;
+    id: IUuid;
 }
 
-export type IUserServiceRequest = IRequestParams;
-export type IUserServiceResponse = {
-    id: string;
-    firstName: string;
-    lastName: string;
-    age: number;
-    password: string;
-    email: string;
-};
+export interface IUserServiceRequest extends IRequestParams {}
+export interface IUserServiceCreateRequest extends IUserCreate {}
 
 export class UserService {
     public constructor(
@@ -36,9 +28,7 @@ export class UserService {
         });
     }
 
-    public async load(
-        request: IUserServiceRequest
-    ): Promise<IUserServiceResponse> {
+    public async load(request: IUserServiceRequest): Promise<IUser> {
         const { id } = request;
         if (!id) {
             throw new InvalidRequestError("Missing id");
@@ -54,6 +44,24 @@ export class UserService {
                     ? NotFoundError
                     : TraceableError
             )("Service Load", error, { request });
+        }
+    }
+
+    public async create(request: IUserServiceCreateRequest): Promise<IUser> {
+        const data = request;
+
+        try {
+            const user: IUser = await this.props.userModel.create(data);
+
+            return user;
+        } catch (error) {
+            throw new (
+                error instanceof InvalidRequestError
+                    ? InvalidRequestError
+                    : error instanceof NotFoundError
+                    ? NotFoundError
+                    : TraceableError
+            )("Service Create", error, { request });
         }
     }
 }

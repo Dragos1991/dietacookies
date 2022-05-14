@@ -6,11 +6,11 @@ const types = gql`
         firstName: String!
         lastName: String!
         age: Int
+        password: String!
         email: String!
-    }
-
-    type LogOutUserCompleted {
-        completed: Boolean!
+        role: String!
+        createdAt: String!
+        updatedAt: String!
     }
 `;
 

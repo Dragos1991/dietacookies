@@ -1,2 +1,1 @@
-export { logOut } from "./logOut";
-export { register } from "./register";
+export { createUser } from "./createUser";

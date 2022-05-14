@@ -1,22 +1,27 @@
-import { IUser, IUuid } from "@dietacookies/data-access-layer";
+import { IAdminContext } from "../../../types/types";
+import { IUser, IUserCreate } from "@dietacookies/data-access-layer";
 import {
     InvalidRequestError,
     NotFoundError,
     TraceableError,
 } from "@dietacookies/services-errors";
-import { IAdminContext } from "../../../types/types";
 
-const currentUser = async (
-    _source: unknown,
-    args: { id: IUuid },
+type ISource = unknown;
+type IArgs = {
+    data: IUserCreate;
+};
+
+const createUser = async (
+    _source: ISource,
+    args: IArgs,
     context: IAdminContext
 ): Promise<IUser> => {
     try {
         const { applicationContext } = context;
         const { userService } = applicationContext;
-        const { id } = args;
+        const { data } = args;
 
-        const user = userService.load({ id });
+        const user = await userService.create(data);
 
         return user;
     } catch (error) {
@@ -26,8 +31,8 @@ const currentUser = async (
                 : error instanceof NotFoundError
                 ? NotFoundError
                 : TraceableError
-        )("Load User Graphql", error, { args });
+        )("Create User Graphql", error, { args });
     }
 };
 
-export { currentUser };
+export { createUser };

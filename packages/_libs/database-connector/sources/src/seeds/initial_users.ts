@@ -12,6 +12,7 @@ export async function seed(knex: Knex): Promise<void> {
             age: 31,
             password: "1234",
             email: "dragos@test.test",
+            role: "admin",
         },
         {
             first_name: "Diana",
