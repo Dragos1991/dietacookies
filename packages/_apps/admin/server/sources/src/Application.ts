@@ -15,6 +15,7 @@ import { TraceableError } from "@dietacookies/traceable-error";
 
 import { database } from "./database/database";
 import { Services } from "./services/Services";
+import cookieSession from "cookie-session";
 
 export class Application {
     public constructor(
@@ -26,8 +27,9 @@ export class Application {
         const log = this.log;
         const service = new ExpressApp({
             port: this.config.port,
-            cookieParser,
+            useCookieParser: true,
             cors: this.config.corsOptions,
+            useCookieSession: true,
         });
 
         const applicationServices = new Services(database, log).services;
@@ -39,7 +41,6 @@ export class Application {
         this.addGraphqlRoute(service, applicationContext);
 
         await service.start();
-
         return service;
     }
 
@@ -62,6 +63,7 @@ export class Application {
                 return context;
             },
             validationRules: [depthLimit(7)],
+
             formatError: (error: GraphQLError) => {
                 log.error("Graphql Error", {
                     error,

@@ -1,20 +1,18 @@
-import {
-    InvalidRequestError,
-    NotFoundError,
-    TraceableError,
-} from "@dietacookies/services-errors";
+import { InvalidRequestError } from "@dietacookies/services-errors";
 import { Logger } from "@dietacookies/logger";
-import { IUserOmitPassword, IUserCreate, IUser } from "../../database";
+import {
+    IUserOmitPassword,
+    IUserCreate,
+    IUser,
+    IUserUpdate,
+} from "../../database";
 import { IUuid } from "../../interfaces/IUuid";
 import { Validator, ValidationSchema } from "../../validation/Validator";
 import { UserModel } from "./UserModel";
+import { HandlePassword } from "../../services";
 
-interface IRequestParams {
-    id: IUuid;
-}
-
-export interface IUserServiceRequest extends IRequestParams {}
 export interface IUserServiceCreateRequest extends IUserCreate {}
+export interface IUserUpdateRequest extends IUserUpdate {}
 
 export class UserService {
     public constructor(
@@ -37,22 +35,29 @@ export class UserService {
         });
     }
 
-    public async load(request: IUserServiceRequest): Promise<IUser> {
-        const { id } = request;
+    public async loadById(id: IUuid): Promise<IUser> {
         if (!id) {
             throw new InvalidRequestError("Missing id");
         }
-
         try {
-            return await this.props.userModel.load(id);
+            const user = await this.props.userModel.loadById(id);
+
+            return user;
         } catch (error) {
-            throw new (
-                error instanceof InvalidRequestError
-                    ? InvalidRequestError
-                    : error instanceof NotFoundError
-                    ? NotFoundError
-                    : TraceableError
-            )("Service Load", error, { request });
+            throw error;
+        }
+    }
+
+    public async loadByEmail(email: string): Promise<IUser> {
+        if (!email) {
+            throw new InvalidRequestError("Missing email");
+        }
+        try {
+            const user = await this.props.userModel.loadByEmail(email);
+
+            return user;
+        } catch (error) {
+            throw error;
         }
     }
 
@@ -74,9 +79,20 @@ export class UserService {
                 });
             }
 
-            const user: IUserOmitPassword = await this.props.userModel.create(
-                data
-            );
+            const existingUser = await this.loadByEmail(data.email);
+
+            if (existingUser) {
+                throw new InvalidRequestError("Email already in use.", {
+                    fields: ["email"],
+                });
+            }
+
+            const securePassword = await HandlePassword.toHash(data.password);
+
+            const user: IUserOmitPassword = await this.props.userModel.create({
+                ...data,
+                password: securePassword,
+            });
 
             return user;
         } catch (error) {

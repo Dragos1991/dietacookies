@@ -1,32 +1,20 @@
-import { IUser, IUuid } from "@dietacookies/data-access-layer";
-import {
-    InvalidRequestError,
-    NotFoundError,
-    TraceableError,
-} from "@dietacookies/services-errors";
+import { IUser } from "@dietacookies/data-access-layer";
 import { IAdminContext } from "../../../types/types";
+import jwt from "jsonwebtoken";
 
 const currentUser = async (
     _source: unknown,
-    args: { id: IUuid },
+    _args: unknown,
     context: IAdminContext
 ): Promise<IUser> => {
     try {
-        const { applicationContext } = context;
-        const { userService } = applicationContext;
-        const { id } = args;
+        const { req } = context;
 
-        const user = userService.load({ id });
+        const user = jwt.verify(req.session?.token, "123") as IUser;
 
         return user;
     } catch (error) {
-        throw new (
-            error instanceof InvalidRequestError
-                ? InvalidRequestError
-                : error instanceof NotFoundError
-                ? NotFoundError
-                : TraceableError
-        )("Load User Graphql", error, { args });
+        throw error;
     }
 };
 

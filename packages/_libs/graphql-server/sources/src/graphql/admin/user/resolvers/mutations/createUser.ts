@@ -3,11 +3,8 @@ import {
     IUserOmitPassword,
     IUserCreate,
 } from "@dietacookies/data-access-layer";
-import {
-    InvalidRequestError,
-    NotFoundError,
-    TraceableError,
-} from "@dietacookies/services-errors";
+
+import jwt from "jsonwebtoken";
 
 type ISource = unknown;
 type IArgs = {
@@ -20,11 +17,16 @@ const createUser = async (
     context: IAdminContext
 ): Promise<IUserOmitPassword> => {
     try {
-        const { applicationContext } = context;
+        const { applicationContext, req } = context;
         const { userService } = applicationContext;
         const { data } = args;
 
         const user = await userService.create(data);
+        const token = jwt.sign(user, "123");
+
+        req.session = {
+            token,
+        };
 
         return user;
     } catch (error) {

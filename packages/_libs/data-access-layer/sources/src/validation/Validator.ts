@@ -10,6 +10,7 @@ import { Logger } from "@dietacookies/logger";
 export enum ValidationSchema {
     Uuid = "@dietacookies/schema/uuid",
     UserCreate = "@dietacookies/schema/user#/definitions/.Create",
+    UserUpdate = "@dietacookies/schema/user#/definitions/.Update",
 }
 
 type IData = unknown;
@@ -60,7 +61,7 @@ export class Validator {
                 this.compiled.set(ValidationSchema[i], func);
                 try {
                     func({ please: "compile" });
-                    console.log("Compilation Done");
+                    console.log("Validation schemas compilation done");
                 } catch (error) {
                     console.log("Validator init error", error);
                 }

@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 const mutation = gql`
     type Mutation {
-        createUser(data: UserCreateInput!): User
+        createUser(data: UserCreateInput!): User!
     }
 `;
 

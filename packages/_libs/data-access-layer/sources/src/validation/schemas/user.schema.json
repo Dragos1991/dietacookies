@@ -29,6 +29,11 @@
             "type": "object",
             "$ref": "#/definitions/.Self",
             "required": ["email", "firstName", "lastName", "password"]
+        },
+        ".Update": {
+            "type": "object",
+            "$ref": "#/definitions/.Self",
+            "required": ["id"]
         }
     }
 }

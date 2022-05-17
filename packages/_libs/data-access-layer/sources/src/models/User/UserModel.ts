@@ -7,7 +7,14 @@ import {
 } from "@dietacookies/database-connector";
 import { DatabaseError } from "@dietacookies/services-errors";
 import { BaseModel } from "../BaseModel";
-import { IUserCreate, IUser, IUserDb, IUserOmitPassword } from "../../database";
+import {
+    IUserCreate,
+    IUser,
+    IUserDb,
+    IUserOmitPassword,
+    IUserUpdate,
+    ILoadUserBy,
+} from "../../database";
 import { IUuid } from "../../interfaces";
 
 export class UserModel extends BaseModel {
@@ -23,28 +30,41 @@ export class UserModel extends BaseModel {
     }
 
     public static factory(props: { database: PostgresqlDatabase }): UserModel {
-        const opts = { ...props };
-        return new UserModel(opts);
+        return new UserModel(props);
     }
 
-    public async load(
-        id: IUuid,
-        database: IDatabase | null = null
-    ): Promise<IUser> {
-        const db = database ? database : this.database;
+    public async loadBy(params: ILoadUserBy): Promise<IUser> {
         try {
-            const response: IUserDb[] = await db
+            const response: IUserDb[] = await this.database
                 .select("*")
                 .from("user")
                 .where({
-                    id,
+                    ...params,
                 });
 
             const user: IUser = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
-            throw new DatabaseError("Model exist", error, { id });
+            throw new DatabaseError("Model exist", error, { params });
+        }
+    }
+
+    public async loadById(id: IUuid): Promise<IUser> {
+        try {
+            const user = await this.loadBy({ id });
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async loadByEmail(email: string): Promise<IUser> {
+        try {
+            const user = await this.loadBy({ email });
+            return user;
+        } catch (error) {
+            throw error;
         }
     }
 

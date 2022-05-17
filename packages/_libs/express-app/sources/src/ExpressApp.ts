@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import http from "http";
 import http2 from "http2";
+import cookieSession from "cookie-session";
 import { IExpressAppOptions } from "./types/IExpressAppOptions";
 
 export class ExpressApp {
@@ -19,7 +20,7 @@ export class ExpressApp {
         this.app = express();
         this.options = { ...this.options, ...initOptions };
 
-        if (this.options.cookieParser) {
+        if (this.options.useCookieParser) {
             this.app.use(cookieParser());
         }
         if (this.options.cors) {
@@ -27,6 +28,14 @@ export class ExpressApp {
         }
         if (this.options.bodyParser) {
             this.app.use(express.json(this.options.bodyParser));
+        }
+        if (this.options.useCookieSession) {
+            this.app.use(
+                cookieSession({
+                    signed: false,
+                    secure: false,
+                })
+            );
         }
     }
 

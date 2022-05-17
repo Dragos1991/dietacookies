@@ -5,7 +5,8 @@ import type http from "http";
 export interface IExpressAppOptions {
     port: number;
     http2?: boolean;
-    cookieParser?: typeof cookieParser;
+    useCookieParser?: boolean;
+    useCookieSession?: boolean;
     cors?: CorsOptions;
     bodyParser?: {
         extended?: boolean;

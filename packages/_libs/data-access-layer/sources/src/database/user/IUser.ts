@@ -22,3 +22,5 @@ export interface IUserDb extends IUserBase {
     created_at: Date | null;
     updated_at: Date | null;
 }
+
+export type ILoadUserBy = Pick<IUser, "id"> | Pick<IUser, "email">;
