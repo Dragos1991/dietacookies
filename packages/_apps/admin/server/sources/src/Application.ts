@@ -1,7 +1,6 @@
 import { ExpressApp } from "@dietacookies/express-app";
 import { Logger } from "@dietacookies/logger";
 import { ApplicationConfig } from "./ApplicationConfig";
-import cookieParser from "cookie-parser";
 import {
     ApolloServer,
     ApolloServerPluginLandingPageGraphQLPlayground,
@@ -15,7 +14,6 @@ import { TraceableError } from "@dietacookies/traceable-error";
 
 import { database } from "./database/database";
 import { Services } from "./services/Services";
-import cookieSession from "cookie-session";
 
 export class Application {
     public constructor(

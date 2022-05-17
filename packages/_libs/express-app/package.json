@@ -27,7 +27,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@types/cookie-session": "^2.0.44",
         "cookie-parser": "^1.4.6",
         "cookie-session": "^2.0.0",
         "core-js": "^3.22.4",
@@ -35,6 +34,8 @@
         "express": "^4.17.3"
     },
     "devDependencies": {
+        "@types/cookie-parser": "^1.4.3",
+        "@types/cookie-session": "^2.0.44",
         "@babel/cli": "^7.17.6",
         "@babel/core": "^7.17.9",
         "@babel/preset-env": "^7.16.11",
