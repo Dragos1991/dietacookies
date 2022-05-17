@@ -1,4 +1,3 @@
-import "./dotenvConfig";
 import config from "./database/knexfile";
 
 const dbConfig = config;

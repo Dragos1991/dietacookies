@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { IDbConfig } from "../types/types";
 
 dotenv.config({
-    path: __dirname + "/./../../../../../../.env",
+    path: __dirname + "/./../../../.env",
 });
 
 const config: IDbConfig = {
