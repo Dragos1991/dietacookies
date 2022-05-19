@@ -11,6 +11,7 @@ export enum ValidationSchema {
     Uuid = "@dietacookies/schema/uuid",
     UserCreate = "@dietacookies/schema/user#/definitions/.Create",
     UserUpdate = "@dietacookies/schema/user#/definitions/.Update",
+    UserAuthenticate = "@dietacookies/schema/user#/definitions/.Authenticate",
 }
 
 type IData = unknown;
@@ -86,6 +87,8 @@ export class Validator {
                 schema
             ) as AnyValidateFunction<any>;
 
+            console.log(validate);
+
             const result = {
                 isValid: validate(data),
                 errors: validate?.errors,
@@ -101,7 +104,7 @@ export class Validator {
 
             return result;
         } catch (error) {
-            throw new ValidatorError(error);
+            throw new ValidatorError("Validation failed ", { error });
         }
     }
 

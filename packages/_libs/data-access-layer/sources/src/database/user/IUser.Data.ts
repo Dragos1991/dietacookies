@@ -19,6 +19,8 @@ export type IUserCreate = RequiredExecptFor<
     "id" | "createdAt" | "updatedAt" | "role"
 >;
 
+export type IUserAuthenticate = Pick<IUser, "email" | "password">;
+
 export type IUserUpdate = Partial<
     Pick<IUser, "firstName" | "lastName" | "age" | "password" | "id">
 >;

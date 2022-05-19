@@ -9,6 +9,11 @@ const inputs = gql`
         password: String!
     }
 
+    input UserAuthenticateInput {
+        email: String!
+        password: String!
+    }
+
     input WhereUserId {
         id: ID!
     }

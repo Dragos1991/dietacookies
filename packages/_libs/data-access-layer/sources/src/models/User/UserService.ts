@@ -5,6 +5,7 @@ import {
     IUserCreate,
     IUser,
     IUserUpdate,
+    IUserAuthenticate,
 } from "../../database";
 import { IUuid } from "../../interfaces/IUuid";
 import { Validator, ValidationSchema } from "../../validation/Validator";
@@ -13,6 +14,7 @@ import { HandlePassword } from "../../services";
 
 export interface IUserServiceCreateRequest extends IUserCreate {}
 export interface IUserUpdateRequest extends IUserUpdate {}
+export interface IUserAuthenticateRequest extends IUserAuthenticate {}
 
 export class UserService {
     public constructor(
@@ -73,7 +75,7 @@ export class UserService {
             );
 
             if (!validation.isValid) {
-                throw new InvalidRequestError("Validation Error", {
+                throw new InvalidRequestError("Create validation error", {
                     errors: validation.errors,
                     data,
                 });
@@ -93,6 +95,45 @@ export class UserService {
                 ...data,
                 password: securePassword,
             });
+
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async authenticate(
+        request: IUserAuthenticate
+    ): Promise<IUserOmitPassword> {
+        const data = request;
+        try {
+            const validation = this.props.validator.validate(
+                data,
+                ValidationSchema.UserAuthenticate
+            );
+
+            if (!validation.isValid) {
+                throw new InvalidRequestError("Authenticate validation error", {
+                    errors: validation.errors,
+                    data,
+                });
+            }
+
+            const user = await this.loadByEmail(data.email);
+
+            if (!user) {
+                throw new InvalidRequestError("Invalid credentials.");
+            }
+
+            const { password } = user;
+            const passwordsMatch = await HandlePassword.compare(
+                password,
+                data.password
+            );
+
+            if (!passwordsMatch) {
+                throw new InvalidRequestError("Invalid credentials.");
+            }
 
             return user;
         } catch (error) {

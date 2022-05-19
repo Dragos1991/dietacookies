@@ -34,6 +34,11 @@
             "type": "object",
             "$ref": "#/definitions/.Self",
             "required": ["id"]
+        },
+        ".Authenticate": {
+            "type": "object",
+            "$ref": "#/definitions/.Self",
+            "required": ["email", "password"]
         }
     }
 }

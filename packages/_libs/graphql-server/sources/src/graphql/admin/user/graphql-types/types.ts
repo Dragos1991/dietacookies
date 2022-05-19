@@ -11,6 +11,10 @@ const types = gql`
         createdAt: String!
         updatedAt: String!
     }
+
+    type SignOutSuccess {
+        success: Boolean!
+    }
 `;
 
 export { types };
