@@ -1,8 +1,8 @@
-import { createStore } from 'redux-dynamic-modules';
-import { getSagaExtension } from 'redux-dynamic-modules-saga';
-import { appModule } from './app/module';
+import { createStore } from "redux-dynamic-modules";
+import { getSagaExtension } from "redux-dynamic-modules-saga";
+import { appModule } from "./app/module";
 
-import { createWrapper } from 'next-redux-wrapper';
+import { createWrapper } from "next-redux-wrapper";
 
 const configureStore = (initialState = {}) => {
     const store = createStore(
@@ -15,10 +15,8 @@ const configureStore = (initialState = {}) => {
                 },
             ],
         },
-        appModule,
+        appModule
     );
-
-    console.log('test5');
 
     return store;
 };

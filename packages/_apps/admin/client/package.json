@@ -1,41 +1,27 @@
 {
-    "name": "@dieta/admin-client",
-    "version": "1.0.0",
-    "description": "",
-    "main": "dist/app/index.js",
-    "module": "dist/app/index.js",
-    "typings": "dist/@types/src/index.d.ts",
-    "directories": {
-        "dist/@types": "dist/@types",
-        "dist/lib": "dist/app"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" ",
-        "build:all": "concurrently \"npm:build:app\"",
-        "build:all:dev": "concurrently \"npm:build:app:dev\"",
-        "start": "next start ./sources/src  -p 3001",
-        "build:app": "next build ./sources/src",
-        "build:next": "next build ./sources/src",
-        "build:app:dev": "next dev ./sources/src -p 3001",
-        "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
-        "clean:sources": "rimraf dist/{app,@types}/**",
-        "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@reduxjs/toolkit": "^1.6.2",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "axios": "^0.26.1",
-        "next": "^12.1.4",
-        "next-redux-wrapper": "^7.0.5",
-        "react": "18.1.0",
-        "react-dom": "^18.0.0",
-        "react-redux": "^7.2.5",
-        "redux": "^4.1.2",
-        "redux-dynamic-modules": "^5.2.3",
-        "redux-dynamic-modules-saga": "^5.2.3"
-    }
+  "name": "@dietacookies/client-vite",
+  "private": true,
+  "version": "1.0.0",
+  "typings": "dist/@types/src/index.d.ts",
+  "scripts": {
+    "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
+    "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
+    "build:app:dev": "vite",
+    "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
+    "build:typings:dev": "npm run build:typings -- --watch",
+    "build:app": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "vite": "^2.9.9"
+  }
 }
