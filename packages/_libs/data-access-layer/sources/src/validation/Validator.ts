@@ -87,8 +87,6 @@ export class Validator {
                 schema
             ) as AnyValidateFunction<any>;
 
-            console.log(validate);
-
             const result = {
                 isValid: validate(data),
                 errors: validate?.errors,
