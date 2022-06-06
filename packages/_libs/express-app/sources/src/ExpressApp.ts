@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import http from "http";
@@ -19,6 +19,12 @@ export class ExpressApp {
     public constructor(initOptions?: IExpressAppOptions) {
         this.app = express();
         this.options = { ...this.options, ...initOptions };
+
+        if (this.options.staticFilesPath) {
+            this.app.use(express.static(this.options.staticFilesPath));
+
+            this.app.get("/");
+        }
 
         if (this.options.useCookieParser) {
             this.app.use(cookieParser());

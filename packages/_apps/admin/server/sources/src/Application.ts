@@ -1,5 +1,6 @@
 import { ExpressApp } from "@dietacookies/express-app";
 import { Logger } from "@dietacookies/logger";
+import path from "path";
 import { ApplicationConfig } from "./ApplicationConfig";
 import {
     ApolloServer,
@@ -23,11 +24,14 @@ export class Application {
 
     public async start() {
         const log = this.log;
+        const staticFilesPath = path.join(__dirname, "../../../client/dist");
+
         const service = new ExpressApp({
             port: this.config.port,
             useCookieParser: true,
             cors: this.config.corsOptions,
             useCookieSession: true,
+            staticFilesPath,
         });
 
         const applicationServices = new Services(database, log).services;

@@ -6,11 +6,10 @@
   "scripts": {
     "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
     "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
-    "build:app:dev": "vite",
+    "build:app:dev": "vite build --watch",
     "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
     "build:typings:dev": "npm run build:typings -- --watch",
-    "build:app": "vite build",
-    "preview": "vite preview"
+    "build:app": "vite build"
   },
   "dependencies": {
     "react": "^18.1.0",

@@ -8,6 +8,7 @@ export interface IExpressAppOptions {
     useCookieParser?: boolean;
     useCookieSession?: boolean;
     cors?: CorsOptions;
+    staticFilesPath?: string;
     bodyParser?: {
         extended?: boolean;
         limit: number | string;
