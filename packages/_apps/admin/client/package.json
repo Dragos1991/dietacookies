@@ -1,26 +1,49 @@
 {
-  "name": "@dietacookies/client-vite",
+  "name": "@dietacookies/admin-client",
   "private": true,
   "version": "1.0.0",
   "typings": "dist/@types/src/index.d.ts",
   "scripts": {
-    "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
+    "build:all": "npm run build:app && npm run pack-sources",
     "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
-    "build:app:dev": "vite build --watch",
+    "build:app": "concurrently \"npm:build:typings\" \"npm:build:tools\"",
+    "build:app:dev": "npm run build:app -- --watch && npm run pack-sources:dev",
+    "build:tools": "babel --config-file ./babel.build.config.json ./sources/tools --out-dir ./dist/tools --copy-files --source-maps --extensions \".ts,.tsx\"",
     "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
     "build:typings:dev": "npm run build:typings -- --watch",
-    "build:app": "vite build"
+    "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
+    "clean:sources": "rimraf dist/{public,tools,@types}/**",
+    "clean:tsbuild": "rimraf dist/tsconfig.tsbuildinfo",
+    "pack-sources": "npm run pack-sources:base -- --mode production",
+    "pack-sources:dev": "npm run pack-sources:base -- --watch --mode development",
+    "pack-sources:base": "webpack --config=./dist/tools/webpack.static.config.js"
   },
   "dependencies": {
+    "@dietacookies/build-tools": "1.0.0",
+    "@dietacookies/client-libs": "1.0.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.2",
+    "@mui/material": "^5.8.2",
+    "@reduxjs/toolkit": "^1.6.2",
     "react": "^18.1.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.1.2",
+    "redux-dynamic-modules": "^5.2.3",
+    "redux-dynamic-modules-saga": "^5.2.3",
+    "redux-saga": "^1.1.3",
+    "tss-react": "^3.7.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.17.12",
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.5",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
-    "vite": "^2.9.9"
+    "@types/react-router-dom": "^5.3.3"
   }
 }

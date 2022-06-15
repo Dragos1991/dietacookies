@@ -4,7 +4,15 @@
         "outDir": "./dist/@types",
         "rootDir": "./sources",
         "module": "esnext",
-        "target": "esnext"
+        "target": "esnext",
+        "jsx": "react-jsx"
     },
-    "references": []
+    "references": [
+        {
+            "path": "../../../_libs/client-libs"
+        },
+        {
+            "path": "../../../_libs/build-tools"
+        }
+    ]
 }

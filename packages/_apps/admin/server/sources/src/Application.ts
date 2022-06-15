@@ -24,7 +24,10 @@ export class Application {
 
     public async start() {
         const log = this.log;
-        const staticFilesPath = path.join(__dirname, "../../../client/dist");
+        const staticFilesPath = path.join(
+            __dirname,
+            "../../../client/dist/public"
+        );
 
         const service = new ExpressApp({
             port: this.config.port,
@@ -88,5 +91,7 @@ export class Application {
             cors: this.config.corsOptions,
             path: "/*_*/api",
         });
+
+        service.initSinglePageApp();
     }
 }

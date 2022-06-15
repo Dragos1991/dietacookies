@@ -1,4 +1,5 @@
 import express, { Response } from "express";
+import path from "path";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import http from "http";
@@ -22,8 +23,6 @@ export class ExpressApp {
 
         if (this.options.staticFilesPath) {
             this.app.use(express.static(this.options.staticFilesPath));
-
-            this.app.get("/");
         }
 
         if (this.options.useCookieParser) {
@@ -55,5 +54,15 @@ export class ExpressApp {
         });
 
         return (this.webserver = webserver);
+    }
+
+    public initSinglePageApp(): void {
+        this.app.get("*", (_, res: Response) => {
+            if (this.options.staticFilesPath) {
+                res.sendFile(
+                    path.join(this.options.staticFilesPath, "index.html")
+                );
+            }
+        });
     }
 }
