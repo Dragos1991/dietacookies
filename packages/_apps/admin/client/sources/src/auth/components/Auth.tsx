@@ -2,19 +2,22 @@ import { connect } from "react-redux";
 import { FunctionComponent, ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthActions } from "../actions";
+import { FullPageLoader } from "../../components/FullPageLoader";
 
 interface IAuth {
     children: ReactNode;
     LoadCurrentUser: typeof AuthActions.LoadCurrentUser;
+    currentUser: any;
+    loading: boolean;
 }
 
-const AuthB: FunctionComponent<IAuth> = ({ children, LoadCurrentUser }) => {
-    const currentUser = null;
+const AuthB: FunctionComponent<IAuth> = ({
+    children,
+    LoadCurrentUser,
+    currentUser,
+    loading,
+}) => {
     const navigate = useNavigate();
-
-    const data = {
-        currentUser: null,
-    };
 
     useEffect(() => {
         LoadCurrentUser();
@@ -23,12 +26,27 @@ const AuthB: FunctionComponent<IAuth> = ({ children, LoadCurrentUser }) => {
     useEffect(() => {
         if (!currentUser) {
             navigate("/login", { replace: true });
+        } else {
+            navigate("/dashboard", { replace: true });
         }
     }, [currentUser]);
 
-    return <>{children}</>;
+    return (
+        <>
+            <FullPageLoader loading={loading} />
+            {children}
+        </>
+    );
 };
 
-export const Auth = connect(null, {
-    LoadCurrentUser: AuthActions.LoadCurrentUser,
-})(AuthB);
+export const Auth = connect(
+    (state: any) => {
+        return {
+            currentUser: state.auth.currentUser,
+            loading: state.auth.loading,
+        };
+    },
+    {
+        LoadCurrentUser: AuthActions.LoadCurrentUser,
+    }
+)(AuthB);

@@ -21,17 +21,15 @@ const muiCache = createCache({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <BrowserRouter>
-                <Auth>
-                    <CacheProvider value={muiCache}>
-                        <ThemeProvider theme={theme}>
-                            <App />
-                        </ThemeProvider>
-                    </CacheProvider>
-                </Auth>
-            </BrowserRouter>
-        </Provider>
-    </React.StrictMode>
+    <Provider store={store}>
+        <BrowserRouter>
+            <CacheProvider value={muiCache}>
+                <ThemeProvider theme={theme}>
+                    <Auth>
+                        <App />
+                    </Auth>
+                </ThemeProvider>
+            </CacheProvider>
+        </BrowserRouter>
+    </Provider>
 );

@@ -1,4 +1,5 @@
 import extractFiles from "extract-files/extractFiles.mjs";
+import isExtractableFile from "extract-files/isExtractableFile.mjs";
 
 import { DataType } from "../http-request";
 import type { HttpRequest } from "../http-request";
@@ -51,10 +52,13 @@ export class GraphQLGateway {
     }: IGraphQlQueryParams) {
         let requestData: any;
 
-        const { clone, files } = extractFiles({
-            query,
-            variables,
-        });
+        const { clone, files } = extractFiles(
+            {
+                query,
+                variables,
+            },
+            isExtractableFile
+        );
 
         const hasFiles = files && files.size > 0;
 
@@ -99,6 +103,7 @@ export class GraphQLGateway {
         >(this.url, {
             method: "POST",
             dataType: hasFiles ? DataType.Raw : DataType.Json,
+            data: requestData,
         });
 
         if (!data) {

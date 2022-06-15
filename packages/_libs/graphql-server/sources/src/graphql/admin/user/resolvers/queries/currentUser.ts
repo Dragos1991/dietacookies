@@ -9,12 +9,12 @@ const currentUser = async (
     _source: unknown,
     _args: unknown,
     context: IAdminContext
-): Promise<IUser> => {
+): Promise<IUser | null> => {
     try {
         const { req } = context;
 
         if (!req.session?.token) {
-            throw new UnauthorizedError("Not authenticated.");
+            return null;
         }
 
         const user = jwt.verify(req.session?.token, "123") as IUser;

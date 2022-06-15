@@ -14,9 +14,9 @@ export class HttpRequest {
     public async fetch(url: string, options?: IHttpRequestOptions) {
         return await new Promise<string>((resolve, reject) => {
             const request = new XMLHttpRequest();
-            request.addEventListener("load", (event) => {
-                const target = event.target as XMLHttpRequest;
-                if (target.status >= 200 && target.status < 200) {
+            request.addEventListener("load", (e) => {
+                const target = e.target as XMLHttpRequest;
+                if (target.status >= 200 && target.status < 300) {
                     resolve(target.responseText);
                 } else {
                     reject({
@@ -25,19 +25,17 @@ export class HttpRequest {
                     });
                 }
             });
-            request.addEventListener("error", (event) => {
-                reject(event);
+            request.addEventListener("error", (e) => {
+                reject(e);
             });
 
             let data: any = void 0;
             let method = "GET";
-
             if (options) {
                 if (options.method) {
                     method = options.method;
                 }
             }
-
             request.open(method, url, true);
 
             if (options) {
@@ -47,22 +45,20 @@ export class HttpRequest {
                 if (options.data) {
                     if (method.toLowerCase() === "get") {
                         throw new Error(
-                            "Cant't send data with GET method. Use POST instead."
+                            "Can't send data with GET method. Use POST instead"
                         );
                     }
-                }
 
-                const dataType = options.dataType || DataType.Json;
-
-                if (dataType == DataType.Json) {
-                    request.setRequestHeader(
-                        "Content-Type",
-                        "application/json; charset=UTF-8"
-                    );
-
-                    data = JSON.stringify(options.data);
-                } else {
-                    data = options.data;
+                    const dataType = options.dataType || DataType.Json;
+                    if (dataType === DataType.Json) {
+                        request.setRequestHeader(
+                            "Content-Type",
+                            "application/json; charset=UTF-8"
+                        );
+                        data = JSON.stringify(options.data);
+                    } else {
+                        data = options.data;
+                    }
                 }
             }
 

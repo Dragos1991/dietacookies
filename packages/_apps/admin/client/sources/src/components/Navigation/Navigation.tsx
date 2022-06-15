@@ -18,7 +18,7 @@ interface INavigationProps {}
 
 export const navigationRoutes = {
     dashboard: {
-        path: "/",
+        path: "/dashboard",
         name: "Dashboard",
     },
     categories: {
@@ -54,7 +54,7 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
                     disabled={location.pathname === dashboard.path}
                 >
                     <NavLink
-                        to="/"
+                        to={navigationRoutes.dashboard.path}
                         style={{
                             display: "block",
                             width: "100%",
@@ -73,7 +73,7 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
                     disabled={location.pathname === categories.path}
                 >
                     <NavLink
-                        to="/categories"
+                        to={navigationRoutes.categories.path}
                         style={{
                             display: "block",
                             width: "100%",
@@ -92,7 +92,7 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
                     disabled={location.pathname === products.path}
                 >
                     <NavLink
-                        to="/products"
+                        to={navigationRoutes.products.path}
                         style={{
                             display: "block",
                             width: "100%",
