@@ -13,7 +13,6 @@
         "test": "echo \"Error: no test specified\" ",
         "build:all": "concurrently \"npm:build:app\"",
         "build:all:dev": "concurrently \"npm:build:app:dev\"",
-        "start": "next start ./sources/src -p 3000",
         "build:app": "next build ./sources/src",
         "build:app:dev": "next dev ./sources/src -p 3000",
         "clean": "concurrently \"npm:clean:tsbuild\" \"npm:clean:sources\"",
