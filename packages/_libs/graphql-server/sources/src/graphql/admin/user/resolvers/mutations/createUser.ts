@@ -17,16 +17,16 @@ const createUser = async (
     context: IAdminContext
 ): Promise<IUserOmitPassword> => {
     try {
-        const { applicationContext, req } = context;
+        const { applicationContext, res } = context;
         const { userService } = applicationContext;
         const { data } = args;
 
         const user = await userService.create(data);
         const token = jwt.sign(user, "123");
 
-        req.session = {
-            token,
-        };
+        res.cookie("token", token, {
+            httpOnly: true,
+        });
 
         return user;
     } catch (error) {

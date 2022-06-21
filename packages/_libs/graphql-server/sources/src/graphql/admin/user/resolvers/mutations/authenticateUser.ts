@@ -23,11 +23,7 @@ const authenticateUser = async (
         const { rememberMe, ...rest } = data;
 
         const user = await userService.authenticate(rest);
-
         const token = jwt.sign(user, "123");
-
-        console.log(rememberMe);
-
         const maxAge = rememberMe ? 24 * 60 * 60 * 1000 : undefined;
 
         res.cookie("token", token, {

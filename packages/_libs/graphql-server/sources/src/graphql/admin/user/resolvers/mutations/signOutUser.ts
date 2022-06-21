@@ -10,9 +10,9 @@ const signOutUser = async (
     context: IAdminContext
 ): Promise<{ success: boolean }> => {
     try {
-        const { req } = context;
+        const { res } = context;
 
-        req.session = null;
+        res.clearCookie("token");
 
         return { success: true };
     } catch (error) {
