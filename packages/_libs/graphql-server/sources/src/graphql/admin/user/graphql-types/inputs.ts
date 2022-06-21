@@ -12,6 +12,7 @@ const inputs = gql`
     input UserAuthenticateInput {
         email: String!
         password: String!
+        rememberMe: Boolean
     }
 
     input WhereUserId {

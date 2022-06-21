@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
 import { IUser } from "@dietacookies/data-access-layer";
-import { UnauthorizedError } from "@dietacookies/services-errors";
 
 import { IAdminContext } from "../../../types/types";
 
@@ -13,11 +12,11 @@ const currentUser = async (
     try {
         const { req } = context;
 
-        if (!req.session?.token) {
+        if (!req.cookies.token) {
             return null;
         }
 
-        const user = jwt.verify(req.session?.token, "123") as IUser;
+        const user = jwt.verify(req.cookies.token, "123") as IUser;
 
         return user;
     } catch (error) {

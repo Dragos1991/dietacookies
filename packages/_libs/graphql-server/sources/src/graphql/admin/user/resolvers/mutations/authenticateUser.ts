@@ -17,17 +17,23 @@ const authenticateUser = async (
     context: IAdminContext
 ): Promise<IUserOmitPassword> => {
     try {
-        const { applicationContext, req } = context;
+        const { applicationContext, res } = context;
         const { userService } = applicationContext;
         const { data } = args;
+        const { rememberMe, ...rest } = data;
 
-        const user = await userService.authenticate(data);
+        const user = await userService.authenticate(rest);
 
         const token = jwt.sign(user, "123");
 
-        req.session = {
-            token,
-        };
+        console.log(rememberMe);
+
+        const maxAge = rememberMe ? 24 * 60 * 60 * 1000 : undefined;
+
+        res.cookie("token", token, {
+            maxAge: maxAge,
+            httpOnly: true,
+        });
 
         return user;
     } catch (error) {

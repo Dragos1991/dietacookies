@@ -19,7 +19,10 @@ export type IUserCreate = RequiredExecptFor<
     "id" | "createdAt" | "updatedAt" | "role"
 >;
 
-export type IUserAuthenticate = Pick<IUser, "email" | "password">;
+export type IUserAuthenticateDB = Pick<IUser, "email" | "password">;
+export type IUserAuthenticate = IUserAuthenticateDB & {
+    rememberMe?: boolean;
+};
 
 export type IUserUpdate = Partial<
     Pick<IUser, "firstName" | "lastName" | "age" | "password" | "id">

@@ -33,36 +33,34 @@ export function FullPageLoader({ loading }: any) {
     }, [loading]);
 
     return (
-        <div>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                open={open}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                    style: {
-                        backgroundColor: "#fff",
-                    },
+        <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+                timeout: 500,
+                style: {
+                    backgroundColor: "#fff",
+                },
+            }}
+        >
+            <Fade
+                timeout={{
+                    exit: 500,
+                    enter: 0,
+                }}
+                in={open}
+                easing={{
+                    enter: "0",
+                    exit: "0.5s",
                 }}
             >
-                <Fade
-                    timeout={{
-                        exit: 500,
-                        enter: 0,
-                    }}
-                    in={open}
-                    easing={{
-                        enter: "0",
-                        exit: "0.5s",
-                    }}
-                >
-                    <Box sx={style}>
-                        <CircularProgress />
-                    </Box>
-                </Fade>
-            </Modal>
-        </div>
+                <Box sx={style}>
+                    <CircularProgress />
+                </Box>
+            </Fade>
+        </Modal>
     );
 }

@@ -1,10 +1,9 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { theme, ThemeProvider } from "@dietacookies/ui-libs";
 
 import { App } from "./app/components/App";
 import { Provider } from "react-redux";
@@ -14,7 +13,6 @@ import { Auth } from "./auth";
 
 init();
 
-const theme = createTheme();
 const muiCache = createCache({
     key: "mui",
     prepend: true,
