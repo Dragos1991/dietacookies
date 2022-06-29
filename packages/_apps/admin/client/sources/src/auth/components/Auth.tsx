@@ -25,7 +25,6 @@ const AuthB: FunctionComponent<IAuth> = ({
     }, [LoadCurrentUser]);
 
     useEffect(() => {
-        console.log(currentUser);
         if (!currentUser) {
             navigate("/login", { replace: true });
         } else {

@@ -21,6 +21,11 @@ export function authReducer(state = initialState, anyAction: AnyAction): any {
                 currentUser: action.payload,
                 loading: false,
             };
+        case AuthActionsTypes.Authenticate:
+            return {
+                ...state,
+                loading: true,
+            };
         case AuthActionsTypes.AuthenticateErrors:
             return {
                 ...state,

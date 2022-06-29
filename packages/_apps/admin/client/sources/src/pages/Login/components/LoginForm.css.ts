@@ -9,12 +9,13 @@ export type ILoginFormStyles = {
     };
 };
 
-export const useStyles = (theme: Theme): ILoginFormStyles => {
+export const useStyles = (_theme: Theme): ILoginFormStyles => {
     return {
         root: {
             css: css({
                 alignSelf: "center",
                 maxWidth: "400px",
+                width: "100%",
             }),
         },
     };

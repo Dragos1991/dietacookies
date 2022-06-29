@@ -5,7 +5,8 @@ export const loadConfig = async (): Promise<ApplicationConfig> => {
         port: 3082,
         corsOptions: {
             origin: [
-                "http://dietacookies.com:3000",
+                "http://dietacookies.com",
+                "http://localhost:3082",
                 "https://studio.apollographql.com",
             ],
             credentials: true,
