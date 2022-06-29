@@ -15,7 +15,7 @@
     "scripts": {
         "build:all": "concurrently \"npm:build:typings\" \"npm:build:app\"",
         "build:all:dev": "concurrently \"npm:build:typings:dev\" \"npm:build:app:dev\"",
-        "build:app": "babel ./sources/src/ --out-dir ./dist/lib --copy-files --source-maps --extensions \".ts,\"",
+        "build:app": "babel ./sources/src/ --out-dir ./dist/lib --copy-files --source-maps --extensions \".ts,.tsx\"",
         "build:app:dev": "npm run build:app -- --watch",
         "build:typings": "babel ./sources/@types --out-dir ./dist/@types --copy-files",
         "build:typings:dev": "npm run build:typings -- --watch",
@@ -32,7 +32,11 @@
         "@emotion/styled": "^11.8.1",
         "@mui/icons-material": "^5.8.2",
         "@mui/material": "^5.8.2",
-        "tss-react": "^3.7.0"
+        "@types/yup": "^0.29.14",
+        "formik": "^2.2.9",
+        "react": "^18.1.0",
+        "yup": "^0.32.11",
+        "typescript": "^4.6.3"
     },
     "devDependencies": {
         "@babel/cli": "^7.17.6",

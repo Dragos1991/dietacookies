@@ -1,5 +1,6 @@
 import { ISagaModule } from "redux-dynamic-modules-saga";
 import { authReducer } from "./reducer";
+import { loadCurrentUserSaga } from "./sagas/loadCurrentUser";
 import { authenticateSaga } from "./sagas/authenticate";
 
 export const authModule: ISagaModule<any> = {
@@ -7,5 +8,5 @@ export const authModule: ISagaModule<any> = {
     reducerMap: {
         auth: authReducer,
     },
-    sagas: [authenticateSaga],
+    sagas: [loadCurrentUserSaga, authenticateSaga],
 };

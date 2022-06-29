@@ -5,6 +5,7 @@
         "rootDir": "./sources",
         "module": "esnext",
         "target": "esnext",
+        "jsx": "react-jsx",
         "types": ["node"]
     },
     "references": []

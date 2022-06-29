@@ -106,10 +106,6 @@ export class GraphQLGateway {
             data: requestData,
         });
 
-        if (!data) {
-            throw new Error("Unexpected GraphQl response.");
-        }
-
         return { data, errors };
     }
 
@@ -124,10 +120,6 @@ export class GraphQLGateway {
             operationName,
         });
 
-        if (errors && errors.length) {
-            throw new GraphQLError("Query returned errors.", errors);
-        }
-
-        return data as T;
+        return { data, errors };
     }
 }

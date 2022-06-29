@@ -3,6 +3,7 @@ import { FunctionComponent, ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthActions } from "../actions";
 import { FullPageLoader } from "../../components/FullPageLoader";
+import { current } from "@reduxjs/toolkit";
 
 interface IAuth {
     children: ReactNode;
@@ -24,6 +25,7 @@ const AuthB: FunctionComponent<IAuth> = ({
     }, [LoadCurrentUser]);
 
     useEffect(() => {
+        console.log(currentUser);
         if (!currentUser) {
             navigate("/login", { replace: true });
         } else {

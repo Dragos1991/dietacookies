@@ -4,6 +4,7 @@ import { AuthActionsTypes, AuthAllActions } from "./actions";
 const initialState: any = {
     currentUser: null,
     loading: true,
+    errors: null,
 };
 
 export function authReducer(state = initialState, anyAction: AnyAction): any {
@@ -18,6 +19,12 @@ export function authReducer(state = initialState, anyAction: AnyAction): any {
             return {
                 ...state,
                 currentUser: action.payload,
+                loading: false,
+            };
+        case AuthActionsTypes.AuthenticateErrors:
+            return {
+                ...state,
+                errors: action.payload,
                 loading: false,
             };
         default:

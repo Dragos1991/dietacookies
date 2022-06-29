@@ -27,7 +27,7 @@ export const useStyles = (theme: Theme): ILoginStyles => {
         root: {
             className: "root",
             css: css({
-                height: "100%",
+                minHeight: "100%",
                 marginTop: 0,
                 backgroundColor: theme.palette.primary.light,
             }),

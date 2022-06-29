@@ -1,5 +1,4 @@
 import { css, Theme, SerializedStyles } from "@dietacookies/ui-libs";
-import loginImage from "./assets/loginImage.jpg";
 
 type ValidKeys = "root";
 
@@ -15,7 +14,7 @@ export const useStyles = (theme: Theme): ILoginFormStyles => {
         root: {
             css: css({
                 alignSelf: "center",
-                maxWidth: "300px",
+                maxWidth: "400px",
             }),
         },
     };

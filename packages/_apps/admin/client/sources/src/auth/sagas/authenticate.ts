@@ -3,38 +3,50 @@ import { put, takeEvery } from "redux-saga/effects";
 import { AuthActionsTypes, AuthActions } from "../actions";
 
 const query = `
-query {
-    currentUser{
-        id,
-        firstName,
+mutation AuthenticateUser($data: UserAuthenticateInput!) {
+    authenticateUser(data: $data) {
+      id,
+        firstName
         lastName,
         email,
-        age,
-        id,
         role,
         createdAt,
-        updatedAt,
-    }
-}
+        updatedAt
+    }}
 `;
 
 interface IAuthResponse {
-    currentUser: any;
+    data: {
+        authenticateUser: any;
+    };
+    errors?: Record<any, any>[];
 }
 
-export function* authentitcate() {
+export function* authenticate(
+    action: ReturnType<typeof AuthActions.Authenticate>
+) {
     try {
         const response: IAuthResponse = yield graphQlClient.query({
             query,
+            variables: {
+                data: action.payload,
+            },
         });
 
-        yield put(AuthActions.LoadCurrentUserSuccess(response.currentUser));
+        if (!response.data) {
+            yield put(AuthActions.AuthenticateErrors(response.errors));
+        } else {
+            yield put(
+                AuthActions.LoadCurrentUserSuccess(
+                    response.data.authenticateUser
+                )
+            );
+        }
     } catch (error) {
         console.log(error);
-        console.log("Authentification failed");
     }
 }
 
 export function* authenticateSaga() {
-    yield takeEvery(AuthActionsTypes.LoadCurrentUser, authentitcate);
+    yield takeEvery(AuthActionsTypes.Authenticate, authenticate);
 }
