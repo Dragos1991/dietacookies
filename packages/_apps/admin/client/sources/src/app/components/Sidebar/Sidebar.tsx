@@ -22,9 +22,6 @@ const SidebarB: FunctionComponent<IMainProps> = ({
     const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
     const { root, drawer } = useStyles(theme, { matchUpMd });
 
-    const container =
-        window !== undefined ? () => window.document.body : undefined;
-
     return (
         <Box
             component="nav"
@@ -33,11 +30,10 @@ const SidebarB: FunctionComponent<IMainProps> = ({
             aria-label="mailbox folders"
         >
             <Drawer
-                container={container}
                 variant={matchUpMd ? "persistent" : "temporary"}
                 anchor="left"
                 open={leftDrawerOpened}
-                onClose={setLeftDrawerOpened}
+                onClose={() => setLeftDrawerOpened(!leftDrawerOpened)}
                 css={drawer.css}
                 ModalProps={{ keepMounted: true }}
                 color="inherit"
