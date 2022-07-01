@@ -7,13 +7,14 @@ import { themeColors } from "./ThemeVariables";
 import { componentStyleOverrides } from "./ComponentStyleOverride";
 import { themePalette } from "./Pallete";
 import { themeTypography } from "./Typography";
+import { ITheme } from "../types";
 
 /**
  * Represent theme style and structure as per Material-UI
  * @param {JsonObject} customization customization parameter object
  */
 
-export const DietaCookiesTheme = () => {
+export const DietaCookiesTheme = (): ITheme => {
     const color = themeColors;
 
     const themeOption = {
@@ -45,7 +46,7 @@ export const DietaCookiesTheme = () => {
         typography: themeTypography(themeOption),
     };
     //@ts-ignore
-    const themes = createTheme(themeOptions);
+    const themes = createTheme(themeOptions) as ITheme;
     themes.components = componentStyleOverrides(themeOption);
 
     return themes;

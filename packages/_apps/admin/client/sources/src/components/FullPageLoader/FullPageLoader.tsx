@@ -13,12 +13,9 @@ const style = {
     width: "100%",
     height: "100%",
     bgcolor: "background.paper",
-    border: "2px solid #000",
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
-    boxShadow: 24,
-    p: 4,
 };
 
 export function FullPageLoader({ loading }: any) {
