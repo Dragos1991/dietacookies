@@ -1,18 +1,21 @@
 import { connect } from "react-redux";
-import { FunctionComponent, ReactNode, useEffect } from "react";
+import {
+    FunctionComponent,
+    PropsWithChildren,
+    ReactNode,
+    useEffect,
+} from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthActions } from "../actions";
-import { FullPageLoader } from "../../components/FullPageLoader";
-import { current } from "@reduxjs/toolkit";
+import { AuthActions } from "./actions";
+import { FullPageLoader } from "../components/FullPageLoader/FullPageLoader";
 
 interface IAuth {
-    children: ReactNode;
     LoadCurrentUser: typeof AuthActions.LoadCurrentUser;
     currentUser: any;
     loading: boolean;
 }
 
-const AuthB: FunctionComponent<IAuth> = ({
+const AuthB: FunctionComponent<PropsWithChildren & IAuth> = ({
     children,
     LoadCurrentUser,
     currentUser,
@@ -25,12 +28,12 @@ const AuthB: FunctionComponent<IAuth> = ({
     }, [LoadCurrentUser]);
 
     useEffect(() => {
-        if (!currentUser) {
+        if (!currentUser && !loading) {
             navigate("/login", { replace: true });
         } else {
-            navigate("/dashboard", { replace: true });
+            navigate(window.location.pathname, { replace: true });
         }
-    }, [currentUser]);
+    }, [currentUser, loading]);
 
     return (
         <>

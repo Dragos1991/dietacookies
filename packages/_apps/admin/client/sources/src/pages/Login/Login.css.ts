@@ -56,6 +56,7 @@ export const useStyles = (theme: Theme): ILoginStyles => {
         rightWrap: {
             css: css({
                 height: "100%",
+                display: "flex",
             }),
         },
         rightContainer: {

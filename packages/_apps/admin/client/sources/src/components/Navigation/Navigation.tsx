@@ -29,6 +29,10 @@ export const navigationRoutes = {
         path: "/products",
         name: "Products",
     },
+    profile: {
+        path: "/profile",
+        name: "Profile",
+    },
 };
 
 const Navigation: FunctionComponent<INavigationProps> = () => {

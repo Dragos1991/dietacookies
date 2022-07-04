@@ -6,7 +6,7 @@ import {
     theme,
 } from "@dietacookies/ui-libs";
 
-type ValidKeys = "root";
+type ValidKeys = "root" | "login";
 
 export type IMainStyles = {
     [key in ValidKeys]: {
@@ -59,6 +59,12 @@ export const useStyles = (theme: ITheme, { open }: any): IMainStyles => {
                         marginLeft: "10px",
                     },
                 }),
+            }),
+        },
+        login: {
+            css: css({
+                display: "flex",
+                width: "100%",
             }),
         },
     };

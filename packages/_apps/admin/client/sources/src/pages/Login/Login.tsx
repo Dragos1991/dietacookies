@@ -21,7 +21,12 @@ const Login: FunctionComponent = ({}) => {
         <Grid container justifyContent="center" spacing={2} css={root.css}>
             <Grid item xs={12} md={6} css={leftSection.css}></Grid>
             <Grid item xs={12} md={6} alignSelf="center" css={rightWrap.css}>
-                <Grid container alignItems="center" spacing={2}>
+                <Grid
+                    container
+                    alignSelf="center"
+                    alignItems="center"
+                    spacing={2}
+                >
                     <div css={rightContainer.css}>
                         <img src={imageLogin} css={[logo.css, alignSelf.css]} />
                         <Typography variant="h1" css={title.css}>
