@@ -28,11 +28,12 @@
     "license": "ISC",
     "dependencies": {
         "@dietacookies/database-connector": "1.0.0",
-        "@dietacookies/services-errors": "1.0.0",
         "@dietacookies/logger": "1.0.0",
+        "@dietacookies/services-errors": "1.0.0",
         "ajv": "^8.11.0",
         "ajv-formats": "^2.1.1",
         "camelcase-keys": "^7.0.2",
+        "lodash": "^4.17.21",
         "snakecase-keys": "^5.4.2"
     },
     "devDependencies": {

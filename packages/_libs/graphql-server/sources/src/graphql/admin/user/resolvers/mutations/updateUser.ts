@@ -24,12 +24,9 @@ const updateUser = async (
 
         const { data } = args;
 
-        const { id } = jwt.verify(req.cookies.token, "123") as IUser;
+        const currentUser = jwt.verify(req.cookies.token, "123") as IUser;
 
-        const user = await userService.update({ data, where: { id } });
-        if (!user) {
-            throw new InvalidRequestError("Your details are the same.");
-        }
+        const user = await userService.update({ data, where: { currentUser } });
 
         const token = jwt.sign(user, "123");
 

@@ -1,4 +1,5 @@
 import { InvalidRequestError } from "@dietacookies/services-errors";
+import _ from "lodash";
 import { Logger } from "@dietacookies/logger";
 import {
     IUserOmitPassword,
@@ -17,7 +18,7 @@ export interface IUserServiceCreateRequest extends IUserCreate {}
 export interface IUserUpdateRequest {
     data: IUserUpdate;
     where: {
-        id: IUuid;
+        currentUser: IUser;
     };
 }
 
@@ -119,12 +120,19 @@ export class UserService {
     ): Promise<IUserOmitPassword> {
         const {
             data,
-            where: { id },
+            where: { currentUser },
         } = request;
 
         try {
-            if (!id) {
+            if (!currentUser.id) {
                 throw new InvalidRequestError("Missing ID");
+            }
+
+            if (
+                _.difference(Object.values(data), Object.values(currentUser))
+                    .length === 0
+            ) {
+                throw new InvalidRequestError("Same user details.");
             }
 
             let securePassword: string | undefined = undefined;
@@ -138,7 +146,7 @@ export class UserService {
                     ...data,
                     ...(securePassword && { password: securePassword }),
                 },
-                id
+                currentUser.id
             );
 
             return user;

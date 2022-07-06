@@ -18,13 +18,17 @@ const deleteUser = async (
     context: IAdminContext
 ): Promise<IUserOmitPassword | null> => {
     try {
-        const { applicationContext, req } = context;
+        const { applicationContext, req, res } = context;
         const { userService } = applicationContext;
         const { data } = args;
 
         const { id } = jwt.verify(req.cookies.token, "123") as IUser;
 
         const user = await userService.delete({ data, where: { id } });
+
+        if (id === data.id) {
+            res.clearCookie("token");
+        }
 
         return user;
     } catch (error) {
