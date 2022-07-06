@@ -132,7 +132,7 @@ export class UserService {
                 _.difference(Object.values(data), Object.values(currentUser))
                     .length === 0
             ) {
-                throw new InvalidRequestError("Same user details.");
+                throw new InvalidRequestError("Same user data.");
             }
 
             let securePassword: string | undefined = undefined;
