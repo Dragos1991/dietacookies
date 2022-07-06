@@ -1,7 +1,13 @@
 import { composeResolvers } from "@graphql-tools/resolvers-composition";
 
 import { currentUser } from "./queries";
-import { createUser, authenticateUser, signOutUser } from "./mutations";
+import {
+    createUser,
+    updateUser,
+    deleteUser,
+    authenticateUser,
+    signOutUser,
+} from "./mutations";
 
 const userResolvers = {
     Query: {
@@ -9,6 +15,8 @@ const userResolvers = {
     },
     Mutation: {
         createUser,
+        updateUser,
+        deleteUser,
         authenticateUser,
         signOutUser,
     },

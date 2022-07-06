@@ -6,6 +6,7 @@ import {
     IUser,
     IUserUpdate,
     IUserAuthenticate,
+    IUserDelete,
 } from "../../database";
 import { IUuid } from "../../interfaces/IUuid";
 import { Validator, ValidationSchema } from "../../validation/Validator";
@@ -13,7 +14,19 @@ import { UserModel } from "./UserModel";
 import { HandlePassword } from "../../services";
 
 export interface IUserServiceCreateRequest extends IUserCreate {}
-export interface IUserUpdateRequest extends IUserUpdate {}
+export interface IUserUpdateRequest {
+    data: IUserUpdate;
+    where: {
+        id: IUuid;
+    };
+}
+
+export interface IUserDeleteRequest {
+    data: IUserDelete;
+    where: {
+        id: IUuid;
+    };
+}
 export interface IUserAuthenticateRequest extends IUserAuthenticate {}
 
 export class UserService {
@@ -43,7 +56,6 @@ export class UserService {
         }
         try {
             const user = await this.props.userModel.loadById(id);
-
             return user;
         } catch (error) {
             throw error;
@@ -95,6 +107,78 @@ export class UserService {
                 ...data,
                 password: securePassword,
             });
+
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async update(
+        request: IUserUpdateRequest
+    ): Promise<IUserOmitPassword> {
+        const {
+            data,
+            where: { id },
+        } = request;
+
+        try {
+            if (!id) {
+                throw new InvalidRequestError("Missing ID");
+            }
+
+            let securePassword: string | undefined = undefined;
+
+            if (data.password) {
+                securePassword = await HandlePassword.toHash(data.password);
+            }
+
+            const user: IUserOmitPassword = await this.props.userModel.update(
+                {
+                    ...data,
+                    ...(securePassword && { password: securePassword }),
+                },
+                id
+            );
+
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async delete(
+        request: IUserDeleteRequest
+    ): Promise<IUserOmitPassword> {
+        const {
+            data,
+            where: { id },
+        } = request;
+
+        try {
+            if (!id) {
+                throw new InvalidRequestError("Missing ID");
+            }
+
+            const masterUser = await this.loadById(id);
+
+            if ((masterUser && masterUser.role !== "admin") || id !== data.id) {
+                throw new InvalidRequestError("Unathorized.", {
+                    id,
+                });
+            }
+
+            const deletingUser = await this.loadById(data.id);
+
+            if (!deletingUser) {
+                throw new InvalidRequestError("User dose not exist.", {
+                    id: data.id,
+                });
+            }
+
+            const user: IUserOmitPassword = await this.props.userModel.delete(
+                data.id
+            );
 
             return user;
         } catch (error) {

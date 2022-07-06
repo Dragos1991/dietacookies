@@ -25,7 +25,9 @@ export type IUserAuthenticate = IUserAuthenticateDB & {
 };
 
 export type IUserUpdate = Partial<
-    Pick<IUser, "firstName" | "lastName" | "age" | "password" | "id">
+    Pick<IUser, "firstName" | "lastName" | "age" | "password">
 >;
+
+export type IUserDelete = Pick<IUser, "id">;
 
 export type IUserOmitPassword = Omit<IUser, "password">;

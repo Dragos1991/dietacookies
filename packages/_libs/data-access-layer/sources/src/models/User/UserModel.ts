@@ -14,6 +14,7 @@ import {
     IUserOmitPassword,
     IUserUpdate,
     ILoadUserBy,
+    IUserDelete,
 } from "../../database";
 import { IUuid } from "../../interfaces";
 
@@ -68,11 +69,8 @@ export class UserModel extends BaseModel {
         }
     }
 
-    public async create(
-        data: IUserCreate,
-        database: IDatabase | null = null
-    ): Promise<IUserOmitPassword> {
-        const db = database ? database : this.database;
+    public async create(data: IUserCreate): Promise<IUserOmitPassword> {
+        const db = this.database;
 
         try {
             const formatedData = snakecaseKeys(data);
@@ -97,6 +95,66 @@ export class UserModel extends BaseModel {
             throw new DatabaseError("Database Error: User Create", error, {
                 data,
             });
+        }
+    }
+
+    public async update(
+        data: IUserUpdate,
+        id: IUuid
+    ): Promise<IUserOmitPassword> {
+        const db = this.database;
+
+        try {
+            const formatedData = snakecaseKeys(data);
+            const response: IUserDb[] = await db
+                .table("user")
+                .where("id", "=", id)
+                .update(formatedData)
+                .returning([
+                    "id",
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "age",
+                    "created_at",
+                    "updated_at",
+                    "role",
+                ]);
+
+            const user: IUserOmitPassword = camelcaseKeys(response[0]);
+
+            return user;
+        } catch (error) {
+            throw new DatabaseError("Database Error: User Update", error, {
+                data,
+            });
+        }
+    }
+
+    public async delete(id: IUuid): Promise<IUserOmitPassword> {
+        const db = this.database;
+
+        try {
+            const response: IUserDb[] = await db
+                .table("user")
+                .where("id", "=", id)
+                .del()
+                .returning([
+                    "id",
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "age",
+                    "created_at",
+                    "updated_at",
+                    "role",
+                ]);
+
+            const user: IUserOmitPassword = camelcaseKeys(response[0]);
+
+            return user;
+        } catch (error) {
+            throw new DatabaseError("User cannot be deleted.", error);
         }
     }
 }
