@@ -1,1 +1,1 @@
-export * from "./IApplicationConfig";
+export * from './IApplicationConfig';

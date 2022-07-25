@@ -1,6 +1,6 @@
-import { css, ITheme, SerializedStyles, theme } from "@dietacookies/ui-libs";
+import { css, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root";
+type ValidKeys = 'root';
 
 export type IHeaderStyles = {
     [key in ValidKeys]: {
@@ -14,9 +14,9 @@ export const useStyles = (_theme?: ITheme): IHeaderStyles => {
         root: {
             css: css({
                 width: 228,
-                display: "flex",
-                [theme.breakpoints.down("md")]: {
-                    width: "auto",
+                display: 'flex',
+                [theme.breakpoints.down('md')]: {
+                    width: 'auto',
                 },
             }),
         },

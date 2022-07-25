@@ -1,24 +1,24 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import { resolve } from "path";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { resolve } from 'path';
 
 const cwd = process.cwd();
-const sourcesPath = resolve(cwd, "sources", "src");
-const publicPath = resolve(sourcesPath, "public");
-const distPath = resolve(cwd, "dist", "public");
-const fileNamePattern = "[name].[contenthash].bundle.js";
+const sourcesPath = resolve(cwd, 'sources', 'src');
+const publicPath = resolve(sourcesPath, 'public');
+const distPath = resolve(cwd, 'dist', 'public');
+const fileNamePattern = '[name].[contenthash].bundle.js';
 
 const plugins = [
     new HtmlWebpackPlugin({
         templateParameters: {
-            title: "Dietacookies",
+            title: 'Dietacookies',
         },
-        template: resolve(publicPath, "index.hbs"),
+        template: resolve(publicPath, 'index.hbs'),
     }),
     new CopyWebpackPlugin({
         patterns: [
             {
-                from: "**/!(.hbs)",
+                from: '**/!(.hbs)',
                 to: distPath,
                 context: resolve(publicPath),
                 globOptions: { dot: false },
@@ -29,36 +29,36 @@ const plugins = [
 
 const config = {
     entry: {
-        app: resolve(sourcesPath, "index.tsx"),
+        app: resolve(sourcesPath, 'index.tsx'),
     },
     output: {
         filename: fileNamePattern,
         path: distPath,
-        publicPath: "/",
+        publicPath: '/',
     },
     module: {
         rules: [
             {
                 test: /\.hbs$/,
                 include: publicPath,
-                loader: require.resolve("handlebars-loader"),
+                loader: require.resolve('handlebars-loader'),
             },
             {
                 test: /\.(tsx?)|(jsx?)$/,
                 include: sourcesPath,
-                loader: require.resolve("babel-loader"),
-                exclude: resolve(cwd, "node_modules"),
+                loader: require.resolve('babel-loader'),
+                exclude: resolve(cwd, 'node_modules'),
             },
             {
                 test: /\.js$/,
-                enforce: "pre",
-                use: ["source-map-loader"],
+                enforce: 'pre',
+                use: ['source-map-loader'],
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
-                        loader: "file-loader",
+                        loader: 'file-loader',
                     },
                 ],
             },
@@ -66,8 +66,8 @@ const config = {
     },
     plugins,
     resolve: {
-        extensions: [".tsx", ".ts", ".js", ".jsx", ".hbs"],
-        modules: ["node_modules"],
+        extensions: ['.tsx', '.ts', '.js', '.jsx', '.hbs'],
+        modules: ['node_modules'],
     },
 };
 

@@ -1,5 +1,5 @@
-import { IUuid } from "../../interfaces/IUuid";
-import { IUserRoles } from "./IUserRoles";
+import { IUuid } from '../../interfaces/IUuid';
+import { IUserRoles } from './IUserRoles';
 
 interface IUserBase {
     id: IUuid;
@@ -23,4 +23,4 @@ export interface IUserDb extends IUserBase {
     updated_at: Date | null;
 }
 
-export type ILoadUserBy = Pick<IUser, "id"> | Pick<IUser, "email">;
+export type ILoadUserBy = Pick<IUser, 'id'> | Pick<IUser, 'email'>;

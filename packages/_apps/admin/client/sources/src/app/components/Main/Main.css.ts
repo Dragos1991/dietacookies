@@ -1,12 +1,6 @@
-import {
-    css,
-    drawerWidth,
-    ITheme,
-    SerializedStyles,
-    theme,
-} from "@dietacookies/ui-libs";
+import { css, drawerWidth, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root" | "login";
+type ValidKeys = 'root' | 'login';
 
 export type IMainStyles = {
     [key in ValidKeys]: {
@@ -23,28 +17,28 @@ export const useStyles = (theme: ITheme, { open }: any): IMainStyles => {
                 ...(!open && {
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    transition: theme.transitions.create("margin", {
+                    transition: theme.transitions.create('margin', {
                         easing: theme.transitions.easing.sharp,
                         duration: theme.transitions.duration.leavingScreen,
                     }),
-                    [theme.breakpoints.up("md")]: {
+                    [theme.breakpoints.up('md')]: {
                         marginLeft: -(drawerWidth - 20),
                         width: `calc(100% - ${drawerWidth}px)`,
                     },
-                    [theme.breakpoints.down("md")]: {
-                        marginLeft: "20px",
+                    [theme.breakpoints.down('md')]: {
+                        marginLeft: '20px',
                         width: `calc(100% - ${drawerWidth}px)`,
-                        padding: "16px",
+                        padding: '16px',
                     },
-                    [theme.breakpoints.down("sm")]: {
-                        marginLeft: "10px",
+                    [theme.breakpoints.down('sm')]: {
+                        marginLeft: '10px',
                         width: `calc(100% - ${drawerWidth}px)`,
-                        padding: "16px",
-                        marginRight: "10px",
+                        padding: '16px',
+                        marginRight: '10px',
                     },
                 }),
                 ...(open && {
-                    transition: theme.transitions.create("margin", {
+                    transition: theme.transitions.create('margin', {
                         easing: theme.transitions.easing.easeOut,
                         duration: theme.transitions.duration.enteringScreen,
                     }),
@@ -52,19 +46,19 @@ export const useStyles = (theme: ITheme, { open }: any): IMainStyles => {
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
                     width: `calc(100% - ${drawerWidth}px)`,
-                    [theme.breakpoints.down("md")]: {
-                        marginLeft: "20px",
+                    [theme.breakpoints.down('md')]: {
+                        marginLeft: '20px',
                     },
-                    [theme.breakpoints.down("sm")]: {
-                        marginLeft: "10px",
+                    [theme.breakpoints.down('sm')]: {
+                        marginLeft: '10px',
                     },
                 }),
             }),
         },
         login: {
             css: css({
-                display: "flex",
-                width: "100%",
+                display: 'flex',
+                width: '100%',
             }),
         },
     };

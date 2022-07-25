@@ -1,3 +1,3 @@
-import { TraceableError } from "@dietacookies/services-errors";
+import { TraceableError } from '@dietacookies/services-errors';
 
 export class ValidatorError extends TraceableError {}

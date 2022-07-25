@@ -14,7 +14,7 @@ export class HttpRequest {
     public async fetch(url: string, options?: IHttpRequestOptions) {
         return await new Promise<string>((resolve, reject) => {
             const request = new XMLHttpRequest();
-            request.addEventListener("load", (e) => {
+            request.addEventListener('load', e => {
                 const target = e.target as XMLHttpRequest;
                 if (target.status >= 200 && target.status < 300) {
                     resolve(target.responseText);
@@ -25,12 +25,12 @@ export class HttpRequest {
                     });
                 }
             });
-            request.addEventListener("error", (e) => {
+            request.addEventListener('error', e => {
                 reject(e);
             });
 
             let data: any = void 0;
-            let method = "GET";
+            let method = 'GET';
             if (options) {
                 if (options.method) {
                     method = options.method;
@@ -43,18 +43,13 @@ export class HttpRequest {
                     request.timeout = options.timeout;
                 }
                 if (options.data) {
-                    if (method.toLowerCase() === "get") {
-                        throw new Error(
-                            "Can't send data with GET method. Use POST instead"
-                        );
+                    if (method.toLowerCase() === 'get') {
+                        throw new Error("Can't send data with GET method. Use POST instead");
                     }
 
                     const dataType = options.dataType || DataType.Json;
                     if (dataType === DataType.Json) {
-                        request.setRequestHeader(
-                            "Content-Type",
-                            "application/json; charset=UTF-8"
-                        );
+                        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
                         data = JSON.stringify(options.data);
                     } else {
                         data = options.data;
@@ -67,8 +62,6 @@ export class HttpRequest {
     }
 
     public async fetchJson<T>(url: string, options?: IHttpRequestOptions) {
-        return await this.fetch(url, options).then(
-            (result) => JSON.parse(result) as T
-        );
+        return await this.fetch(url, options).then(result => JSON.parse(result) as T);
     }
 }

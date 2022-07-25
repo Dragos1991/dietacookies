@@ -1,1 +1,1 @@
-export * from "./webpack/StaticConfig";
+export * from './webpack/StaticConfig';

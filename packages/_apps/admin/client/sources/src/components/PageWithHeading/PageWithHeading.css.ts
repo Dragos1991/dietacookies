@@ -1,6 +1,6 @@
-import { css, ITheme, SerializedStyles } from "@dietacookies/ui-libs";
+import { css, ITheme, SerializedStyles } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root" | "heading";
+type ValidKeys = 'root' | 'heading';
 
 export type IProfileStyle = {
     [key in ValidKeys]: {

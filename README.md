@@ -2,8 +2,7 @@
 
 ## How to install
 
-Install [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm) to easier install node & npm version.
-Current node version is `16.14.0` and npm version is `8.3.1`.
+Install [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm) to easier install node & npm version. Current node version is `16.14.0` and npm version is `8.3.1`.
 
 Install [pm2](https://pm2.keymetrics.io/). It should be installed globaly after you installed node and npm. To install it globaly use the command `npm install pm2 -g`.
 
@@ -27,8 +26,7 @@ To start the client application use `npm run start`. It will start the nextjs se
 
 ## Where to see the application
 
-The website client is on `localhost:3000`.
-The admin client is on `localhost:3001`.
+The website client is on `localhost:3000`. The admin client is on `localhost:3001`.
 
 ## Migration
 

@@ -1,6 +1,6 @@
 module.exports = {
-    distDir: "../../.next",
+    distDir: '../../.next',
     typescript: {
-        tsconfigPath: "../../tsconfig.json",
+        tsconfigPath: '../../tsconfig.json',
     },
 };

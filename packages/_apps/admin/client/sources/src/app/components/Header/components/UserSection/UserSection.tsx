@@ -1,10 +1,10 @@
-import { useTheme, ITheme } from "@dietacookies/ui-libs";
-import { FunctionComponent } from "react";
+import { useTheme, ITheme } from '@dietacookies/ui-libs';
+import { FunctionComponent } from 'react';
 
-import { useStyles, IUserSectionStyles } from "./UserSection.css";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { NavLink } from "react-router-dom";
-import { navigationRoutes } from "../../../../../components/Navigation";
+import { useStyles, IUserSectionStyles } from './UserSection.css';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { NavLink } from 'react-router-dom';
+import { navigationRoutes } from '../../../../../components/Navigation';
 
 interface IUserSection {}
 

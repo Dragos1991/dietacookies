@@ -1,6 +1,6 @@
-import { css, Theme, SerializedStyles } from "@dietacookies/ui-libs";
+import { css, Theme, SerializedStyles } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root" | "tabPanelRoot" | "boxWrap";
+type ValidKeys = 'root' | 'tabPanelRoot' | 'boxWrap';
 
 export type IProfileStyle = {
     [key in ValidKeys]: {
@@ -28,10 +28,8 @@ export const useStyles = (theme: Theme): IProfileStyle => {
                 padding: theme.spacing(2.5),
                 border: `1px solid ${theme.palette.primary.main + 46}`,
                 transition: `box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`,
-                "&:hover": {
-                    boxShadow: `0px 2px 14px 0 ${
-                        theme.palette.primary.main + 46
-                    }`,
+                '&:hover': {
+                    boxShadow: `0px 2px 14px 0 ${theme.palette.primary.main + 46}`,
                 },
             }),
         },

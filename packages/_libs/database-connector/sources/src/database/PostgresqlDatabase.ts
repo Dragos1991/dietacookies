@@ -1,6 +1,6 @@
-import { IDatabase } from "../types/types";
-import knex from "knex";
-import { PostgresqlDatabaseConfig } from "./PostgresqlDatabaseConfig";
+import { IDatabase } from '../types/types';
+import knex from 'knex';
+import { PostgresqlDatabaseConfig } from './PostgresqlDatabaseConfig';
 
 export class PostgresqlDatabase {
     private $database: IDatabase;

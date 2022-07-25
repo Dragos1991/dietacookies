@@ -1,10 +1,10 @@
-import express, { Response } from "express";
-import path from "path";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import http from "http";
-import http2 from "http2";
-import { IExpressAppOptions } from "./types/IExpressAppOptions";
+import express, { Response } from 'express';
+import path from 'path';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import http from 'http';
+import http2 from 'http2';
+import { IExpressAppOptions } from './types/IExpressAppOptions';
 
 export class ExpressApp {
     public app: express.Application;
@@ -12,7 +12,7 @@ export class ExpressApp {
     private options: IExpressAppOptions = {
         port: 8080,
         bodyParser: {
-            limit: "50mb",
+            limit: '50mb',
         },
     };
 
@@ -36,9 +36,7 @@ export class ExpressApp {
     }
 
     public start(): http2.Http2Server | http.Server {
-        const webserver = this.options.http2
-            ? http2.createServer(this.app)
-            : http.createServer(this.app);
+        const webserver = this.options.http2 ? http2.createServer(this.app) : http.createServer(this.app);
 
         webserver.listen(this.options.port, () => {
             console.log(`Listening on port ${this.options.port}`);
@@ -48,11 +46,9 @@ export class ExpressApp {
     }
 
     public initSinglePageApp(): void {
-        this.app.get("*", (_, res: Response) => {
+        this.app.get('*', (_, res: Response) => {
             if (this.options.staticFilesPath) {
-                res.sendFile(
-                    path.join(this.options.staticFilesPath, "index.html")
-                );
+                res.sendFile(path.join(this.options.staticFilesPath, 'index.html'));
             }
         });
     }

@@ -1,4 +1,4 @@
-import { inspect } from "util";
+import { inspect } from 'util';
 
 type IArgs = Record<string, unknown> | undefined;
 type IContext = Error | unknown | undefined;
@@ -9,7 +9,7 @@ const unknownToString = (message: IMessage) => {
         return message.toString();
     }
 
-    if (typeof message === "string") {
+    if (typeof message === 'string') {
         return message;
     }
 
@@ -23,11 +23,7 @@ export class TraceableError extends Error {
     constructor(message: IMessage, context?: IContext, args?: IArgs);
     constructor(message: IMessage, context?: IArgs);
 
-    public constructor(
-        message: IMessage,
-        context?: IContext | IArgs,
-        args?: IArgs
-    ) {
+    public constructor(message: IMessage, context?: IContext | IArgs, args?: IArgs) {
         super(unknownToString(message));
         this.name = this.constructor.name;
 
@@ -57,9 +53,9 @@ export class TraceableError extends Error {
 
         this.stack = String(this);
 
-        Object.defineProperty(this, "context", { enumerable: false });
-        Object.defineProperty(this, "args", { enumerable: false });
-        Object.defineProperty(this, "stack", { enumerable: true });
+        Object.defineProperty(this, 'context', { enumerable: false });
+        Object.defineProperty(this, 'args', { enumerable: false });
+        Object.defineProperty(this, 'stack', { enumerable: true });
     }
 
     public get context(): IContext {

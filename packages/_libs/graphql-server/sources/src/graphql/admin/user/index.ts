@@ -1,1 +1,1 @@
-export { userTypes } from "./graphql-types";
+export { userTypes } from './graphql-types';

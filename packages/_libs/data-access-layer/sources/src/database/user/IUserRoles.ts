@@ -1,1 +1,1 @@
-export type IUserRoles = "admin" | "publisher" | "author" | "guest";
+export type IUserRoles = 'admin' | 'publisher' | 'author' | 'guest';

@@ -1,6 +1,6 @@
-import { css, ITheme, SerializedStyles } from "@dietacookies/ui-libs";
+import { css, ITheme, SerializedStyles } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root";
+type ValidKeys = 'root';
 
 export type IUserSectionStyles = {
     [key in ValidKeys]: {
@@ -13,7 +13,7 @@ export const useStyles = (_theme: ITheme): IUserSectionStyles => {
     return {
         root: {
             css: css({
-                marginLeft: "auto",
+                marginLeft: 'auto',
             }),
         },
     };

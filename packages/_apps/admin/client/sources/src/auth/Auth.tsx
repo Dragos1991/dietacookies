@@ -1,13 +1,8 @@
-import { connect } from "react-redux";
-import {
-    FunctionComponent,
-    PropsWithChildren,
-    ReactNode,
-    useEffect,
-} from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthActions } from "./actions";
-import { FullPageLoader } from "../components/FullPageLoader/FullPageLoader";
+import { connect } from 'react-redux';
+import { FunctionComponent, PropsWithChildren, ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthActions } from './actions';
+import { FullPageLoader } from '../components/FullPageLoader/FullPageLoader';
 
 interface IAuth {
     LoadCurrentUser: typeof AuthActions.LoadCurrentUser;
@@ -15,12 +10,7 @@ interface IAuth {
     loading: boolean;
 }
 
-const AuthB: FunctionComponent<PropsWithChildren & IAuth> = ({
-    children,
-    LoadCurrentUser,
-    currentUser,
-    loading,
-}) => {
+const AuthB: FunctionComponent<PropsWithChildren & IAuth> = ({ children, LoadCurrentUser, currentUser, loading }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,7 +19,7 @@ const AuthB: FunctionComponent<PropsWithChildren & IAuth> = ({
 
     useEffect(() => {
         if (!currentUser && !loading) {
-            navigate("/login", { replace: true });
+            navigate('/login', { replace: true });
         } else {
             navigate(window.location.pathname, { replace: true });
         }
@@ -52,5 +42,5 @@ export const Auth = connect(
     },
     {
         LoadCurrentUser: AuthActions.LoadCurrentUser,
-    }
+    },
 )(AuthB);

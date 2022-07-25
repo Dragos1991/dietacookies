@@ -1,9 +1,5 @@
 {
-    "packages": [
-        "packages/_apps/website/*",
-        "packages/_apps/admin/*",
-        "packages/_libs/*"
-    ],
+    "packages": ["packages/_apps/website/*", "packages/_apps/admin/*", "packages/_libs/*"],
     "version": "fixed",
     "npmClient": "npm",
     "hoist": true

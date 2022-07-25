@@ -1,6 +1,6 @@
-import { css, ITheme, SerializedStyles, theme } from "@dietacookies/ui-libs";
+import { css, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
 
-type ValidKeys = "avatar";
+type ValidKeys = 'avatar';
 
 export type IMenuButtonStyles = {
     [key in ValidKeys]: {
@@ -15,10 +15,10 @@ export const useStyles = (theme: ITheme): IMenuButtonStyles => {
             css: css({
                 ...theme.typography.commonAvatar,
                 ...theme.typography.mediumAvatar,
-                transition: "all .2s ease-in-out",
+                transition: 'all .2s ease-in-out',
                 background: theme.palette.secondary.light,
                 color: theme.palette.secondary.dark,
-                "&:hover": {
+                '&:hover': {
                     background: theme.palette.secondary.dark,
                     color: theme.palette.secondary.light,
                 },

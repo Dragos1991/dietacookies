@@ -1,6 +1,6 @@
-import { graphQlClient } from "@dietacookies/client-libs";
-import { put, takeEvery } from "redux-saga/effects";
-import { AuthActionsTypes, AuthActions } from "../actions";
+import { graphQlClient } from '@dietacookies/client-libs';
+import { put, takeEvery } from 'redux-saga/effects';
+import { AuthActionsTypes, AuthActions } from '../actions';
 
 const query = `
 mutation AuthenticateUser($data: UserAuthenticateInput!) {
@@ -22,9 +22,7 @@ interface IAuthResponse {
     errors?: Record<any, any>[];
 }
 
-export function* authenticate(
-    action: ReturnType<typeof AuthActions.Authenticate>
-) {
+export function* authenticate(action: ReturnType<typeof AuthActions.Authenticate>) {
     try {
         const response: IAuthResponse = yield graphQlClient.query({
             query,
@@ -36,11 +34,7 @@ export function* authenticate(
         if (!response.data) {
             yield put(AuthActions.AuthenticateErrors(response.errors));
         } else {
-            yield put(
-                AuthActions.LoadCurrentUserSuccess(
-                    response.data.authenticateUser
-                )
-            );
+            yield put(AuthActions.LoadCurrentUserSuccess(response.data.authenticateUser));
         }
     } catch (error) {
         console.log(error);

@@ -1,7 +1,4 @@
-import type {
-    IDatabase,
-    PostgresqlDatabase,
-} from "@dietacookies/database-connector";
+import type { IDatabase, PostgresqlDatabase } from '@dietacookies/database-connector';
 
 export abstract class BaseModel {
     protected abstract db: PostgresqlDatabase;

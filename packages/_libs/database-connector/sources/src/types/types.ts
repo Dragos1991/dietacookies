@@ -1,4 +1,4 @@
-import type { Knex } from "knex";
+import type { Knex } from 'knex';
 
 type IDbConfig = { [key: string]: Knex.Config };
 

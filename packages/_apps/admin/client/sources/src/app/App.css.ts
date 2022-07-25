@@ -1,7 +1,7 @@
-import { css, Theme, SerializedStyles } from "@dietacookies/ui-libs";
-import loginImage from "./assets/loginImage.jpg";
+import { css, Theme, SerializedStyles } from '@dietacookies/ui-libs';
+import loginImage from './assets/loginImage.jpg';
 
-type ValidKeys = "root";
+type ValidKeys = 'root';
 
 export type IAppStyles = {
     [key in ValidKeys]: {
@@ -13,10 +13,10 @@ export type IAppStyles = {
 export const useStyles = (_theme: Theme): IAppStyles => {
     return {
         root: {
-            className: "root",
+            className: 'root',
             css: css({
-                height: "100%",
-                display: "flex",
+                height: '100%',
+                display: 'flex',
             }),
         },
     };

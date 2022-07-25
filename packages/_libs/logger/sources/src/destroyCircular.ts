@@ -1,13 +1,13 @@
 // extracted from https://github.com/sindresorhus/serialize-error
 
 const exposeErrorProperties = [
-    { property: "name", enumerable: false },
-    { property: "message", enumerable: false },
-    { property: "stack", enumerable: false },
-    { property: "code", enumerable: true },
+    { property: 'name', enumerable: false },
+    { property: 'message', enumerable: false },
+    { property: 'stack', enumerable: false },
+    { property: 'code', enumerable: true },
 ];
 
-const isCalled = Symbol(".toJSON called");
+const isCalled = Symbol('.toJSON called');
 
 const toJSON = (from: any) => {
     from[isCalled] = true;
@@ -36,21 +36,21 @@ const destroyCircular = (params: IDestroyCircularParams): any => {
         return to;
     }
 
-    if (typeof from.toJSON === "function" && from[isCalled] !== true) {
+    if (typeof from.toJSON === 'function' && from[isCalled] !== true) {
         return toJSON(from);
     }
 
     for (const [key, value] of Object.entries(from)) {
-        if (typeof Buffer === "function" && Buffer.isBuffer(value)) {
-            to[key] = "[object Buffer]";
+        if (typeof Buffer === 'function' && Buffer.isBuffer(value)) {
+            to[key] = '[object Buffer]';
             continue;
         }
 
-        if (typeof value === "function") {
+        if (typeof value === 'function') {
             continue;
         }
 
-        if (!value || typeof value !== "object") {
+        if (!value || typeof value !== 'object') {
             to[key] = value;
             continue;
         }
@@ -68,11 +68,11 @@ const destroyCircular = (params: IDestroyCircularParams): any => {
             continue;
         }
 
-        to[key] = "[Circular]";
+        to[key] = '[Circular]';
     }
 
     for (const { property, enumerable } of exposeErrorProperties) {
-        if (typeof from[property] === "string") {
+        if (typeof from[property] === 'string') {
             Object.defineProperty(to, property, {
                 value: from[property],
                 enumerable: forceEnumerable ? true : enumerable,

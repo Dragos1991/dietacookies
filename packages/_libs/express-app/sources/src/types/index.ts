@@ -1,1 +1,1 @@
-export * from "./IExpressAppOptions";
+export * from './IExpressAppOptions';

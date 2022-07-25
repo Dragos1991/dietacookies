@@ -1,9 +1,9 @@
-import { Box, Tabs, Tab, useTheme } from "@dietacookies/ui-libs";
-import { connect } from "react-redux";
-import { FunctionComponent, SyntheticEvent, useState } from "react";
+import { Box, Tabs, Tab, useTheme } from '@dietacookies/ui-libs';
+import { connect } from 'react-redux';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
 
-import { useStyles } from "./Profile.css";
-import { current } from "@reduxjs/toolkit";
+import { useStyles } from './Profile.css';
+import { current } from '@reduxjs/toolkit';
 
 interface TabPanelProps {
     children?: React.ReactNode;

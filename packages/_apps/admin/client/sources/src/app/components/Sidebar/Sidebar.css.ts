@@ -1,12 +1,6 @@
-import {
-    css,
-    drawerWidth,
-    ITheme,
-    SerializedStyles,
-    theme,
-} from "@dietacookies/ui-libs";
+import { css, drawerWidth, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
 
-type ValidKeys = "root" | "drawer";
+type ValidKeys = 'root' | 'drawer';
 
 export type ISidebarStyles = {
     [key in ValidKeys]: {
@@ -15,26 +9,23 @@ export type ISidebarStyles = {
     };
 };
 
-export const useStyles = (
-    theme: ITheme,
-    { matchUpMd }: any
-): ISidebarStyles => {
+export const useStyles = (theme: ITheme, { matchUpMd }: any): ISidebarStyles => {
     return {
         root: {
             css: css({
-                width: matchUpMd ? drawerWidth : "auto",
+                width: matchUpMd ? drawerWidth : 'auto',
             }),
         },
         drawer: {
             css: css({
-                "& .MuiDrawer-paper": {
+                '& .MuiDrawer-paper': {
                     width: drawerWidth,
                     paddingLeft: theme.spacing(2),
                     background: theme.palette.background.default,
                     color: theme.palette.text.primary,
-                    borderRight: "none",
-                    [theme.breakpoints.up("md")]: {
-                        top: "88px",
+                    borderRight: 'none',
+                    [theme.breakpoints.up('md')]: {
+                        top: '88px',
                     },
                 },
             }),

@@ -1,6 +1,6 @@
-import type { CorsOptions } from "cors";
-import type cookieParser from "cookie-parser";
-import type http from "http";
+import type { CorsOptions } from 'cors';
+import type cookieParser from 'cookie-parser';
+import type http from 'http';
 
 export interface IExpressAppOptions {
     port: number;
@@ -14,11 +14,6 @@ export interface IExpressAppOptions {
         limit: number | string;
         inflate?: boolean;
         type?: string | string[] | ((req: http.IncomingMessage) => any);
-        verify?(
-            req: http.IncomingMessage,
-            res: http.ServerResponse,
-            buf: Buffer,
-            encoding: string
-        ): void;
+        verify?(req: http.IncomingMessage, res: http.ServerResponse, buf: Buffer, encoding: string): void;
     };
 }

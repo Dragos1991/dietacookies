@@ -1,14 +1,7 @@
-import { css, Theme, SerializedStyles } from "@dietacookies/ui-libs";
-import loginImage from "./assets/loginImage.jpg";
+import { css, Theme, SerializedStyles } from '@dietacookies/ui-libs';
+import loginImage from './assets/loginImage.jpg';
 
-type ValidKeys =
-    | "alignSelf"
-    | "root"
-    | "leftSection"
-    | "logo"
-    | "title"
-    | "rightWrap"
-    | "rightContainer";
+type ValidKeys = 'alignSelf' | 'root' | 'leftSection' | 'logo' | 'title' | 'rightWrap' | 'rightContainer';
 
 export type ILoginStyles = {
     [key in ValidKeys]: {
@@ -21,13 +14,13 @@ export const useStyles = (theme: Theme): ILoginStyles => {
     return {
         alignSelf: {
             css: css({
-                alignSelf: "center",
+                alignSelf: 'center',
             }),
         },
         root: {
-            className: "root",
+            className: 'root',
             css: css({
-                minHeight: "100%",
+                minHeight: '100%',
                 marginTop: 0,
                 backgroundColor: theme.palette.primary.light,
             }),
@@ -42,29 +35,29 @@ export const useStyles = (theme: Theme): ILoginStyles => {
         leftSection: {
             css: css({
                 backgroundImage: `url(${loginImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
             }),
         },
         title: {
             css: css({
-                textAlign: "center",
+                textAlign: 'center',
                 paddingBottom: theme.spacing(4),
                 color: theme.palette.primary.main,
             }),
         },
         rightWrap: {
             css: css({
-                height: "100%",
-                display: "flex",
+                height: '100%',
+                display: 'flex',
             }),
         },
         rightContainer: {
             css: css({
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                width: "100%",
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                width: '100%',
                 padding: theme.spacing(2),
             }),
         },

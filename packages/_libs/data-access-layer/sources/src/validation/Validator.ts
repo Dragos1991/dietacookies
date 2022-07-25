@@ -1,17 +1,17 @@
-import Ajv from "ajv";
-import { AnyValidateFunction, ErrorObject } from "ajv/dist/core";
-import fs from "fs";
-import path from "path";
-import addFormats from "ajv-formats";
+import Ajv from 'ajv';
+import { AnyValidateFunction, ErrorObject } from 'ajv/dist/core';
+import fs from 'fs';
+import path from 'path';
+import addFormats from 'ajv-formats';
 
-import { ValidatorError } from "./ValidatorError";
-import { Logger } from "@dietacookies/logger";
+import { ValidatorError } from './ValidatorError';
+import { Logger } from '@dietacookies/logger';
 
 export enum ValidationSchema {
-    Uuid = "@dietacookies/schema/uuid",
-    UserCreate = "@dietacookies/schema/user#/definitions/.Create",
-    UserUpdate = "@dietacookies/schema/user#/definitions/.Update",
-    UserAuthenticate = "@dietacookies/schema/user#/definitions/.Authenticate",
+    Uuid = '@dietacookies/schema/uuid',
+    UserCreate = '@dietacookies/schema/user#/definitions/.Create',
+    UserUpdate = '@dietacookies/schema/user#/definitions/.Update',
+    UserAuthenticate = '@dietacookies/schema/user#/definitions/.Authenticate',
 }
 
 type IData = unknown;
@@ -33,17 +33,17 @@ export class Validator {
         protected props: {
             log: Logger;
             enableAllErrors: boolean;
-        }
+        },
     ) {
         const allSchemas: Array<Record<string, unknown>> = [];
         const files = this.getFiles();
 
-        files.forEach((path) => {
+        files.forEach(path => {
             try {
-                const toAdd = JSON.parse(fs.readFileSync(path, "utf8"));
+                const toAdd = JSON.parse(fs.readFileSync(path, 'utf8'));
                 allSchemas.push(toAdd);
             } catch (error) {
-                console.log("Error parsing path: " + path, error);
+                console.log('Error parsing path: ' + path, error);
             }
         });
 
@@ -51,7 +51,7 @@ export class Validator {
             new Ajv({
                 allErrors: this.props.enableAllErrors,
                 schemas: allSchemas,
-            })
+            }),
         );
 
         let i: keyof typeof ValidationSchema;
@@ -61,19 +61,16 @@ export class Validator {
             if (func) {
                 this.compiled.set(ValidationSchema[i], func);
                 try {
-                    func({ please: "compile" });
-                    console.log("Validation schemas compilation done");
+                    func({ please: 'compile' });
+                    console.log('Validation schemas compilation done');
                 } catch (error) {
-                    console.log("Validator init error", error);
+                    console.log('Validator init error', error);
                 }
             }
         }
     }
 
-    public static factory(props: {
-        enableAllErrors: boolean;
-        log: Logger;
-    }): Validator {
+    public static factory(props: { enableAllErrors: boolean; log: Logger }): Validator {
         const { enableAllErrors, log } = props;
         return new Validator({
             enableAllErrors,
@@ -83,9 +80,7 @@ export class Validator {
 
     public validate(data: IData, schema: ValidationSchema): IValidate {
         try {
-            const validate = this.compiled.get(
-                schema
-            ) as AnyValidateFunction<any>;
+            const validate = this.compiled.get(schema) as AnyValidateFunction<any>;
 
             const result = {
                 isValid: validate(data),
@@ -93,7 +88,7 @@ export class Validator {
             };
 
             if (!result.isValid) {
-                this.props.log.warning("Validation failed", {
+                this.props.log.warning('Validation failed', {
                     data,
                     schema,
                     errors: result.errors,
@@ -102,11 +97,11 @@ export class Validator {
 
             return result;
         } catch (error) {
-            throw new ValidatorError("Validation failed ", { error });
+            throw new ValidatorError('Validation failed ', { error });
         }
     }
 
-    private getFiles(dirName = "", fileList: string[] = []) {
+    private getFiles(dirName = '', fileList: string[] = []) {
         try {
             if (!dirName) {
                 dirName = this.defaultDirName;
@@ -114,14 +109,14 @@ export class Validator {
 
             let list = fileList;
 
-            fs.readdirSync(dirName).forEach((file) => {
+            fs.readdirSync(dirName).forEach(file => {
                 list = fs.statSync(path.join(dirName, file)).isDirectory()
                     ? this.getFiles(path.join(dirName, file), list)
                     : list.concat(path.join(dirName, file));
             });
             return list;
         } catch (error) {
-            console.log("Error on getting schema fles", error);
+            console.log('Error on getting schema fles', error);
             throw error;
         }
     }

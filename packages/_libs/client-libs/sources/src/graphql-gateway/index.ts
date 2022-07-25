@@ -1,1 +1,1 @@
-export * from "./GraphQLGateway";
+export * from './GraphQLGateway';

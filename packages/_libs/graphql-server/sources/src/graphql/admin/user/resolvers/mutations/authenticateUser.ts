@@ -1,21 +1,14 @@
-import { IAdminContext } from "../../../types/types";
-import {
-    IUserOmitPassword,
-    IUserAuthenticate,
-} from "@dietacookies/data-access-layer";
+import { IAdminContext } from '../../../types/types';
+import { IUserOmitPassword, IUserAuthenticate } from '@dietacookies/data-access-layer';
 
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 type ISource = unknown;
 type IArgs = {
     data: IUserAuthenticate;
 };
 
-const authenticateUser = async (
-    _sources: ISource,
-    args: IArgs,
-    context: IAdminContext
-): Promise<IUserOmitPassword> => {
+const authenticateUser = async (_sources: ISource, args: IArgs, context: IAdminContext): Promise<IUserOmitPassword> => {
     try {
         const { applicationContext, res } = context;
         const { userService } = applicationContext;
@@ -23,10 +16,10 @@ const authenticateUser = async (
         const { rememberMe, ...rest } = data;
 
         const user = await userService.authenticate(rest);
-        const token = jwt.sign(user, "123");
+        const token = jwt.sign(user, '123');
         const maxAge = rememberMe ? 24 * 60 * 60 * 1000 : undefined;
 
-        res.cookie("token", token, {
+        res.cookie('token', token, {
             maxAge: maxAge,
             httpOnly: true,
         });

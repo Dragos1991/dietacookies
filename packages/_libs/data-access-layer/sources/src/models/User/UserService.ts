@@ -1,18 +1,11 @@
-import { InvalidRequestError } from "@dietacookies/services-errors";
-import _ from "lodash";
-import { Logger } from "@dietacookies/logger";
-import {
-    IUserOmitPassword,
-    IUserCreate,
-    IUser,
-    IUserUpdate,
-    IUserAuthenticate,
-    IUserDelete,
-} from "../../database";
-import { IUuid } from "../../interfaces/IUuid";
-import { Validator, ValidationSchema } from "../../validation/Validator";
-import { UserModel } from "./UserModel";
-import { HandlePassword } from "../../services";
+import { InvalidRequestError } from '@dietacookies/services-errors';
+import _ from 'lodash';
+import { Logger } from '@dietacookies/logger';
+import { IUserOmitPassword, IUserCreate, IUser, IUserUpdate, IUserAuthenticate, IUserDelete } from '../../database';
+import { IUuid } from '../../interfaces/IUuid';
+import { Validator, ValidationSchema } from '../../validation/Validator';
+import { UserModel } from './UserModel';
+import { HandlePassword } from '../../services';
 
 export interface IUserServiceCreateRequest extends IUserCreate {}
 export interface IUserUpdateRequest {
@@ -36,14 +29,10 @@ export class UserService {
             userModel: UserModel;
             validator: Validator;
             log: Logger;
-        }
+        },
     ) {}
 
-    public static factory(props: {
-        userModel: UserModel;
-        validator: Validator;
-        log: Logger;
-    }): UserService {
+    public static factory(props: { userModel: UserModel; validator: Validator; log: Logger }): UserService {
         return new UserService({
             userModel: props.userModel,
             validator: props.validator,
@@ -53,7 +42,7 @@ export class UserService {
 
     public async loadById(id: IUuid): Promise<IUser> {
         if (!id) {
-            throw new InvalidRequestError("Missing id");
+            throw new InvalidRequestError('Missing id');
         }
         try {
             const user = await this.props.userModel.loadById(id);
@@ -65,7 +54,7 @@ export class UserService {
 
     public async loadByEmail(email: string): Promise<IUser> {
         if (!email) {
-            throw new InvalidRequestError("Missing email");
+            throw new InvalidRequestError('Missing email');
         }
         try {
             const user = await this.props.userModel.loadByEmail(email);
@@ -76,19 +65,14 @@ export class UserService {
         }
     }
 
-    public async create(
-        request: IUserServiceCreateRequest
-    ): Promise<IUserOmitPassword> {
+    public async create(request: IUserServiceCreateRequest): Promise<IUserOmitPassword> {
         const data = request;
 
         try {
-            const validation = this.props.validator.validate(
-                data,
-                ValidationSchema.UserCreate
-            );
+            const validation = this.props.validator.validate(data, ValidationSchema.UserCreate);
 
             if (!validation.isValid) {
-                throw new InvalidRequestError("Create validation error", {
+                throw new InvalidRequestError('Create validation error', {
                     errors: validation.errors,
                     data,
                 });
@@ -97,8 +81,8 @@ export class UserService {
             const existingUser = await this.loadByEmail(data.email);
 
             if (existingUser) {
-                throw new InvalidRequestError("Email already in use.", {
-                    fields: ["email"],
+                throw new InvalidRequestError('Email already in use.', {
+                    fields: ['email'],
                 });
             }
 
@@ -115,9 +99,7 @@ export class UserService {
         }
     }
 
-    public async update(
-        request: IUserUpdateRequest
-    ): Promise<IUserOmitPassword> {
+    public async update(request: IUserUpdateRequest): Promise<IUserOmitPassword> {
         const {
             data,
             where: { currentUser },
@@ -125,14 +107,11 @@ export class UserService {
 
         try {
             if (!currentUser.id) {
-                throw new InvalidRequestError("Missing ID");
+                throw new InvalidRequestError('Missing ID');
             }
 
-            if (
-                _.difference(Object.values(data), Object.values(currentUser))
-                    .length === 0
-            ) {
-                throw new InvalidRequestError("Same user data.");
+            if (_.difference(Object.values(data), Object.values(currentUser)).length === 0) {
+                throw new InvalidRequestError('Same user data.');
             }
 
             let securePassword: string | undefined = undefined;
@@ -146,7 +125,7 @@ export class UserService {
                     ...data,
                     ...(securePassword && { password: securePassword }),
                 },
-                currentUser.id
+                currentUser.id,
             );
 
             return user;
@@ -155,9 +134,7 @@ export class UserService {
         }
     }
 
-    public async delete(
-        request: IUserDeleteRequest
-    ): Promise<IUserOmitPassword> {
+    public async delete(request: IUserDeleteRequest): Promise<IUserOmitPassword> {
         const {
             data,
             where: { id },
@@ -165,13 +142,13 @@ export class UserService {
 
         try {
             if (!id) {
-                throw new InvalidRequestError("Missing ID");
+                throw new InvalidRequestError('Missing ID');
             }
 
             const masterUser = await this.loadById(id);
 
-            if ((masterUser && masterUser.role !== "admin") || id !== data.id) {
-                throw new InvalidRequestError("Unathorized.", {
+            if ((masterUser && masterUser.role !== 'admin') || id !== data.id) {
+                throw new InvalidRequestError('Unathorized.', {
                     id,
                 });
             }
@@ -179,14 +156,12 @@ export class UserService {
             const deletingUser = await this.loadById(data.id);
 
             if (!deletingUser) {
-                throw new InvalidRequestError("User dose not exist.", {
+                throw new InvalidRequestError('User dose not exist.', {
                     id: data.id,
                 });
             }
 
-            const user: IUserOmitPassword = await this.props.userModel.delete(
-                data.id
-            );
+            const user: IUserOmitPassword = await this.props.userModel.delete(data.id);
 
             return user;
         } catch (error) {
@@ -194,18 +169,13 @@ export class UserService {
         }
     }
 
-    public async authenticate(
-        request: IUserAuthenticate
-    ): Promise<IUserOmitPassword> {
+    public async authenticate(request: IUserAuthenticate): Promise<IUserOmitPassword> {
         const data = request;
         try {
-            const validation = this.props.validator.validate(
-                data,
-                ValidationSchema.UserAuthenticate
-            );
+            const validation = this.props.validator.validate(data, ValidationSchema.UserAuthenticate);
 
             if (!validation.isValid) {
-                throw new InvalidRequestError("Authenticate validation error", {
+                throw new InvalidRequestError('Authenticate validation error', {
                     errors: validation.errors,
                     data,
                 });
@@ -214,17 +184,14 @@ export class UserService {
             const user = await this.loadByEmail(data.email);
 
             if (!user) {
-                throw new InvalidRequestError("Invalid credentials.");
+                throw new InvalidRequestError('Invalid credentials.');
             }
 
             const { password } = user;
-            const passwordsMatch = await HandlePassword.compare(
-                password,
-                data.password
-            );
+            const passwordsMatch = await HandlePassword.compare(password, data.password);
 
             if (!passwordsMatch) {
-                throw new InvalidRequestError("Invalid credentials.");
+                throw new InvalidRequestError('Invalid credentials.');
             }
 
             return user;

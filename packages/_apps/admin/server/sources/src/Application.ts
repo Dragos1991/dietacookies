@@ -1,7 +1,7 @@
-import { ExpressApp } from "@dietacookies/express-app";
-import { Logger } from "@dietacookies/logger";
-import path from "path";
-import { ApplicationConfig } from "./ApplicationConfig";
+import { ExpressApp } from '@dietacookies/express-app';
+import { Logger } from '@dietacookies/logger';
+import path from 'path';
+import { ApplicationConfig } from './ApplicationConfig';
 import {
     ApolloServer,
     ApolloServerPluginLandingPageGraphQLPlayground,
@@ -9,25 +9,19 @@ import {
     GraphqlAdmin,
     GraphQLError,
     IAdminApplicationContext,
-} from "@dietacookies/graphql-server";
+} from '@dietacookies/graphql-server';
 
-import { TraceableError } from "@dietacookies/traceable-error";
+import { TraceableError } from '@dietacookies/traceable-error';
 
-import { database } from "./database/database";
-import { Services } from "./services/Services";
+import { database } from './database/database';
+import { Services } from './services/Services';
 
 export class Application {
-    public constructor(
-        private readonly config: ApplicationConfig,
-        private readonly log: Logger
-    ) {}
+    public constructor(private readonly config: ApplicationConfig, private readonly log: Logger) {}
 
     public async start() {
         const log = this.log;
-        const staticFilesPath = path.join(
-            __dirname,
-            "../../../client/dist/public"
-        );
+        const staticFilesPath = path.join(__dirname, '../../../client/dist/public');
 
         const service = new ExpressApp({
             port: this.config.port,
@@ -49,10 +43,7 @@ export class Application {
         return service;
     }
 
-    private async addGraphqlRoute(
-        service: ExpressApp,
-        applicationContext: IAdminApplicationContext
-    ) {
+    private async addGraphqlRoute(service: ExpressApp, applicationContext: IAdminApplicationContext) {
         const schema = await GraphqlAdmin.createSchema();
         const log = this.log;
 
@@ -70,7 +61,7 @@ export class Application {
             validationRules: [depthLimit(7)],
 
             formatError: (error: GraphQLError) => {
-                log.error("Graphql Error", {
+                log.error('Graphql Error', {
                     error,
                     orignalError: (error as any).orignalError,
                 });
@@ -83,13 +74,13 @@ export class Application {
         try {
             await graphqlServer.start();
         } catch (error) {
-            throw new TraceableError("Application.addGraphqlRoute", error);
+            throw new TraceableError('Application.addGraphqlRoute', error);
         }
 
         graphqlServer.applyMiddleware({
             app: service.app,
             cors: this.config.corsOptions,
-            path: "/*_*/api",
+            path: '/*_*/api',
         });
 
         service.initSinglePageApp();

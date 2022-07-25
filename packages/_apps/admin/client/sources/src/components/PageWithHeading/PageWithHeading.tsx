@@ -1,15 +1,13 @@
-import { Box, useTheme, ITheme } from "@dietacookies/ui-libs";
-import { FunctionComponent, PropsWithChildren } from "react";
+import { Box, useTheme, ITheme } from '@dietacookies/ui-libs';
+import { FunctionComponent, PropsWithChildren } from 'react';
 
-import { useStyles } from "./PageWithHeading.css";
+import { useStyles } from './PageWithHeading.css';
 
 interface IPageWithHeading {
     title: string;
 }
 
-const PageWithHeading: FunctionComponent<
-    PropsWithChildren & IPageWithHeading
-> = ({ title, children }) => {
+const PageWithHeading: FunctionComponent<PropsWithChildren & IPageWithHeading> = ({ title, children }) => {
     const theme = useTheme() as ITheme;
     const { root, heading } = useStyles(theme);
 

@@ -1,4 +1,4 @@
-import { FormikProps, FormikTouched, FormikErrors } from "formik";
+import { FormikProps, FormikTouched, FormikErrors } from 'formik';
 
 export interface IFormikProps extends FormikProps<{}> {
     touched: FormikTouched<{

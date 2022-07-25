@@ -1,22 +1,11 @@
-import camelcaseKeys from "camelcase-keys";
-import snakecaseKeys from "snakecase-keys";
+import camelcaseKeys from 'camelcase-keys';
+import snakecaseKeys from 'snakecase-keys';
 
-import {
-    PostgresqlDatabase,
-    IDatabase,
-} from "@dietacookies/database-connector";
-import { DatabaseError } from "@dietacookies/services-errors";
-import { BaseModel } from "../BaseModel";
-import {
-    IUserCreate,
-    IUser,
-    IUserDb,
-    IUserOmitPassword,
-    IUserUpdate,
-    ILoadUserBy,
-    IUserDelete,
-} from "../../database";
-import { IUuid } from "../../interfaces";
+import { PostgresqlDatabase, IDatabase } from '@dietacookies/database-connector';
+import { DatabaseError } from '@dietacookies/services-errors';
+import { BaseModel } from '../BaseModel';
+import { IUserCreate, IUser, IUserDb, IUserOmitPassword, IUserUpdate, ILoadUserBy, IUserDelete } from '../../database';
+import { IUuid } from '../../interfaces';
 
 export class UserModel extends BaseModel {
     protected db: PostgresqlDatabase;
@@ -24,7 +13,7 @@ export class UserModel extends BaseModel {
     public constructor(
         protected props: {
             database: PostgresqlDatabase;
-        }
+        },
     ) {
         super();
         this.db = this.props.database;
@@ -37,8 +26,8 @@ export class UserModel extends BaseModel {
     public async loadBy(params: ILoadUserBy): Promise<IUser> {
         try {
             const response: IUserDb[] = await this.database
-                .select("*")
-                .from("user")
+                .select('*')
+                .from('user')
                 .where({
                     ...params,
                 });
@@ -47,7 +36,7 @@ export class UserModel extends BaseModel {
 
             return user;
         } catch (error) {
-            throw new DatabaseError("Model exist", error, { params });
+            throw new DatabaseError('Model exist', error, { params });
         }
     }
 
@@ -75,57 +64,36 @@ export class UserModel extends BaseModel {
         try {
             const formatedData = snakecaseKeys(data);
             const response: IUserDb[] = await db
-                .table("user")
+                .table('user')
                 .insert(formatedData)
-                .returning([
-                    "id",
-                    "email",
-                    "first_name",
-                    "last_name",
-                    "age",
-                    "created_at",
-                    "updated_at",
-                    "role",
-                ]);
+                .returning(['id', 'email', 'first_name', 'last_name', 'age', 'created_at', 'updated_at', 'role']);
 
             const user: IUserOmitPassword = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
-            throw new DatabaseError("Database Error: User Create", error, {
+            throw new DatabaseError('Database Error: User Create', error, {
                 data,
             });
         }
     }
 
-    public async update(
-        data: IUserUpdate,
-        id: IUuid
-    ): Promise<IUserOmitPassword> {
+    public async update(data: IUserUpdate, id: IUuid): Promise<IUserOmitPassword> {
         const db = this.database;
 
         try {
             const formatedData = snakecaseKeys(data);
             const response: IUserDb[] = await db
-                .table("user")
-                .where("id", "=", id)
+                .table('user')
+                .where('id', '=', id)
                 .update(formatedData)
-                .returning([
-                    "id",
-                    "email",
-                    "first_name",
-                    "last_name",
-                    "age",
-                    "created_at",
-                    "updated_at",
-                    "role",
-                ]);
+                .returning(['id', 'email', 'first_name', 'last_name', 'age', 'created_at', 'updated_at', 'role']);
 
             const user: IUserOmitPassword = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
-            throw new DatabaseError("Database Error: User Update", error, {
+            throw new DatabaseError('Database Error: User Update', error, {
                 data,
             });
         }
@@ -136,25 +104,16 @@ export class UserModel extends BaseModel {
 
         try {
             const response: IUserDb[] = await db
-                .table("user")
-                .where("id", "=", id)
+                .table('user')
+                .where('id', '=', id)
                 .del()
-                .returning([
-                    "id",
-                    "email",
-                    "first_name",
-                    "last_name",
-                    "age",
-                    "created_at",
-                    "updated_at",
-                    "role",
-                ]);
+                .returning(['id', 'email', 'first_name', 'last_name', 'age', 'created_at', 'updated_at', 'role']);
 
             const user: IUserOmitPassword = camelcaseKeys(response[0]);
 
             return user;
         } catch (error) {
-            throw new DatabaseError("User cannot be deleted.", error);
+            throw new DatabaseError('User cannot be deleted.', error);
         }
     }
 }

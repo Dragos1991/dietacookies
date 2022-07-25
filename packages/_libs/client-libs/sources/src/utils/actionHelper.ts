@@ -1,4 +1,4 @@
-import type { Action as ReduxAction } from "redux";
+import type { Action as ReduxAction } from 'redux';
 
 export interface IAction<T> extends ReduxAction<T> {
     /**
@@ -32,23 +32,15 @@ export interface IActionMeta<P> {
  * @param payload The payload
  */
 export function createAction<T extends string>(type: T): IAction<T>;
-export function createAction<T extends string, P>(
-    type: T,
-    payload: P,
-    meta?: IActionMeta<P>
-): IActionWithPayload<T, P>;
-export function createAction<T extends string, P>(
-    type: T,
-    payload?: P,
-    meta?: IActionMeta<P>
-) {
+export function createAction<T extends string, P>(type: T, payload: P, meta?: IActionMeta<P>): IActionWithPayload<T, P>;
+export function createAction<T extends string, P>(type: T, payload?: P, meta?: IActionMeta<P>) {
     return { type, payload, meta };
 }
 
 export type IActionCreator<T> = (meta?: IActionMeta<void>) => IAction<T>;
 export type IActionWithPayloadCreator<T extends string, P> = (
     payload: P,
-    meta?: IActionMeta<P>
+    meta?: IActionMeta<P>,
 ) => IActionWithPayload<T, P>;
 
 /**
@@ -59,10 +51,7 @@ export type IActionWithPayloadCreator<T extends string, P> = (
 interface IActionsCreatorsMapObject {
     [actionCreator: string]: (...args: any[]) => any;
 }
-export type ActionsUnion<A extends IActionsCreatorsMapObject> = ReturnType<
-    A[keyof A]
->;
-export type ActionsOfType<
-    ActionUnion,
-    ActionType extends string
-> = ActionUnion extends IAction<ActionType> ? ActionUnion : never;
+export type ActionsUnion<A extends IActionsCreatorsMapObject> = ReturnType<A[keyof A]>;
+export type ActionsOfType<ActionUnion, ActionType extends string> = ActionUnion extends IAction<ActionType>
+    ? ActionUnion
+    : never;

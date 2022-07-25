@@ -1,3 +1,3 @@
-export type { IAdminContext, IAdminApplicationContext } from "./types/types";
+export type { IAdminContext, IAdminApplicationContext } from './types/types';
 
-export { GraphqlAdmin } from "./GraphqlAdmin";
+export { GraphqlAdmin } from './GraphqlAdmin';

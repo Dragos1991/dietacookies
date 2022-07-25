@@ -1,6 +1,6 @@
-import { graphQlClient } from "@dietacookies/client-libs";
-import { put, takeEvery } from "redux-saga/effects";
-import { AuthActionsTypes, AuthActions } from "../actions";
+import { graphQlClient } from '@dietacookies/client-libs';
+import { put, takeEvery } from 'redux-saga/effects';
+import { AuthActionsTypes, AuthActions } from '../actions';
 
 const query = `
 query {
@@ -30,12 +30,10 @@ export function* loadCurrentUser() {
             query,
         });
 
-        yield put(
-            AuthActions.LoadCurrentUserSuccess(response.data.currentUser)
-        );
+        yield put(AuthActions.LoadCurrentUserSuccess(response.data.currentUser));
     } catch (error) {
         console.log(error);
-        console.log("Authentification failed");
+        console.log('Authentification failed');
     }
 }
 

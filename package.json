@@ -24,7 +24,8 @@
         "migrate:rollback": "lerna run knex:migrate:rollback",
         "seed:make": "lerna run knex:seed:make",
         "seed:run": "lerna run knex:seed:run",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "prettier:format": "prettier --write ."
     },
     "keywords": [],
     "author": "",
@@ -42,6 +43,7 @@
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.17.12",
         "babel-preset-minify": "^0.5.1",
-        "concurrently": "^7.1.0"
+        "concurrently": "^7.1.0",
+        "prettier": "^2.7.1"
     }
 }

@@ -1,13 +1,13 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
 
 // assets
-import { themeColors } from "./ThemeVariables";
+import { themeColors } from './ThemeVariables';
 
 // project imports
-import { componentStyleOverrides } from "./ComponentStyleOverride";
-import { themePalette } from "./Pallete";
-import { themeTypography } from "./Typography";
-import { ITheme } from "../types";
+import { componentStyleOverrides } from './ComponentStyleOverride';
+import { themePalette } from './Pallete';
+import { themeTypography } from './Typography';
+import { ITheme } from '../types';
 
 /**
  * Represent theme style and structure as per Material-UI
@@ -29,17 +29,17 @@ export const DietaCookiesTheme = (): ITheme => {
         menuSelected: color.secondaryDark,
         menuSelectedBack: color.secondaryLight,
         divider: color.grey200,
-        fontFamily: "Open Sans",
+        fontFamily: 'Open Sans',
     };
 
     const themeOptions = {
         palette: themePalette(themeOption),
         mixins: {
             toolbar: {
-                minHeight: "48px",
-                padding: "16px",
-                "@media (min-width: 600px)": {
-                    minHeight: "48px",
+                minHeight: '48px',
+                padding: '16px',
+                '@media (min-width: 600px)': {
+                    minHeight: '48px',
                 },
             },
         },

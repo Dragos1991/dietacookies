@@ -1,14 +1,10 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
-import { IUser } from "@dietacookies/data-access-layer";
+import { IUser } from '@dietacookies/data-access-layer';
 
-import { IAdminContext } from "../../../types/types";
+import { IAdminContext } from '../../../types/types';
 
-const currentUser = async (
-    _source: unknown,
-    _args: unknown,
-    context: IAdminContext
-): Promise<IUser | null> => {
+const currentUser = async (_source: unknown, _args: unknown, context: IAdminContext): Promise<IUser | null> => {
     try {
         const { req } = context;
 
@@ -16,7 +12,7 @@ const currentUser = async (
             return null;
         }
 
-        const user = jwt.verify(req.cookies.token, "123") as IUser;
+        const user = jwt.verify(req.cookies.token, '123') as IUser;
 
         return user;
     } catch (error) {

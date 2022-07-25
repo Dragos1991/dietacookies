@@ -11,19 +11,19 @@ import {
     OutlinedInput,
     Stack,
     useTheme,
-} from "@dietacookies/ui-libs";
+} from '@dietacookies/ui-libs';
 
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { Formik, Form } from "formik";
+import { Formik, Form } from 'formik';
 
-import { FunctionComponent, useEffect, useState } from "react";
-import { useStyles } from "./LoginForm.css";
-import { AuthActions } from "../../../auth/actions";
-import { IFormikProps } from "./types";
-import { formControls, validationSchema } from "../utils";
+import { FunctionComponent, useEffect, useState } from 'react';
+import { useStyles } from './LoginForm.css';
+import { AuthActions } from '../../../auth/actions';
+import { IFormikProps } from './types';
+import { formControls, validationSchema } from '../utils';
 
 interface IProps {
     Authenticate: typeof AuthActions.Authenticate;
@@ -50,29 +50,17 @@ const LoginFormB: FunctionComponent<IProps> = ({ Authenticate, errors }) => {
         <div css={root.css}>
             <Formik
                 initialValues={{
-                    email: "",
-                    password: "",
+                    email: '',
+                    password: '',
                     rememberMe: false,
                 }}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
             >
-                {({
-                    errors,
-                    handleBlur,
-                    handleChange,
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    values,
-                }: IFormikProps) => {
+                {({ errors, handleBlur, handleChange, handleSubmit, setFieldValue, touched, values }: IFormikProps) => {
                     return (
                         <Form noValidate onSubmit={handleSubmit}>
-                            <FormControl
-                                fullWidth
-                                error={Boolean(touched.email && errors.email)}
-                                sx={{ mb: 3 }}
-                            >
+                            <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ mb: 3 }}>
                                 <InputLabel htmlFor={formControls.username.id}>
                                     {formControls.username.label}
                                 </InputLabel>
@@ -86,21 +74,11 @@ const LoginFormB: FunctionComponent<IProps> = ({ Authenticate, errors }) => {
                                     label={formControls.username.label}
                                     inputProps={{}}
                                 />
-                                <Collapse
-                                    in={Boolean(touched.email && errors.email)}
-                                >
-                                    <FormHelperText error>
-                                        {errors.email}
-                                    </FormHelperText>
+                                <Collapse in={Boolean(touched.email && errors.email)}>
+                                    <FormHelperText error>{errors.email}</FormHelperText>
                                 </Collapse>
                             </FormControl>
-                            <FormControl
-                                fullWidth
-                                error={Boolean(
-                                    touched.password && errors.password
-                                )}
-                                sx={{ mb: 1 }}
-                            >
+                            <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ mb: 1 }}>
                                 <InputLabel htmlFor={formControls.password.id}>
                                     {formControls.password.label}
                                 </InputLabel>
@@ -113,43 +91,26 @@ const LoginFormB: FunctionComponent<IProps> = ({ Authenticate, errors }) => {
                                     onChange={handleChange}
                                     label={formControls.password.label}
                                 />
-                                <Collapse
-                                    in={Boolean(
-                                        touched.password && errors.password
-                                    )}
-                                >
-                                    <FormHelperText error>
-                                        {errors.password}
-                                    </FormHelperText>
+                                <Collapse in={Boolean(touched.password && errors.password)}>
+                                    <FormHelperText error>{errors.password}</FormHelperText>
                                 </Collapse>
                             </FormControl>
-                            <Stack
-                                direction="row"
-                                alignItems="center"
-                                justifyContent="space-between"
-                            >
+                            <Stack direction="row" alignItems="center" justifyContent="space-between">
                                 <FormControlLabel
                                     control={
                                         <Checkbox
                                             name="remeberMe"
                                             color="primary"
                                             onBlur={handleBlur}
-                                            onChange={(event) => {
-                                                setFieldValue(
-                                                    "rememberMe",
-                                                    event.target.checked
-                                                );
+                                            onChange={event => {
+                                                setFieldValue('rememberMe', event.target.checked);
                                             }}
                                         />
                                     }
                                     label="Remember me"
                                 />
                             </Stack>
-                            {errors.submit && (
-                                <FormHelperText error>
-                                    {errors.submit}
-                                </FormHelperText>
-                            )}
+                            {errors.submit && <FormHelperText error>{errors.submit}</FormHelperText>}
                             <Collapse in={open}>
                                 {validationErrors &&
                                     validationErrors.map((error: any) => {
@@ -204,7 +165,7 @@ export const LoginForm = connect(
     },
     {
         Authenticate: AuthActions.Authenticate,
-    }
+    },
 )(LoginFormB);
 
 export { LoginFormB };

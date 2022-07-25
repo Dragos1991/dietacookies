@@ -1,2 +1,2 @@
-export * from "./IException";
-export * from "./IUuid";
+export * from './IException';
+export * from './IUuid';

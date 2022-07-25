@@ -1,11 +1,11 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge";
-import type { GraphQLSchema } from "graphql";
-import type { IAdminContext } from "./types/types";
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
+import type { GraphQLSchema } from 'graphql';
+import type { IAdminContext } from './types/types';
 
-import { userResolvers } from "./user/resolvers";
+import { userResolvers } from './user/resolvers';
 
-import { userTypes } from "./user";
+import { userTypes } from './user';
 
 const typeDefs = mergeTypeDefs([userTypes]);
 const resolvers = mergeResolvers([userResolvers]);

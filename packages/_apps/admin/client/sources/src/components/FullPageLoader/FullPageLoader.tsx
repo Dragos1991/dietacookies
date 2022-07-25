@@ -1,21 +1,21 @@
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import { CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import { CircularProgress } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    height: "100%",
-    bgcolor: "background.paper",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '100%',
+    bgcolor: 'background.paper',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
 };
 
 export function FullPageLoader({ loading }: any) {
@@ -39,7 +39,7 @@ export function FullPageLoader({ loading }: any) {
             BackdropProps={{
                 timeout: 500,
                 style: {
-                    backgroundColor: "#fff",
+                    backgroundColor: '#fff',
                 },
             }}
         >
@@ -50,8 +50,8 @@ export function FullPageLoader({ loading }: any) {
                 }}
                 in={open}
                 easing={{
-                    enter: "0",
-                    exit: "0.5s",
+                    enter: '0',
+                    exit: '0.5s',
                 }}
             >
                 <Box sx={style}>

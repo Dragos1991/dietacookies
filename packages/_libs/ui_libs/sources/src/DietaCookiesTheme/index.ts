@@ -1,2 +1,2 @@
-export * from "./DietaCookiesTheme";
-export * from "./ThemeVariables";
+export * from './DietaCookiesTheme';
+export * from './ThemeVariables';

@@ -1,1 +1,1 @@
-export { currentUser } from "./currentUser";
+export { currentUser } from './currentUser';

@@ -1,4 +1,4 @@
-declare module "extract-files/extractFiles.mjs" {
+declare module 'extract-files/extractFiles.mjs' {
     export type ExtractableFile = File | Blob | ReactNativeFile;
 
     export interface ExtractableFileResult {
@@ -6,10 +6,7 @@ declare module "extract-files/extractFiles.mjs" {
         files: Map<ExtractableFile, string[]>;
     }
 
-    export default function extractFiles(
-        value: any,
-        path?: string
-    ): ExtractableFileResult;
+    export default function extractFiles(value: any, path?: string): ExtractableFileResult;
 }
 
-declare module "extract-files/isExtractableFile.mjs";
+declare module 'extract-files/isExtractableFile.mjs';

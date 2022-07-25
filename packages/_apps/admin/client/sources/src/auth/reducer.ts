@@ -1,5 +1,5 @@
-import { AnyAction } from "redux";
-import { AuthActionsTypes, AuthAllActions } from "./actions";
+import { AnyAction } from 'redux';
+import { AuthActionsTypes, AuthAllActions } from './actions';
 
 const initialState: any = {
     currentUser: null,

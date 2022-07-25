@@ -1,1 +1,1 @@
-export { HandlePassword } from "./HandlePassword";
+export { HandlePassword } from './HandlePassword';

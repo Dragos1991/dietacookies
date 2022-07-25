@@ -1,4 +1,4 @@
-import { IDbConfig } from "../types/types";
+import { IDbConfig } from '../types/types';
 
 export class PostgresqlDatabaseConfig {
     private configOptions: IDbConfig;
@@ -11,7 +11,7 @@ export class PostgresqlDatabaseConfig {
 
     public get config(): IDbConfig {
         if (!this.configOptions) {
-            throw new Error("Missing Config");
+            throw new Error('Missing Config');
         }
         return this.configOptions;
     }

@@ -1,2 +1,2 @@
-export * from "./UserModel";
-export * from "./UserService";
+export * from './UserModel';
+export * from './UserService';

@@ -1,16 +1,9 @@
-import type { FunctionComponent } from "react";
-import {
-    Drawer,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-} from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import CategoryIcon from "@mui/icons-material/Category";
+import type { FunctionComponent } from 'react';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CategoryIcon from '@mui/icons-material/Category';
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -18,20 +11,20 @@ interface INavigationProps {}
 
 export const navigationRoutes = {
     dashboard: {
-        path: "/dashboard",
-        name: "Dashboard",
+        path: '/dashboard',
+        name: 'Dashboard',
     },
     categories: {
-        path: "/categories",
-        name: "Categories",
+        path: '/categories',
+        name: 'Categories',
     },
     products: {
-        path: "/products",
-        name: "Products",
+        path: '/products',
+        name: 'Products',
     },
     profile: {
-        path: "/profile",
-        name: "Profile",
+        path: '/profile',
+        name: 'Profile',
     },
 };
 
@@ -46,22 +39,19 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
-                "& .MuiDrawer-paper": {
+                '& .MuiDrawer-paper': {
                     width: drawerWidth,
-                    boxSizing: "border-box",
+                    boxSizing: 'border-box',
                 },
             }}
         >
             <List>
-                <ListItem
-                    disablePadding
-                    disabled={location.pathname === dashboard.path}
-                >
+                <ListItem disablePadding disabled={location.pathname === dashboard.path}>
                     <NavLink
                         to={navigationRoutes.dashboard.path}
                         style={{
-                            display: "block",
-                            width: "100%",
+                            display: 'block',
+                            width: '100%',
                         }}
                     >
                         <ListItemButton>
@@ -72,15 +62,12 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
                         </ListItemButton>
                     </NavLink>
                 </ListItem>
-                <ListItem
-                    disablePadding
-                    disabled={location.pathname === categories.path}
-                >
+                <ListItem disablePadding disabled={location.pathname === categories.path}>
                     <NavLink
                         to={navigationRoutes.categories.path}
                         style={{
-                            display: "block",
-                            width: "100%",
+                            display: 'block',
+                            width: '100%',
                         }}
                     >
                         <ListItemButton>
@@ -91,15 +78,12 @@ const Navigation: FunctionComponent<INavigationProps> = () => {
                         </ListItemButton>
                     </NavLink>
                 </ListItem>
-                <ListItem
-                    disablePadding
-                    disabled={location.pathname === products.path}
-                >
+                <ListItem disablePadding disabled={location.pathname === products.path}>
                     <NavLink
                         to={navigationRoutes.products.path}
                         style={{
-                            display: "block",
-                            width: "100%",
+                            display: 'block',
+                            width: '100%',
                         }}
                     >
                         <ListItemButton>

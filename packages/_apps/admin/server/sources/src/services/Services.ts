@@ -1,13 +1,10 @@
-import { PostgresqlDatabase } from "@dietacookies/database-connector";
-import { UserService, Validator } from "@dietacookies/data-access-layer";
-import { Models } from "../models/Models";
-import { Logger } from "@dietacookies/logger";
+import { PostgresqlDatabase } from '@dietacookies/database-connector';
+import { UserService, Validator } from '@dietacookies/data-access-layer';
+import { Models } from '../models/Models';
+import { Logger } from '@dietacookies/logger';
 
 export class Services {
-    public constructor(
-        private readonly database: PostgresqlDatabase,
-        private readonly log: Logger
-    ) {}
+    public constructor(private readonly database: PostgresqlDatabase, private readonly log: Logger) {}
 
     public static factory(database: PostgresqlDatabase, log: Logger) {
         return new Services(database, log);
