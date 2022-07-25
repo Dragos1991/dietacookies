@@ -1,4 +1,4 @@
-import type { ITheme, SerializedStyles } from '@dietacookies/ui-libs';
+import type { SerializedStyles } from '@dietacookies/ui-libs';
 import { css, theme } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
@@ -10,7 +10,7 @@ export type IHeaderStyles = {
     };
 };
 
-export const useStyles = (_theme?: ITheme): IHeaderStyles => {
+export const useStyles = (): IHeaderStyles => {
     return {
         root: {
             css: css({

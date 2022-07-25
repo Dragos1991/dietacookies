@@ -1,4 +1,4 @@
-import type { ITheme, SerializedStyles } from '@dietacookies/ui-libs';
+import type { SerializedStyles } from '@dietacookies/ui-libs';
 import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
@@ -10,7 +10,7 @@ export type IFullPageLoaderStyles = {
     };
 };
 
-export const useStyles = (_theme?: ITheme): IFullPageLoaderStyles => {
+export const useStyles = (): IFullPageLoaderStyles => {
     return {
         root: {
             css: css({

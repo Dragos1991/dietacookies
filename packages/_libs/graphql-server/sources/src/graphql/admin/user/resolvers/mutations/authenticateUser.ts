@@ -1,5 +1,5 @@
 import type { IUserAuthenticate, IUserOmitPassword } from '@dietacookies/data-access-layer';
-import jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
 import type { IAdminContext } from '../../../types/types';
 
@@ -16,7 +16,7 @@ const authenticateUser = async (_sources: ISource, args: IArgs, context: IAdminC
         const { rememberMe, ...rest } = data;
 
         const user = await userService.authenticate(rest);
-        const token = jwt.sign(user, '123');
+        const token = sign(user, '123');
         const maxAge = rememberMe ? 24 * 60 * 60 * 1000 : undefined;
 
         res.cookie('token', token, {

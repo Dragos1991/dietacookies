@@ -1,7 +1,7 @@
 import { ThemeProvider, theme } from '@dietacookies/ui-libs';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import ReactDOM from 'react-dom/client';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -16,8 +16,7 @@ const muiCache = createCache({
     key: 'mui',
     prepend: true,
 });
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+render(
     <Provider store={store}>
         <BrowserRouter>
             <CacheProvider value={muiCache}>
@@ -29,4 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </CacheProvider>
         </BrowserRouter>
     </Provider>,
+    document.getElementById('root'),
 );

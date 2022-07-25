@@ -1,4 +1,4 @@
-import type { SerializedStyles, Theme } from '@dietacookies/ui-libs';
+import type { SerializedStyles } from '@dietacookies/ui-libs';
 import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
@@ -10,7 +10,7 @@ export type ILoginFormStyles = {
     };
 };
 
-export const useStyles = (_theme: Theme): ILoginFormStyles => {
+export const useStyles = (): ILoginFormStyles => {
     return {
         root: {
             css: css({

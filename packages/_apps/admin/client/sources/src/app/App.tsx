@@ -13,7 +13,7 @@ import { Header, Main, Sidebar } from './components';
 const AppB: FunctionComponent = ({ currentUser }: any) => {
     const { dashboard, profile } = navigationRoutes;
     const theme = useTheme();
-    const { root } = useStyles(theme);
+    const { root } = useStyles();
 
     const [leftDrawerOpened, setLeftDrawerOpened] = useState<boolean>(true);
 

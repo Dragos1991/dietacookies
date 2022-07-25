@@ -1,5 +1,5 @@
 import type { IUserCreate, IUserOmitPassword } from '@dietacookies/data-access-layer';
-import jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
 import type { IAdminContext } from '../../../types/types';
 
@@ -15,7 +15,7 @@ const createUser = async (_source: ISource, args: IArgs, context: IAdminContext)
         const { data } = args;
 
         const user = await userService.create(data);
-        const token = jwt.sign(user, '123');
+        const token = sign(user, '123');
 
         res.cookie('token', token, {
             httpOnly: true,

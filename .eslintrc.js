@@ -32,6 +32,7 @@ module.exports = {
         "@typescript-eslint/no-empty-interface": [
             "off"
         ],
+        "import/no-named-as-default": ["off"],
         'import/no-unresolved': 'error',
         // 'import/no-named-as-default-member': 'off',
         'import/order': [

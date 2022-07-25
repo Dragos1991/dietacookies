@@ -1,5 +1,5 @@
 import type { IUser, IUserOmitPassword, IUserUpdate } from '@dietacookies/data-access-layer';
-import jwt from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 import type { IAdminContext } from '../../../types/types';
 
@@ -15,11 +15,11 @@ const updateUser = async (_source: ISource, args: IArgs, context: IAdminContext)
 
         const { data } = args;
 
-        const currentUser = jwt.verify(req.cookies.token, '123') as IUser;
+        const currentUser = verify(req.cookies.token, '123') as IUser;
 
         const user = await userService.update({ data, where: { currentUser } });
 
-        const token = jwt.sign(user, '123');
+        const token = sign(user, '123');
 
         res.cookie('token', token, {
             httpOnly: true,

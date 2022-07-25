@@ -10,7 +10,6 @@ import {
     InputLabel,
     OutlinedInput,
     Stack,
-    useTheme,
 } from '@dietacookies/ui-libs';
 import CloseIcon from '@mui/icons-material/Close';
 import { Form, Formik } from 'formik';
@@ -29,8 +28,7 @@ interface IProps {
 }
 
 const LoginFormB: FunctionComponent<IProps> = ({ Authenticate, errors }) => {
-    const theme = useTheme();
-    const { root } = useStyles(theme);
+    const { root } = useStyles();
     const validationErrors = errors;
     const [open, setOpen] = useState(false);
 

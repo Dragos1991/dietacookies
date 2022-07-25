@@ -1,4 +1,4 @@
-import type { SerializedStyles, Theme } from '@dietacookies/ui-libs';
+import type { SerializedStyles } from '@dietacookies/ui-libs';
 import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
@@ -10,7 +10,7 @@ export type IAppStyles = {
     };
 };
 
-export const useStyles = (_theme: Theme): IAppStyles => {
+export const useStyles = (): IAppStyles => {
     return {
         root: {
             className: 'root',

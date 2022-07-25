@@ -1,5 +1,5 @@
 import type { IUser, IUserDelete, IUserOmitPassword } from '@dietacookies/data-access-layer';
-import jwt from 'jsonwebtoken';
+import { verify } from 'jsonwebtoken';
 
 import type { IAdminContext } from '../../../types/types';
 
@@ -14,7 +14,7 @@ const deleteUser = async (_source: ISource, args: IArgs, context: IAdminContext)
         const { userService } = applicationContext;
         const { data } = args;
 
-        const { id } = jwt.verify(req.cookies.token, '123') as IUser;
+        const { id } = verify(req.cookies.token, '123') as IUser;
 
         const user = await userService.delete({ data, where: { id } });
 

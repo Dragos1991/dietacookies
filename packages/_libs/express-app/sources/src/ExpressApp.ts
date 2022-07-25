@@ -5,7 +5,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import type { Response } from 'express';
-import express from 'express';
+import express, { static as eStatic, json } from 'express';
 
 import type { IExpressAppOptions } from './types/IExpressAppOptions';
 
@@ -24,7 +24,7 @@ export class ExpressApp {
         this.options = { ...this.options, ...initOptions };
 
         if (this.options.staticFilesPath) {
-            this.app.use(express.static(this.options.staticFilesPath));
+            this.app.use(eStatic(this.options.staticFilesPath));
         }
 
         if (this.options.useCookieParser) {
@@ -34,7 +34,7 @@ export class ExpressApp {
             this.app.use(cors(this.options.cors));
         }
         if (this.options.bodyParser) {
-            this.app.use(express.json(this.options.bodyParser));
+            this.app.use(json(this.options.bodyParser));
         }
     }
 

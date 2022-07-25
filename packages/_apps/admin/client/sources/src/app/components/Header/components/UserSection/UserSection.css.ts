@@ -1,4 +1,4 @@
-import type { ITheme, SerializedStyles } from '@dietacookies/ui-libs';
+import type { SerializedStyles } from '@dietacookies/ui-libs';
 import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
@@ -10,7 +10,7 @@ export type IUserSectionStyles = {
     };
 };
 
-export const useStyles = (_theme: ITheme): IUserSectionStyles => {
+export const useStyles = (): IUserSectionStyles => {
     return {
         root: {
             css: css({
