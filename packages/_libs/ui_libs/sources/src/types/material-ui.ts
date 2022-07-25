@@ -1,6 +1,5 @@
-import { Theme } from '@mui/material';
-import { Typography } from '@mui/material/styles/createTypography';
-import { string } from 'yup';
+import type { Theme } from '@mui/material';
+import type { Typography } from '@mui/material/styles/createTypography';
 
 export interface ITheme extends Theme {
     typography: ITypography;

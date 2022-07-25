@@ -1,6 +1,7 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { resolve } from 'path';
+
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const cwd = process.cwd();
 const sourcesPath = resolve(cwd, 'sources', 'src');

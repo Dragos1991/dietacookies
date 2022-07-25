@@ -1,4 +1,5 @@
 import { Logger } from '@dietacookies/logger';
+
 import { Application } from './Application';
 import { loadConfig } from './config';
 

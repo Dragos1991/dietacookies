@@ -1,6 +1,6 @@
-import type { CorsOptions } from 'cors';
-import type cookieParser from 'cookie-parser';
 import type http from 'http';
+
+import type { CorsOptions } from 'cors';
 
 export interface IExpressAppOptions {
     port: number;

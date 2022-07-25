@@ -1,7 +1,8 @@
-import { PostgresqlDatabase } from '@dietacookies/database-connector';
 import { UserService, Validator } from '@dietacookies/data-access-layer';
+import type { PostgresqlDatabase } from '@dietacookies/database-connector';
+import type { Logger } from '@dietacookies/logger';
+
 import { Models } from '../models/Models';
-import { Logger } from '@dietacookies/logger';
 
 export class Services {
     public constructor(private readonly database: PostgresqlDatabase, private readonly log: Logger) {}

@@ -1,12 +1,13 @@
-import { useTheme, ITheme, Drawer, useMediaQuery, Box } from '@dietacookies/ui-libs';
-import { Dispatch, FunctionComponent, SetStateAction } from 'react';
+import type { ITheme } from '@dietacookies/ui-libs';
+import { Box, Drawer, useMediaQuery, useTheme } from '@dietacookies/ui-libs';
+import type { Dispatch, FunctionComponent, SetStateAction } from 'react';
 
 import { useStyles } from './Sidebar.css';
 
-interface IMainProps {
+type IMainProps = {
     setLeftDrawerOpened: Dispatch<SetStateAction<boolean>>;
     leftDrawerOpened: boolean;
-}
+};
 
 const SidebarB: FunctionComponent<IMainProps> = ({ setLeftDrawerOpened, leftDrawerOpened }) => {
     const theme = useTheme() as ITheme;

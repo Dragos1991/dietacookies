@@ -1,6 +1,6 @@
-import { FormikProps, FormikTouched, FormikErrors } from 'formik';
+import type { FormikErrors, FormikProps, FormikTouched } from 'formik';
 
-export interface IFormikProps extends FormikProps<{}> {
+export interface IFormikProps extends FormikProps<any> {
     touched: FormikTouched<{
         email: string;
         password: string;

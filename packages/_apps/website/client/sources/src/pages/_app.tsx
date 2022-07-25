@@ -1,6 +1,7 @@
+import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { AppProps } from 'next/app';
-import { wrapper, store } from '../store';
+
+import { store, wrapper } from '../store';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (

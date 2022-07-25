@@ -1,5 +1,6 @@
 import { createStore } from 'redux-dynamic-modules';
 import { getSagaExtension } from 'redux-dynamic-modules-saga';
+
 import { appModule } from './app/module';
 import { authModule } from './auth/module';
 

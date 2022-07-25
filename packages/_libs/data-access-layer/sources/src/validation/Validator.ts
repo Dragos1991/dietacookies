@@ -1,11 +1,12 @@
-import Ajv from 'ajv';
-import { AnyValidateFunction, ErrorObject } from 'ajv/dist/core';
 import fs from 'fs';
 import path from 'path';
+
+import type { Logger } from '@dietacookies/logger';
+import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import type { AnyValidateFunction, ErrorObject } from 'ajv/dist/core';
 
 import { ValidatorError } from './ValidatorError';
-import { Logger } from '@dietacookies/logger';
 
 export enum ValidationSchema {
     Uuid = '@dietacookies/schema/uuid',

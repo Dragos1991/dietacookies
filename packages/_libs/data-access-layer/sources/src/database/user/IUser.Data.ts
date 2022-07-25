@@ -1,5 +1,5 @@
-import { RequiredExecptFor } from '../../interfaces/IException';
-import { IUser } from './IUser';
+import type { RequiredExecptFor } from '../../interfaces/IException';
+import type { IUser } from './IUser';
 
 type IUserCreateBase = Pick<
     IUser,

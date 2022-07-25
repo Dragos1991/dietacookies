@@ -1,4 +1,5 @@
-import { css, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
+import type { ITheme, SerializedStyles } from '@dietacookies/ui-libs';
+import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
 
@@ -13,7 +14,7 @@ export const useStyles = (_theme?: ITheme): IFullPageLoaderStyles => {
     return {
         root: {
             css: css({
-                position: 'absolute' as 'absolute',
+                position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',

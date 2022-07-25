@@ -1,8 +1,7 @@
-import jwt from 'jsonwebtoken';
+import type { IUser } from '@dietacookies/data-access-layer';
+import { verify } from 'jsonwebtoken';
 
-import { IUser } from '@dietacookies/data-access-layer';
-
-import { IAdminContext } from '../../../types/types';
+import type { IAdminContext } from '../../../types/types';
 
 const currentUser = async (_source: unknown, _args: unknown, context: IAdminContext): Promise<IUser | null> => {
     try {
@@ -12,10 +11,11 @@ const currentUser = async (_source: unknown, _args: unknown, context: IAdminCont
             return null;
         }
 
-        const user = jwt.verify(req.cookies.token, '123') as IUser;
+        const user = verify(req.cookies.token, '123') as IUser;
 
         return user;
     } catch (error) {
+        console.log(error);
         throw error;
     }
 };

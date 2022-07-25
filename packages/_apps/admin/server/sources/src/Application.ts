@@ -1,18 +1,17 @@
-import { ExpressApp } from '@dietacookies/express-app';
-import { Logger } from '@dietacookies/logger';
 import path from 'path';
-import { ApplicationConfig } from './ApplicationConfig';
+
+import { ExpressApp } from '@dietacookies/express-app';
+import type { GraphQLError, IAdminApplicationContext } from '@dietacookies/graphql-server';
 import {
     ApolloServer,
     ApolloServerPluginLandingPageGraphQLPlayground,
-    depthLimit,
     GraphqlAdmin,
-    GraphQLError,
-    IAdminApplicationContext,
+    depthLimit,
 } from '@dietacookies/graphql-server';
-
+import type { Logger } from '@dietacookies/logger';
 import { TraceableError } from '@dietacookies/traceable-error';
 
+import type { ApplicationConfig } from './ApplicationConfig';
 import { database } from './database/database';
 import { Services } from './services/Services';
 

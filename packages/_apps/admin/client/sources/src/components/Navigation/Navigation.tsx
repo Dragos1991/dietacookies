@@ -1,8 +1,7 @@
-import type { FunctionComponent } from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import CategoryIcon from '@mui/icons-material/Category';
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import type { FunctionComponent } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;

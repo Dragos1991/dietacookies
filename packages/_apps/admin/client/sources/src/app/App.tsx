@@ -1,12 +1,14 @@
+import { AppBar, Box, Toolbar, useTheme } from '@dietacookies/ui-libs';
+import type { FunctionComponent } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
-import { FunctionComponent, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+
 import { navigationRoutes } from '../components/Navigation';
-import { Dashboard, NotFound, Login, Profile } from '../pages';
-import { AppBar, Toolbar, useTheme, Box } from '@dietacookies/ui-libs';
-import { Main, Header, Sidebar } from './components';
-import { useStyles } from './App.css';
 import { PageWithHeading } from '../components/PageWithHeading/PageWithHeading';
+import { Dashboard, Login, NotFound, Profile } from '../pages';
+import { useStyles } from './App.css';
+import { Header, Main, Sidebar } from './components';
 
 const AppB: FunctionComponent = ({ currentUser }: any) => {
     const { dashboard, profile } = navigationRoutes;

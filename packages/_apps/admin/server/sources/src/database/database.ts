@@ -1,4 +1,4 @@
-import { dbConfig, PostgresqlDatabase, PostgresqlDatabaseConfig } from '@dietacookies/database-connector';
+import { PostgresqlDatabase, PostgresqlDatabaseConfig, dbConfig } from '@dietacookies/database-connector';
 
 const config = new PostgresqlDatabaseConfig().load(dbConfig);
 

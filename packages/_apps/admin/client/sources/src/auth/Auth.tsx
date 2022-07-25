@@ -1,8 +1,10 @@
+import type { FunctionComponent, PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { FunctionComponent, PropsWithChildren, ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthActions } from './actions';
+
 import { FullPageLoader } from '../components/FullPageLoader/FullPageLoader';
+import { AuthActions } from './actions';
 
 interface IAuth {
     LoadCurrentUser: typeof AuthActions.LoadCurrentUser;

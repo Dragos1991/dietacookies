@@ -1,4 +1,6 @@
-import { css, Theme, SerializedStyles } from '@dietacookies/ui-libs';
+import type { SerializedStyles, Theme } from '@dietacookies/ui-libs';
+import { css } from '@dietacookies/ui-libs';
+
 import loginImage from './assets/loginImage.jpg';
 
 type ValidKeys = 'alignSelf' | 'root' | 'leftSection' | 'logo' | 'title' | 'rightWrap' | 'rightContainer';

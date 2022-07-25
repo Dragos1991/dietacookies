@@ -1,4 +1,5 @@
 import * as winston from 'winston';
+
 import { destroyCircular } from './destroyCircular';
 
 export type ILoggerOptions = winston.LoggerOptions;
@@ -129,7 +130,7 @@ export class Logger {
             message: value.message,
             name: value.name,
             stack: value.stack,
-            ...(value.hasOwnProperty('code') ? { ':error:code': (value as any).code } : {}),
+            ...(Object.prototype.hasOwnProperty.call(value, 'code') ? { ':error:code': (value as any).code } : {}),
         };
     }
 

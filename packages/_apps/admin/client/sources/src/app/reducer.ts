@@ -1,5 +1,6 @@
-import { AnyAction } from 'redux';
-import { IAppState } from './types';
+import type { AnyAction } from 'redux';
+
+import type { IAppState } from './types';
 
 const initialState: IAppState = {
     color: 'red',

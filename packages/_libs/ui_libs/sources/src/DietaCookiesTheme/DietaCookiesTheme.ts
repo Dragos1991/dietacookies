@@ -1,13 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
-// assets
-import { themeColors } from './ThemeVariables';
-
+import type { ITheme } from '../types';
 // project imports
 import { componentStyleOverrides } from './ComponentStyleOverride';
 import { themePalette } from './Pallete';
+// assets
+import { themeColors } from './ThemeVariables';
 import { themeTypography } from './Typography';
-import { ITheme } from '../types';
 
 /**
  * Represent theme style and structure as per Material-UI
@@ -45,7 +44,9 @@ export const DietaCookiesTheme = (): ITheme => {
         },
         typography: themeTypography(themeOption),
     };
-    //@ts-ignore
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const themes = createTheme(themeOptions) as ITheme;
     themes.components = componentStyleOverrides(themeOption);
 

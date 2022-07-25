@@ -12,18 +12,16 @@ import {
     Stack,
     useTheme,
 } from '@dietacookies/ui-libs';
-
 import CloseIcon from '@mui/icons-material/Close';
-
+import { Form, Formik } from 'formik';
+import type { FunctionComponent } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Formik, Form } from 'formik';
-
-import { FunctionComponent, useEffect, useState } from 'react';
-import { useStyles } from './LoginForm.css';
 import { AuthActions } from '../../../auth/actions';
-import { IFormikProps } from './types';
 import { formControls, validationSchema } from '../utils';
+import { useStyles } from './LoginForm.css';
+import type { IFormikProps } from './types';
 
 interface IProps {
     Authenticate: typeof AuthActions.Authenticate;

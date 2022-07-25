@@ -1,5 +1,5 @@
-import { IUuid } from '../../interfaces/IUuid';
-import { IUserRoles } from './IUserRoles';
+import type { IUuid } from '../../interfaces/IUuid';
+import type { IUserRoles } from './IUserRoles';
 
 interface IUserBase {
     id: IUuid;

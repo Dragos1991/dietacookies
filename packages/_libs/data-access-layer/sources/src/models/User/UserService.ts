@@ -1,13 +1,22 @@
+import type { Logger } from '@dietacookies/logger';
 import { InvalidRequestError } from '@dietacookies/services-errors';
 import _ from 'lodash';
-import { Logger } from '@dietacookies/logger';
-import { IUserOmitPassword, IUserCreate, IUser, IUserUpdate, IUserAuthenticate, IUserDelete } from '../../database';
-import { IUuid } from '../../interfaces/IUuid';
-import { Validator, ValidationSchema } from '../../validation/Validator';
-import { UserModel } from './UserModel';
-import { HandlePassword } from '../../services';
 
-export interface IUserServiceCreateRequest extends IUserCreate {}
+import type {
+    IUser,
+    IUserAuthenticate,
+    IUserCreate,
+    IUserDelete,
+    IUserOmitPassword,
+    IUserUpdate,
+} from '../../database';
+import type { IUuid } from '../../interfaces/IUuid';
+import { HandlePassword } from '../../services';
+import type { Validator } from '../../validation/Validator';
+import { ValidationSchema } from '../../validation/Validator';
+import type { UserModel } from './UserModel';
+
+export type IUserServiceCreateRequest = IUserCreate;
 export interface IUserUpdateRequest {
     data: IUserUpdate;
     where: {
@@ -21,7 +30,7 @@ export interface IUserDeleteRequest {
         id: IUuid;
     };
 }
-export interface IUserAuthenticateRequest extends IUserAuthenticate {}
+export type IUserAuthenticateRequest = IUserAuthenticate;
 
 export class UserService {
     public constructor(
@@ -48,6 +57,7 @@ export class UserService {
             const user = await this.props.userModel.loadById(id);
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -61,6 +71,7 @@ export class UserService {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -95,6 +106,7 @@ export class UserService {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -130,6 +142,7 @@ export class UserService {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -165,6 +178,7 @@ export class UserService {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -196,6 +210,7 @@ export class UserService {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }

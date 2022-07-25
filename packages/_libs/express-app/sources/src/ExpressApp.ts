@@ -1,10 +1,13 @@
-import express, { Response } from 'express';
-import path from 'path';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import http from 'http';
 import http2 from 'http2';
-import { IExpressAppOptions } from './types/IExpressAppOptions';
+import path from 'path';
+
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import type { Response } from 'express';
+import express from 'express';
+
+import type { IExpressAppOptions } from './types/IExpressAppOptions';
 
 export class ExpressApp {
     public app: express.Application;

@@ -1,4 +1,5 @@
-import { css, drawerWidth, ITheme, SerializedStyles, theme } from '@dietacookies/ui-libs';
+import type { ITheme, SerializedStyles } from '@dietacookies/ui-libs';
+import { css, drawerWidth } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root' | 'login';
 

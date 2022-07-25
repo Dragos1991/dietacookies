@@ -1,3 +1,5 @@
-const init = (): void => {};
+const init = (): void => {
+    console.log('App init.');
+};
 
 export { init };

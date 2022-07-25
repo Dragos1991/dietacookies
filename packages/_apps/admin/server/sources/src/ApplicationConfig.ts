@@ -1,4 +1,4 @@
-import { IApplicationOptions } from './types';
+import type { IApplicationOptions } from './types';
 
 export class ApplicationConfig {
     public constructor(private readonly options: IApplicationOptions) {}

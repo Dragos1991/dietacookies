@@ -1,5 +1,5 @@
-import { PostgresqlDatabase } from '@dietacookies/database-connector';
 import { UserModel } from '@dietacookies/data-access-layer';
+import type { PostgresqlDatabase } from '@dietacookies/database-connector';
 
 export class Models {
     public constructor(public readonly database: PostgresqlDatabase) {}

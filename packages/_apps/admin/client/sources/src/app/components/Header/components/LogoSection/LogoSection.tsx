@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 interface ILogoSectionProps {}
 
-const LogoSectionB: FunctionComponent<ILogoSectionProps> = ({}) => {
+const LogoSectionB: FunctionComponent<ILogoSectionProps> = () => {
     return <span>Logo</span>;
 };
 

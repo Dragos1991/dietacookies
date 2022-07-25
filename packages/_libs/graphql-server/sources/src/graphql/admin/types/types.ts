@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
-import { IUser } from '@dietacookies/data-access-layer';
-import { UserService } from '@dietacookies/data-access-layer';
+import type { IUser, UserService } from '@dietacookies/data-access-layer';
+import type { Request, Response } from 'express';
+
 declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Express {
         interface Request {
             currentUser?: IUser;

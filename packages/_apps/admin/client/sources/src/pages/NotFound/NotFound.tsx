@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 const NotFound: FunctionComponent = () => {
     return <div>404</div>;

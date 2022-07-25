@@ -1,5 +1,6 @@
 import { InvalidRequestError } from '@dietacookies/services-errors';
-import { IAdminContext } from '../../../types/types';
+
+import type { IAdminContext } from '../../../types/types';
 
 type ISource = unknown;
 type IArgs = unknown;

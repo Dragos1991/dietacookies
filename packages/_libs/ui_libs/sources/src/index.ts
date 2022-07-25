@@ -1,4 +1,5 @@
 import { DietaCookiesTheme } from './DietaCookiesTheme';
+
 export * from './DietaCookiesTheme';
 export * from './types';
 export * from './utils';

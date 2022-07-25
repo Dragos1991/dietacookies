@@ -1,11 +1,11 @@
+import type { PostgresqlDatabase } from '@dietacookies/database-connector';
+import { DatabaseError } from '@dietacookies/services-errors';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
-import { PostgresqlDatabase, IDatabase } from '@dietacookies/database-connector';
-import { DatabaseError } from '@dietacookies/services-errors';
+import type { ILoadUserBy, IUser, IUserCreate, IUserDb, IUserOmitPassword, IUserUpdate } from '../../database';
+import type { IUuid } from '../../interfaces';
 import { BaseModel } from '../BaseModel';
-import { IUserCreate, IUser, IUserDb, IUserOmitPassword, IUserUpdate, ILoadUserBy, IUserDelete } from '../../database';
-import { IUuid } from '../../interfaces';
 
 export class UserModel extends BaseModel {
     protected db: PostgresqlDatabase;
@@ -45,6 +45,7 @@ export class UserModel extends BaseModel {
             const user = await this.loadBy({ id });
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
@@ -54,6 +55,7 @@ export class UserModel extends BaseModel {
             const user = await this.loadBy({ email });
             return user;
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }

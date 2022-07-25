@@ -1,4 +1,5 @@
-import { css, Theme, SerializedStyles } from '@dietacookies/ui-libs';
+import type { SerializedStyles, Theme } from '@dietacookies/ui-libs';
+import { css } from '@dietacookies/ui-libs';
 
 type ValidKeys = 'root';
 

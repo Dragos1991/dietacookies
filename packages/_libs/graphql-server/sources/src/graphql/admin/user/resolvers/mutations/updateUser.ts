@@ -1,8 +1,7 @@
-import { IAdminContext } from '../../../types/types';
-import { IUser, IUserOmitPassword, IUserUpdate } from '@dietacookies/data-access-layer';
-
+import type { IUser, IUserOmitPassword, IUserUpdate } from '@dietacookies/data-access-layer';
 import jwt from 'jsonwebtoken';
-import { InvalidRequestError } from '@dietacookies/services-errors';
+
+import type { IAdminContext } from '../../../types/types';
 
 type ISource = unknown;
 type IArgs = {
@@ -28,6 +27,7 @@ const updateUser = async (_source: ISource, args: IArgs, context: IAdminContext)
 
         return user;
     } catch (error) {
+        console.log(error);
         throw error;
     }
 };

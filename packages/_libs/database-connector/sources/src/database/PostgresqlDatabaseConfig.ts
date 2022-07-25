@@ -1,8 +1,7 @@
-import { IDbConfig } from '../types/types';
+import type { IDbConfig } from '../types/types';
 
 export class PostgresqlDatabaseConfig {
     private configOptions: IDbConfig;
-    public constructor() {}
 
     public load(config: IDbConfig): PostgresqlDatabaseConfig {
         this.configOptions = config;

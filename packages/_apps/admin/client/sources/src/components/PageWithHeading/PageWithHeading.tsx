@@ -1,5 +1,6 @@
-import { Box, useTheme, ITheme } from '@dietacookies/ui-libs';
-import { FunctionComponent, PropsWithChildren } from 'react';
+import type { ITheme } from '@dietacookies/ui-libs';
+import { Box, useTheme } from '@dietacookies/ui-libs';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 
 import { useStyles } from './PageWithHeading.css';
 

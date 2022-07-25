@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
-import { IDbConfig } from '../types/types';
+
+import type { IDbConfig } from '../types/types';
 
 dotenv.config({
     path: __dirname + '/./../../../.env',

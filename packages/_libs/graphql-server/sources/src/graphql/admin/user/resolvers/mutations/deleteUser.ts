@@ -1,7 +1,7 @@
-import { IAdminContext } from '../../../types/types';
-import { IUser, IUserDelete, IUserOmitPassword } from '@dietacookies/data-access-layer';
-
+import type { IUser, IUserDelete, IUserOmitPassword } from '@dietacookies/data-access-layer';
 import jwt from 'jsonwebtoken';
+
+import type { IAdminContext } from '../../../types/types';
 
 type ISource = unknown;
 type IArgs = {
@@ -24,6 +24,7 @@ const deleteUser = async (_source: ISource, args: IArgs, context: IAdminContext)
 
         return user;
     } catch (error) {
+        console.log(error);
         throw error;
     }
 };

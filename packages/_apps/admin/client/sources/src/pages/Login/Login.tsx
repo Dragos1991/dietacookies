@@ -1,11 +1,11 @@
 import { Grid, Typography, useTheme } from '@dietacookies/ui-libs';
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
+import imageLogin from './assets/loginImage.jpg';
 import { LoginForm } from './components';
 import { useStyles } from './Login.css';
-import imageLogin from './assets/loginImage.jpg';
 
-const Login: FunctionComponent = ({}) => {
+const Login: FunctionComponent = () => {
     const theme = useTheme();
     const { alignSelf, root, leftSection, title, rightWrap, rightContainer, logo } = useStyles(theme);
 
