@@ -1,5 +1,6 @@
-import { Grid, Typography, useTheme } from '@dietacookies/ui-libs';
 import type { FunctionComponent } from 'react';
+
+import { Grid, Typography, useTheme } from '@dietacookies/ui-libs';
 
 import imageLogin from './assets/loginImage.jpg';
 import { LoginForm } from './components';

@@ -1,5 +1,6 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import type { FunctionComponent } from 'react';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavLink } from 'react-router-dom';
 
 import { navigationRoutes } from '../../../../../components/Navigation';

@@ -1,7 +1,9 @@
+import type { Dispatch, FunctionComponent, SetStateAction } from 'react';
+
+import MenuIcon from '@mui/icons-material/Menu';
+
 import type { ITheme } from '@dietacookies/ui-libs';
 import { Avatar, ButtonBase, useTheme } from '@dietacookies/ui-libs';
-import MenuIcon from '@mui/icons-material/Menu';
-import type { Dispatch, FunctionComponent, SetStateAction } from 'react';
 
 import { useStyles } from './MenuButton.css';
 

@@ -1,6 +1,7 @@
+import type { FunctionComponent, PropsWithChildren } from 'react';
+
 import type { ITheme } from '@dietacookies/ui-libs';
 import { useTheme } from '@dietacookies/ui-libs';
-import type { FunctionComponent, PropsWithChildren } from 'react';
 
 import { useStyles } from './Main.css';
 

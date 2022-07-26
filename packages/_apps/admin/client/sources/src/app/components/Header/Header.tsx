@@ -1,5 +1,6 @@
-import { Box } from '@dietacookies/ui-libs';
 import type { Dispatch, FunctionComponent, SetStateAction } from 'react';
+
+import { Box } from '@dietacookies/ui-libs';
 
 import { LogoSection, MenuButton, UserSection } from './components';
 import { useStyles } from './Header.css';

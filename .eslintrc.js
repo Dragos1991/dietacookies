@@ -53,6 +53,19 @@ module.exports = {
                     /* ignore case. Options: [true, false] */
                     caseInsensitive: true,
                 },
+                "pathGroups": [
+                    {
+                      "pattern": "@dietacookies/**",
+                      "group": "external",
+                      "position": "after"
+                    },
+                    {
+                        "pattern": "react",
+                        "group": "builtin",
+                        "position": "before"
+                    }
+                  ],
+                "pathGroupsExcludedImportTypes": ["builtin", "react"]
             },
         ],
         '@typescript-eslint/consistent-type-imports': 'error',

@@ -1,6 +1,7 @@
+import _ from 'lodash';
+
 import type { Logger } from '@dietacookies/logger';
 import { InvalidRequestError } from '@dietacookies/services-errors';
-import _ from 'lodash';
 
 import type {
     IUser,

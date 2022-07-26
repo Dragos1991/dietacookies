@@ -1,5 +1,6 @@
-import type { IUser, IUserOmitPassword, IUserUpdate } from '@dietacookies/data-access-layer';
 import { sign, verify } from 'jsonwebtoken';
+
+import type { IUser, IUserOmitPassword, IUserUpdate } from '@dietacookies/data-access-layer';
 
 import type { IAdminContext } from '../../../types/types';
 

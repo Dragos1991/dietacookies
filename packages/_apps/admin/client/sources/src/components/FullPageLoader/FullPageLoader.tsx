@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
+
 import { CircularProgress } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
-import { useEffect, useState } from 'react';
 
 const style = {
     position: 'absolute' as const,

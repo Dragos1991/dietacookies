@@ -1,9 +1,10 @@
-import { ThemeProvider, theme } from '@dietacookies/ui-libs';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+
+import { ThemeProvider, theme } from '@dietacookies/ui-libs';
 
 import { App } from './app/App';
 import { Auth } from './auth';

@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
-import type { Logger } from '@dietacookies/logger';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import type { AnyValidateFunction, ErrorObject } from 'ajv/dist/core';
+
+import type { Logger } from '@dietacookies/logger';
 
 import { ValidatorError } from './ValidatorError';
 

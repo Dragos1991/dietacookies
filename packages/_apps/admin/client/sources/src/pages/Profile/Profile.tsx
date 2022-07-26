@@ -1,7 +1,9 @@
-import { Box, Tab, Tabs, useTheme } from '@dietacookies/ui-libs';
 import type { FunctionComponent, SyntheticEvent } from 'react';
 import { useState } from 'react';
+
 import { connect } from 'react-redux';
+
+import { Box, Tab, Tabs, useTheme } from '@dietacookies/ui-libs';
 
 import { useStyles } from './Profile.css';
 

@@ -1,8 +1,10 @@
-import { AppBar, Box, Toolbar, useTheme } from '@dietacookies/ui-libs';
 import type { FunctionComponent } from 'react';
 import { useState } from 'react';
+
 import { connect } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+
+import { AppBar, Box, Toolbar, useTheme } from '@dietacookies/ui-libs';
 
 import { navigationRoutes } from '../components/Navigation';
 import { PageWithHeading } from '../components/PageWithHeading/PageWithHeading';

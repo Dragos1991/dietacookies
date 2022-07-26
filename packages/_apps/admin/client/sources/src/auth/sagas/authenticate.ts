@@ -1,5 +1,6 @@
-import { graphQlClient } from '@dietacookies/client-libs';
 import { put, takeEvery } from 'redux-saga/effects';
+
+import { graphQlClient } from '@dietacookies/client-libs';
 
 import { AuthActions, AuthActionsTypes } from '../actions';
 

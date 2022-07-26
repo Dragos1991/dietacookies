@@ -1,3 +1,10 @@
+import type { FunctionComponent } from 'react';
+import { useEffect, useState } from 'react';
+
+import CloseIcon from '@mui/icons-material/Close';
+import { Form, Formik } from 'formik';
+import { connect } from 'react-redux';
+
 import {
     Alert,
     Button,
@@ -11,11 +18,6 @@ import {
     OutlinedInput,
     Stack,
 } from '@dietacookies/ui-libs';
-import CloseIcon from '@mui/icons-material/Close';
-import { Form, Formik } from 'formik';
-import type { FunctionComponent } from 'react';
-import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 
 import { AuthActions } from '../../../auth/actions';
 import { formControls, validationSchema } from '../utils';
